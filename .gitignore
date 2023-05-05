@@ -1,0 +1,14 @@
+**/node_modules
+**/package-lock.json
+
+coverage.*
+
+**/.DS_Store
+**/._*
+
+**/*.pem
+
+**/.vs
+**/.vscode
+**/.idea
+**/todo.txt
