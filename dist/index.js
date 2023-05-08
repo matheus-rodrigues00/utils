@@ -1,7 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.random = void 0;
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-exports.random = random;
+const arrays = require("./arrays");
+const numbers = require("./numbers");
+module.exports = Object.assign(Object.assign({}, arrays), numbers);

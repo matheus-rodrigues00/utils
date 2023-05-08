@@ -1,0 +1,72 @@
+{
+    "data_types": [
+      "BIGINT", 
+      "BINARY", 
+      "BIT", 
+      "BOOLEAN", 
+      "CHAR", 
+      "DATE", 
+      "DECIMAL", 
+      "DOUBLE", 
+      "FLOAT", 
+      "INTEGER", 
+      "JSON", 
+      "NCHAR", 
+      "NUMERIC", 
+      "REAL", 
+      "SMALLINT", 
+      "TEXT", 
+      "TIME", 
+      "TIMESTAMP", 
+      "TINYINT", 
+      "VARBINARY", 
+      "VARCHAR"
+    ],
+    "statements": [
+      "ALTER", 
+      "CREATE", 
+      "DELETE", 
+      "DROP", 
+      "INSERT", 
+      "SELECT", 
+      "TRUNCATE", 
+      "UPDATE"
+    ],
+    "clauses": [
+      "FROM", 
+      "WHERE", 
+      "GROUP BY", 
+      "HAVING", 
+      "ORDER BY", 
+      "LIMIT", 
+      "OFFSET"
+    ],
+    "functions": [
+      "AVG", 
+      "COUNT", 
+      "MAX", 
+      "MIN", 
+      "SUM"
+    ],
+    "operators": [
+      "=", 
+      "<", 
+      ">", 
+      "<=", 
+      ">=", 
+      "<>", 
+      "!=", 
+      "BETWEEN", 
+      "LIKE", 
+      "IN", 
+      "IS NULL"
+    ],
+    "constraints": [
+      "PRIMARY KEY", 
+      "UNIQUE", 
+      "NOT NULL", 
+      "CHECK", 
+      "FOREIGN KEY"
+    ]
+  }
+  
