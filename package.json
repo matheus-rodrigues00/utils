@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node .",
         "test": "jest --watchAll",
+        "production-test": "jest",
         "release-npm": "tsc && npm publish --access public",
         "compile-files": "tsc"
     },
