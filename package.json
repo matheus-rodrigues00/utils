@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node .",
         "test": "jest --watchAll",
-        "release-npm": "tsc && npm publish --access public"
+        "release-npm": "tsc && npm publish --access public",
+        "compile-files": "tsc"
     },
     "keywords": [
         "utils",

@@ -15,13 +15,15 @@ function uniqueElements(array) {
 exports.uniqueElements = uniqueElements;
 /**
  * Returns an array grouped by the given key.
- * @param array
- * @param key
- * @returns {Array}
+ * @param array - The input array to be grouped.
+ * @param key - The key to group the array by.
+ * @returns {Array} - The grouped array.
  */
 function groupBy(array, key) {
-    return array.reduce((result, currentValue) => {
-        (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
+    return array.reduce((result, current_value) => {
+        const group_key = String(current_value[key]);
+        result[group_key] = result[group_key] || [];
+        result[group_key].push(current_value);
         return result;
     }, {});
 }
