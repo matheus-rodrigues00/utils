@@ -10,30 +10,15 @@ function replaceTokens(
   tokens: Record<string, any>,
   regex: RegExp
 ): string {
-  const newString = string.replace(
-    regex,
-    (match: string, ...groups: any[]): string => {
-      const tokenVar = groups.pop();
-
-      if (tokens[tokenVar] !== undefined) {
-        let aux: any = tokens[tokenVar];
-
-        if (Array.isArray(aux)) {
-          aux = aux.length;
-        } else if (typeof aux === "object") {
-          aux = Object.keys(aux).length;
-        } else {
-          aux = 0;
-        }
-
-        return match.replace(regex, aux.toString());
-      }
-
-      return match;
+  const new_string = string.replace(regex, (match: string): string => {
+    if (tokens[match] !== undefined) {
+      return tokens[match];
     }
-  );
 
-  return newString;
+    return match;
+  });
+
+  return new_string;
 }
 
 export { replaceTokens };
