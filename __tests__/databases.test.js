@@ -1,4 +1,4 @@
-const { sanitize } = require("../src/databases");
+const { sanitize } = require("@/databases");
 
 describe("sanitize", () => {
   test("removes all sql statement keywords from a string", () => {

@@ -1,4 +1,4 @@
-const { sleep } = require("../src/promises");
+const { sleep } = require("@/promises");
 
 describe("sleep", () => {
   test("sleeps for half a second passing 500", async () => {
