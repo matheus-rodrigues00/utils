@@ -14,3 +14,6 @@ const utils = require('@teteu/utils');
 
 utils.random(10, 20); // should return a random number between 10 and 20
 ```
+
+## Contribute
+Feel free to contribute. Check if we have open issues or request your utility method. Your code here is very welcome 🤝🤝

@@ -12,17 +12,20 @@ function uniqueElements(array: any[]): any[] {
 
 /**
  * Returns an array grouped by the given key.
- * @param array
- * @param key
- * @returns {Array}
+ * @param array - The input array to be grouped.
+ * @param key - The key to group the array by.
+ * @returns {Array} - The grouped array.
  */
-function groupBy(array: any[], key: string): any[] {
-  return array.reduce((result, currentValue) => {
-    (result[currentValue[key]] = result[currentValue[key]] || []).push(
-      currentValue
-    );
-    return result;
-  }, {});
+function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
+  return array.reduce(
+    (result: Record<string, T[]>, current_value: T): Record<string, T[]> => {
+      const group_key = String(current_value[key]);
+      result[group_key] = result[group_key] || [];
+      result[group_key].push(current_value);
+      return result;
+    },
+    {}
+  );
 }
 
 export { uniqueElements, groupBy };
