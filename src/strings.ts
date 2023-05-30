@@ -21,4 +21,24 @@ function replaceTokens(
   return new_string;
 }
 
-export { replaceTokens };
+/**
+ * Evaluate a string as a JavaScript expression.
+ * @param str - The string to evaluate.
+ * @param callback  - A callback function to call if the string cannot be evaluated.
+ */
+function evaluate(str: string, callback: Function ) {
+  try {
+    // Return the result of evaluating the string.
+    return eval(str);
+  } catch (e) {
+    // If the string cannot be evaluated, return the callback function.
+    if (!callback){
+      // If no callback function is provided, throw the error.
+      throw e;
+    }
+    // If a callback function is provided, return it.
+    return callback;
+  }
+}
+
+export { replaceTokens, evaluate };
