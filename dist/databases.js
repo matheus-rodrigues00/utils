@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sanitize = void 0;
-const sql_keywords = require("./helpers/sql_keywords.json");
+const sql_keywords = require("../helpers/sql_keywords.json");
 /**
  * This method recieves an string input and sanitizes removing all SQL injection.
  * @param input
