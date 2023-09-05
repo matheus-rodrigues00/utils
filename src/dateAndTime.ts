@@ -1,12 +1,4 @@
 /**
- * Returns the current timezone offset in minutes.
- * @returns {number}
- */
-function getTimezoneOffset(): number {
-  return new Date().getTimezoneOffset();
-}
-
-/**
  * Returns a greeting based on the current hour of the day.
  * @returns {string}
  */
@@ -61,7 +53,6 @@ function getCurrentTime(): string {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-
 /**
  * Calculates the number of days between two given dates.
  * @param date1 - The first date.
@@ -74,10 +65,28 @@ function getDaysBetweenDates(date1: Date, date2: Date): number {
   return Math.round(diffInMilliseconds / millisecondsPerDay);
 }
 
+/**
+ * Formats a given date to the Brazilian date format "DD/MM/YYYY".
+ * @param date - The date to be formatted.
+ * @returns {string} - The formatted date.
+ */
+function formatDateToBrazilianDate(date: Date): string {
+  const day =
+    String(date.getDate()).length === 1
+      ? "0" + date.getDate()
+      : String(date.getDate());
+  const month =
+    String(date.getMonth() + 1).length === 1
+      ? "0" + (date.getMonth() + 1)
+      : String(date.getMonth() + 1);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 export {
   getDaysBetweenDates,
   getCurrentDate,
   getGreeting,
-  getTimezoneOffset,
   getCurrentTime,
+  formatDateToBrazilianDate,
 };
