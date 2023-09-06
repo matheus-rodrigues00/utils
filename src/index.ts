@@ -4,6 +4,7 @@ const dateAndTime = require("./dateAndTime");
 const strings = require("./strings");
 const databases = require("./databases");
 const promises = require("./promises");
+const objects = require("./objects");
 
 module.exports = {
   ...arrays,
@@ -12,4 +13,5 @@ module.exports = {
   ...strings,
   ...databases,
   ...promises,
+  ...objects,
 };
