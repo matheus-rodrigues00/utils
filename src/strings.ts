@@ -41,4 +41,15 @@ function evaluate(str: string, callback: Function ) {
   }
 }
 
-export { replaceTokens, evaluate };
+/**
+ * Validates if the input string is a valid email
+ * @param str - The string to validate.
+ * @returns {boolean} - True if the string is a valid email, false otherwise.
+ */
+function isEmail(str: string): boolean {
+  const email_validation_regex =
+    /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return email_validation_regex.test(str);
+}
+
+export { replaceTokens, evaluate, isEmail };
