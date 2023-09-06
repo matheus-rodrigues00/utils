@@ -11,7 +11,7 @@ function uniqueElements(array: any[]): any[] {
 }
 
 /**
- * Returns an array grouped by the given key.
+ * Returns an object with the array grouped by the key.
  * @param array - The input array to be grouped.
  * @param key - The key to group the array by.
  * @returns {Array} - The grouped array.

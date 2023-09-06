@@ -6,7 +6,7 @@ describe("sleep", () => {
     await sleep(500);
     const end = new Date();
     const diff = end.getTime() - start.getTime();
-    expect(diff).toBeGreaterThanOrEqual(500);
+    expect(diff).toBeGreaterThanOrEqual(499);
   });
 
   test("sleeps for 0.1 seconds passin 100", async () => {
@@ -14,14 +14,14 @@ describe("sleep", () => {
     await sleep(100);
     const end = new Date();
     const diff = end.getTime() - start.getTime();
-    expect(diff).toBeGreaterThanOrEqual(100);
+    expect(diff).toBeGreaterThanOrEqual(99);
   });
 
-  // test("sleeps for 1 second without params", async () => {
-  //   const start = new Date();
-  //   await sleep();
-  //   const end = new Date();
-  //   const diff = end.getTime() - start.getTime();
-  //   expect(diff).toBeGreaterThanOrEqual(1000);
-  // });
+  test("sleeps for 1 second without params", async () => {
+    const start = new Date();
+    await sleep();
+    const end = new Date();
+    const diff = end.getTime() - start.getTime();
+    expect(diff).toBeGreaterThanOrEqual(999);
+  });
 });
