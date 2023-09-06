@@ -7,4 +7,5 @@ const databases = require("./databases");
 const promises = require("./promises");
 const objects = require("./objects");
 const phoneNumber = require("./phoneNumber");
-module.exports = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, arrays), numbers), dateAndTime), strings), databases), promises), objects), phoneNumber);
+const discountOnPrice = require("./calculations");
+module.exports = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, arrays), numbers), dateAndTime), strings), databases), promises), objects), phoneNumber), discountOnPrice);
