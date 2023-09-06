@@ -17,3 +17,10 @@ utils.random(10, 20); // should return a random number between 10 and 20
 
 ## Contribute
 Feel free to contribute. Check if we have open issues or request your utility method. Your code here is very welcome 🤝🤝
+
+## Methods Docs
+### Arrays
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|uniqueElements|Returns an array with unique elements| (array: any[]) | {any[]}|
+|groupBy|Returns an array grouped by the given key| (array: T[], key: keyof T) | {Record<string, T[]>}|
