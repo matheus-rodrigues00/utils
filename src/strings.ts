@@ -49,6 +49,7 @@ function evaluate(str: string, callback: Function ) {
 function isEmail(str: string): boolean {
   const email_validation_regex =
     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
   return email_validation_regex.test(str);
 }
 

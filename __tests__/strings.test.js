@@ -87,13 +87,13 @@ describe("evaluate", () => {
 describe("isEmail", () => {
   test("Receives a string with valid email prefix format and returns true", () => {
     expect.assertions(1);
-    const result = isEmail("abc-d@mail.com");
+    const result = isEmail("abc.def@mail-archive.com");
     expect(result).toBe(true);
   });
 
   test("Receives a string with invalid email prefix format and returns false", () => {
     expect.assertions(1);
-    const result = isEmail("abc..def@mail.com");
+    const result = isEmail("abc#def@mail.com");
     expect(result).toBe(false);
   });
 
