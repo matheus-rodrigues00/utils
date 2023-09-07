@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.replaceTokens = void 0;
+exports.isEmail = exports.replaceTokens = void 0;
 /**
  * Replace tokens in a string based on a custom regular expression
  * @param {string} string - The input string containing the tokens.
@@ -18,3 +18,13 @@ function replaceTokens(string, tokens, regex) {
     return new_string;
 }
 exports.replaceTokens = replaceTokens;
+/**
+ * Validates if the input string is a valid email
+ * @param str - The string to validate.
+ * @returns {boolean} - True if the string is a valid email, false otherwise.
+ */
+function isEmail(str) {
+    const email_validation_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return email_validation_regex.test(str);
+}
+exports.isEmail = isEmail;
