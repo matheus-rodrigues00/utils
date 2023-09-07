@@ -5,6 +5,8 @@ const strings = require("./strings");
 const databases = require("./databases");
 const promises = require("./promises");
 const objects = require("./objects");
+const phoneNumber = require("./phoneNumber");
+const discountOnPrice = require("./calculations");
 
 module.exports = {
   ...arrays,
@@ -14,4 +16,6 @@ module.exports = {
   ...databases,
   ...promises,
   ...objects,
+  ...phoneNumber,
+  ...discountOnPrice,
 };
