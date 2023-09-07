@@ -1,4 +1,4 @@
-const { deepClone, pick } = require("@/objects");
+const { deepClone, pick, omit } = require("@/objects");
 
 describe("deepClone", () => {
   test("should clone the object and return a new object", () => {
@@ -50,5 +50,31 @@ describe("pick", () => {
     const obj = { a: 1, b: 2, c: 3 };
     const obj_pick_2 = pick(obj, ["a", "b", "c", "d"]);
     expect(obj_pick_2).toEqual({ a: 1, b: 2, c: 3 });
+  });
+});
+
+describe("omit", () => {
+  test("should return another object without the 'omitted' properties", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const obj_omit = omit(obj, ["a", "b"]);
+    expect(obj_omit).toEqual({ c: 3 });
+  });
+
+  test("should return empty if omits array is empty", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const obj_omit = omit(obj, []);
+    expect(obj_omit).toEqual({ a: 1, b: 2, c: 3 });
+  });
+
+  test("should return same object in case the properties are the same", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const obj_omit = omit(obj, ["d"]);
+    expect(obj_omit).toEqual({ a: 1, b: 2, c: 3 });
+  });
+
+  test("should ignore missing properties and only consider valid properties", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const obj_omit_2 = omit(obj, ["a", "b", "c", "d"]);
+    expect(obj_omit_2).toEqual({});
   });
 });

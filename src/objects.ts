@@ -27,4 +27,24 @@ function pick<T extends object, K extends keyof T>(
   return result as Pick<T, K>;
 }
 
-export { deepClone, pick };
+/**
+ * @param source - The source object
+ * @param keys - An array of keys to omit from the source object
+ * @returns {object}
+ */
+function omit<T extends object, K extends keyof T>(
+  source: T,
+  keys: K[]
+): Omit<T, K> {
+  const result = { ...source };
+
+  for (const key of keys) {
+    if (key in source) {
+      delete result[key];
+    }
+  }
+
+  return result as Omit<T, K>;
+}
+
+export { deepClone, pick, omit };
