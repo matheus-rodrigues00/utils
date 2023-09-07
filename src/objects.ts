@@ -36,13 +36,15 @@ function omit<T extends object, K extends keyof T>(
   source: T,
   keys: K[]
 ): Omit<T, K> {
-  keys.map(key => {
-    if (key in source) {
-      delete source[key];
-    }
-  });
+  const result = { ...source };
 
-  return source as Omit<T, K>;
+  for (const key of keys) {
+    if (key in source) {
+      delete result[key];
+    }
+  }
+
+  return result as Omit<T, K>;
 }
 
 export { deepClone, pick, omit };
