@@ -28,4 +28,14 @@ function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
   );
 }
 
-export { uniqueElements, groupBy };
+/**
+ * This method recieves an array and returns a randomized version of it.
+ * @param array
+ * @returns {Array}
+ */
+function randomizeArray(array: any[]): any[] {
+  const new_arr = [...array];
+  return new_arr.sort(() => Math.random() - 0.5);
+}
+
+export { uniqueElements, groupBy, randomizeArray };

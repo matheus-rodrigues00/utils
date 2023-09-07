@@ -1,4 +1,4 @@
-const { uniqueElements, groupBy } = require("@/arrays");
+const { uniqueElements, groupBy, randomizeArray } = require("@/arrays");
 
 describe("uniqueElements", () => {
   test("returns an array with unique elements", () => {
@@ -31,5 +31,18 @@ describe("groupBy", () => {
         { id: 4, name: "Jane" },
       ],
     });
+  });
+});
+
+describe("randomizeArray", () => {
+  test("randomizes an array", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result = randomizeArray(arr);
+    expect(result).toEqual(expect.arrayContaining(arr));
+  });
+  test("randomizes an array", () => {
+    const arr = Array.from({ length: 1000 }, (_, i) => i + 1);
+    const result = randomizeArray(arr);
+    expect(result).not.toEqual(arr);
   });
 });
