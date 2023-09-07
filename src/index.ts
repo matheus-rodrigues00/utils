@@ -5,7 +5,7 @@ const strings = require("./strings");
 const databases = require("./databases");
 const promises = require("./promises");
 const objects = require("./objects");
-const phoneNumber = require("./phoneNumber");
+const phoneNumbers = require("./phoneNumbers");
 const discountOnPrice = require("./calculations");
 
 module.exports = {
@@ -16,6 +16,6 @@ module.exports = {
   ...databases,
   ...promises,
   ...objects,
-  ...phoneNumber,
+  ...phoneNumbers,
   ...discountOnPrice,
 };
