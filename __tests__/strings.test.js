@@ -1,4 +1,4 @@
-const { replaceTokens } = require("@/strings");
+const { replaceTokens, isEmail } = require("@/strings");
 
 describe("replaceTokens", () => {
   test("replaces tokens with values, using basic regex /(w+)/g", () => {
@@ -46,5 +46,31 @@ describe("replaceTokens", () => {
       regex
     );
     expect(result).toBe("This is a not string");
+  });
+});
+
+describe("isEmail", () => {
+  test("Receives a string with valid email prefix format and returns true", () => {
+    expect.assertions(1);
+    const result = isEmail("abc.def@mail-archive.com");
+    expect(result).toBe(true);
+  });
+
+  test("Receives a string with invalid email prefix format and returns false", () => {
+    expect.assertions(1);
+    const result = isEmail("abc#def@mail.com");
+    expect(result).toBe(false);
+  });
+
+  test("Receives a string with valid email domain formats and returns true", () => {
+    expect.assertions(1);
+    const result = isEmail("abc.def@mail.cc")
+    expect(result).toBe(true);
+  });
+
+  test("Receives a string with invalid email domain formats and returns false", () => {
+    expect.assertions(1);
+    const result = isEmail("abc.def@mail#archive.com")
+    expect(result).toBe(false);
   });
 });
