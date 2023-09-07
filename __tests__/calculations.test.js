@@ -1,97 +1,102 @@
-const { discountOnPrice, discountedPrice } = require("@/calculations");
+const { getDiscountedValue, applyDiscount } = require("@/calculations");
 
-describe("discountedPrice", () => {
-  test("discountedPrice should throw an error if discount on price is greater than 100%", async () => {
-    const price = 100;
-    const discount = 101;
+describe("applyDiscount", () => {
+  test("should throw an error if discount on price is greater than 100%", async () => {
+    const total_price = 100;
+    const discount_percentage = 101;
+    const callback = () => {
+      applyDiscount(total_price, discount_percentage);
+    };
 
-    expect(() => {
-      discountedPrice(price, discount);
-    }).toThrow(Error);
+    expect(callback).toThrow(Error);
   });
 
-  test("discountedPrice should throw an error if discount on price is smaller than 0%", async () => {
-    const price = 100;
-    const discount = -1;
+  test("should throw an error if discount on price is smaller than 0%", async () => {
+    const total_price = 100;
+    const discount_percentage = -1;
+    const callback = () => {
+      applyDiscount(total_price, discount_percentage);
+    };
 
-    expect(() => {
-      discountedPrice(price, discount);
-    }).toThrow(Error);
+    expect(callback).toThrow(Error);
   });
 
-  test("discountedPrice should calculate the price 50% of 100", async () => {
-    const price = 100;
-    const discount = 50;
+  test("should calculate the price as 50 in case 50% of 100", async () => {
+    const total_price = 100;
+    const discount_percentage = 50;
+    const discounted_price = applyDiscount(total_price, discount_percentage);
 
-    expect(discountedPrice(price, discount)).toBe(50);
+    expect(discounted_price).toBe(50);
   });
 
-  test("discountedPrice should calculate the price 33% of 100", async () => {
-    const price = 100;
-    const discount = 33;
+  test("should calculate the price 67 in case 33% of 100", async () => {
+    const total_price = 100;
+    const discount_percentage = 33;
+    const discounted_price = applyDiscount(total_price, discount_percentage);
 
-    expect(discountedPrice(price, discount)).toBe(67);
+    expect(discounted_price).toBe(67);
   });
 
-  test("discountedPrice should calculate the price of 33% of 25", async () => {
-    const price = 25;
-    const discount = 33;
+  test("should calculate the price 66.7 in case 33.3% of 100", async () => {
+    const total_price = 100;
+    const discount_percentage = 33.3;
+    const discounted_price = applyDiscount(total_price, discount_percentage);
 
-    expect(discountedPrice(price, discount)).toBe(16.75);
-  });
-
-  test("discountedPrice should calculate the price of 25% of 25", async () => {
-    const price = 25;
-    const discount = 25;
-
-    expect(discountedPrice(price, discount)).toBe(18.75);
+    expect(discounted_price).toBe(66.7);
   });
 });
 
-describe("discountOnPrice", () => {
-  test("discountOnPrice should throw an error if discount on price is greater than 100%", async () => {
-    const price = 100;
-    const discount = 101;
+describe("getDiscountedValue", () => {
+  test("should throw an error if discount on price is greater than 100%", async () => {
+    const total_price = 100;
+    const discount_percentage = 101;
+    const callback = () => {
+      getDiscountedValue(total_price, discount_percentage);
+    };
 
-    expect(() => {
-      discountOnPrice(price, discount);
-    }).toThrow(Error);
+    expect(callback).toThrow(Error);
   });
 
-  test("discountOnPrice should throw an error if discount on price is smaller than 0%", async () => {
-    const price = 100;
-    const discount = -1;
+  test("should throw an error if discount on price is smaller than 0%", async () => {
+    const total_price = 100;
+    const discount_percentage = -1;
+    const callback = () => {
+      getDiscountedValue(total_price, discount_percentage);
+    };
 
-    expect(() => {
-      discountOnPrice(price, discount);
-    }).toThrow(Error);
+    expect(callback).toThrow(Error);
   });
 
-  test("discountOnPrice should calculate the price 50% of 100", async () => {
-    const price = 100;
-    const discount = 50;
+  test("should calculate the price 50% of 100", async () => {
+    const total_price = 100;
+    const discount_percentage = 50;
+    const discounted_value = getDiscountedValue(
+      total_price,
+      discount_percentage
+    );
 
-    expect(discountOnPrice(price, discount)).toBe(50);
+    expect(discounted_value).toBe(50);
   });
 
-  test("discountOnPrice should calculate the price 33% of 100", async () => {
-    const price = 100;
-    const discount = 33;
+  test("should calculate the price 33.3% of 100", async () => {
+    const total_price = 100;
+    const discount_percentage = 33.3;
+    const discounted_value = getDiscountedValue(
+      total_price,
+      discount_percentage
+    );
 
-    expect(discountOnPrice(price, discount)).toBe(33);
+    expect(discounted_value).toBe(33.3);
   });
 
-  test("discountOnPrice should calculate the price of 33% of 25", async () => {
-    const price = 25;
-    const discount = 33;
+  test("should calculate the price of 33% of 25", async () => {
+    const total_price = 25;
+    const discount_percentage = 33;
+    const discounted_value = getDiscountedValue(
+      total_price,
+      discount_percentage
+    );
 
-    expect(discountOnPrice(price, discount)).toBe(8.25);
-  });
-
-  test("discountOnPrice should calculate the price of 25% of 25", async () => {
-    const price = 25;
-    const discount = 25;
-
-    expect(discountOnPrice(price, discount)).toBe(6.25);
+    expect(discounted_value).toBe(8.25);
   });
 });

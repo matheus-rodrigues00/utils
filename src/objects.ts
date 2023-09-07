@@ -4,23 +4,27 @@
  * @returns {object}
  */
 function deepClone(obj: object) {
-  return { ...obj };
+  return JSON.parse(JSON.stringify(obj));
 }
 
 /**
- * This method recieves an object and an array of keys and returns a new object with only the keys specified.
- * @param source
- * @param keys
+ * This method receives an object and an array of keys and returns a new object with only the keys specified.
+ * @param T - The type of the source object
+ * @param source - The source object
+ * @param keys - An array of keys to pick from the source object
  * @returns {object}
  */
-function pick(source: any, keys: string[]): object {
-  const result: any = {};
-  for (const key in source) {
-    if (keys.includes(key)) {
+function pick<T extends object, K extends keyof T>(
+  source: T,
+  keys: K[]
+): Pick<T, K> {
+  const result: Partial<Pick<T, K>> = {};
+  for (const key of keys) {
+    if (key in source) {
       result[key] = source[key];
     }
   }
-  return result;
+  return result as Pick<T, K>;
 }
 
 export { deepClone, pick };

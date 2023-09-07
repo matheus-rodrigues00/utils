@@ -1,17 +1,17 @@
 /**
  * This method should calculate the discount amount based on the original price and discount percentage
  * @param price
- * @param discount
+ * @param discount_percentage
  * @returns number
  */
-function discountOnPrice(price: number, discount: number): number {
-  if (discount > 100) {
-    throw new Error("Discount can't be bigger than 100");
+function getDiscountedValue(
+  price: number,
+  discount_percentage: number
+): number {
+  if (discount_percentage > 100 || discount_percentage < 0) {
+    throw new Error("Discount must be a value between 0 and 100");
   }
-  if (discount < 0) {
-    throw new Error("Discount can't be smaller than 0");
-  }
-  const discounted_value: number = price * (discount / 100);
+  const discounted_value: number = price * (discount_percentage / 100);
 
   return discounted_value;
 }
@@ -19,19 +19,16 @@ function discountOnPrice(price: number, discount: number): number {
 /**
  * This method should calculate the discounted price based on the original price and discount percentage
  * @param price
- * @param discount
+ * @param discount_percentage
  * @returns number
  */
-function discountedPrice(price: number, discount: number): number {
-  if (discount > 100) {
-    throw new Error("Discount can't be bigger than 100");
+function applyDiscount(price: number, discount_percentage: number): number {
+  if (discount_percentage > 100 || discount_percentage < 0) {
+    throw new Error("Discount must be a value between 0 and 100");
   }
-  if (discount < 0) {
-    throw new Error("Discount can't be smaller than 0");
-  }
-  const discounted_value: number = price * (discount / 100);
+  const discounted_value: number = price * (discount_percentage / 100);
 
   return price - discounted_value;
 }
 
-export { discountOnPrice, discountedPrice };
+export { getDiscountedValue, applyDiscount };
