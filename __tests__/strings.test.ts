@@ -64,13 +64,13 @@ describe("isEmail", () => {
 
   test("Receives a string with valid email domain formats and returns true", () => {
     expect.assertions(1);
-    const result = isEmail("abc.def@mail.cc")
+    const result = isEmail("abc.def@mail.cc");
     expect(result).toBe(true);
   });
 
   test("Receives a string with invalid email domain formats and returns false", () => {
     expect.assertions(1);
-    const result = isEmail("abc.def@mail#archive.com")
+    const result = isEmail("abc.def@mail#archive.com");
     expect(result).toBe(false);
   });
 });
