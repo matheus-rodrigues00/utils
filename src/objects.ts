@@ -4,7 +4,7 @@
  * @returns {object}
  */
 function deepClone(obj: object) {
-  return { ...obj };
+  return JSON.parse(JSON.stringify(obj));
 }
 
 /**
