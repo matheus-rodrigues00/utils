@@ -12,5 +12,5 @@ jobs:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "🎉 Congratulations on submitting the first Pull Request for @teteu/utils! 🎉 \n Thank you so much for taking the time and effort to contribute to our library. Your Pull Request is a valuable addition that helps improve the utility and functionality of our project. We appreciate your dedication and the thoughtful changes you've made."
-        pr-message: "🎉 Congratulations on opening the first Issue for @teteu/utils! 🎉\n We want to express our gratitude for bringing this matter to our attention. Your effort in creating the first Issue plays a crucial role in helping us improve the functionality and stability of our library."
+        issue-message: "🎉 Congratulations on opening the first Issue for @teteu/utils! 🎉\n We want to express our gratitude for bringing this matter to our attention. Your effort in creating the first Issue plays a crucial role in helping us improve the functionality and stability of our library."
+        pr-message: "🎉 Congratulations on submitting the first Pull Request for @teteu/utils! 🎉 \n Thank you so much for taking the time and effort to contribute to our library. Your Pull Request is a valuable addition that helps improve the utility and functionality of our project. We appreciate your dedication and the thoughtful changes you've made."
