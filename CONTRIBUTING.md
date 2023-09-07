@@ -6,8 +6,8 @@ I'd like to encourage you to contribute to the <b>@teteu/utils</b> repository. T
 
 ## Quick Start
 - Code must strict adhere our [Coding Guideline](#codingGuideline);
-- I greatly encourage you to write test cases for every method you may addl
-- You should always fork from the <strong>develop</strong> branch;
+- I greatly encourage you to write test cases for every method you may add;
+- You should always fork from the <strong>main</strong> branch;
 <hr/>
 
 ## Feature Requests
