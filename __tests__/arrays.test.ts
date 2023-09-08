@@ -47,13 +47,13 @@ describe("groupBy", () => {
 
 describe("randomizeArray", () => {
   test("randomizes an array", () => {
-    const arr = [1, 2, 3, 4, 5];
-    const result = randomizeArray(arr);
+    const arr: number[] = [1, 2, 3, 4, 5];
+    const result: number[] = randomizeArray(arr);
     expect(result).toEqual(expect.arrayContaining(arr));
   });
   test("randomizes an array", () => {
-    const arr = Array.from({ length: 1000 }, (_, i) => i + 1);
-    const result = randomizeArray(arr);
+    const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
+    const result: number[] = randomizeArray(arr);
     expect(result).not.toEqual(arr);
   });
 });
