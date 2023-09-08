@@ -14,7 +14,9 @@
         "utilities",
         "wellon"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "file-type": "^16.0.1"
+    },
     "devDependencies": {
         "@types/jest": "^29.5.1",
         "jest": "^29.5.0",

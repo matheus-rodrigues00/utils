@@ -7,6 +7,7 @@ const promises = require("./promises");
 const objects = require("./objects");
 const phoneNumbers = require("./phoneNumbers");
 const discountOnPrice = require("./calculations");
+const files = require("./files");
 
 module.exports = {
   ...arrays,
@@ -18,4 +19,5 @@ module.exports = {
   ...objects,
   ...phoneNumbers,
   ...discountOnPrice,
+  ...files,
 };
