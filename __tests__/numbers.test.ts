@@ -1,6 +1,13 @@
 const { random, randomizeArray } = require("@/numbers");
 
 describe("random", () => {
+  test("generates a random number between 0 and 100 with empty parameters", () => {
+    expect.assertions(2);
+    const result: number = random();
+    expect(result).toBeGreaterThanOrEqual(0);
+    expect(result).toBeLessThanOrEqual(100);
+  });
+
   test("generates a random number between 1 and 10", () => {
     expect.assertions(2);
     const result: number = random(1, 10);
