@@ -1,4 +1,4 @@
-const { uniqueElements, groupBy } = require("@/arrays");
+const { uniqueElements, groupBy, randomizeArray } = require("@/arrays");
 
 describe("uniqueElements", () => {
   type CallbackFunction = () => void;
@@ -42,5 +42,18 @@ describe("groupBy", () => {
       ],
     };
     expect(result).toEqual(expected_response);
+  });
+});
+
+describe("randomizeArray", () => {
+  test("randomizes an array", () => {
+    const arr: number[] = [1, 2, 3, 4, 5];
+    const result: number[] = randomizeArray(arr);
+    expect(result).toEqual(expect.arrayContaining(arr));
+  });
+  test("randomizes an array", () => {
+    const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
+    const result: number[] = randomizeArray(arr);
+    expect(result).not.toEqual(arr);
   });
 });

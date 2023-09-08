@@ -1,4 +1,4 @@
-const { random, randomizeArray } = require("@/numbers");
+const { random } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -20,18 +20,5 @@ describe("random", () => {
     const result: number = random(100, 200);
     expect(result).toBeGreaterThanOrEqual(100);
     expect(result).toBeLessThanOrEqual(200);
-  });
-});
-
-describe("randomizeArray", () => {
-  test("randomizes an array", () => {
-    const arr: number[] = [1, 2, 3, 4, 5];
-    const result: number[] = randomizeArray(arr);
-    expect(result).toEqual(expect.arrayContaining(arr));
-  });
-  test("randomizes an array", () => {
-    const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
-    const result: number[] = randomizeArray(arr);
-    expect(result).not.toEqual(arr);
   });
 });
