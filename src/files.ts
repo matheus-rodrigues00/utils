@@ -9,6 +9,7 @@ interface FileTypeObject {
  * This method receives an array of extension types and a file and returns true if the file is of one of the media types.
  * @param {string[]} extension_types - The array of media types.
  * @param {Buffer} file - The buffered file to check.
+ * @returns {Promise<boolean>} - Returns a promise that resolves to a boolean.
  */
 async function checkMediaTypes(
   extension_types: string[],
@@ -28,6 +29,7 @@ async function checkMediaTypes(
  * This method receives an array of extension types and a file type object and returns true if the file is of one of the media types.
  * @param {string[]} extension_types - The array of media types.
  * @param {FileTypeObject} file_type_object - The file type object to check.
+ * @returns {boolean} - Returns a boolean.
  */
 function checkMediaTypesFromFileObject(
   extension_types: string[],
