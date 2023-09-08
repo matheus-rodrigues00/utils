@@ -1,6 +1,6 @@
 /**
  * Returns a greeting based on the current hour of the day.
- * @returns {string}
+ * @returns {string} - The greeting.
  */
 function getGreeting(): string {
   const currentHour = new Date().getHours();
@@ -16,7 +16,7 @@ function getGreeting(): string {
 
 /**
  * Returns the current date in the format "YYYY-MM-DD".
- * @returns {string}
+ * @returns {string} - The current date.
  */
 function getCurrentDate(): string {
   const now = new Date();
@@ -34,7 +34,7 @@ function getCurrentDate(): string {
 
 /**
  * Returns the current time in the format "HH:MM:SS".
- * @returns {string}
+ * @returns {string} - The current time.
  */
 function getCurrentTime(): string {
   const now = new Date();
@@ -55,8 +55,8 @@ function getCurrentTime(): string {
 
 /**
  * Calculates the number of days between two given dates.
- * @param date1 - The first date.
- * @param date2 - The second date.
+ * @param {Date} date1 - The first date.
+ * @param {Date} date2 - The second date.
  * @returns {number} - The number of days between the two dates.
  */
 function getDaysBetweenDates(date1: Date, date2: Date): number {
@@ -67,7 +67,7 @@ function getDaysBetweenDates(date1: Date, date2: Date): number {
 
 /**
  * Formats a given date to the Brazilian date format "DD/MM/YYYY".
- * @param date - The date to be formatted.
+ * @param {Date} date - The date to be formatted.
  * @returns {string} - The formatted date.
  */
 function formatDateToBrazilianDate(date: Date): string {

@@ -1,22 +1,23 @@
 const sql_keywords = require("../helpers/sql_keywords.json");
-/**
- * This method recieves an string input and sanitizes removing all SQL injection.
- * @param input
- * @param options
- * @returns {string}
- * @default input ""
- */
 
+interface SanitizationOptions {
+  data_types?: boolean;
+  statements?: boolean;
+  clauses?: boolean;
+  functions?: boolean;
+  operators?: boolean;
+  constraints?: boolean;
+}
+
+/**
+ * This method recieves an string text and sanitizes removing all SQL injection.
+ * @param {Date} text - The string to sanitize.
+ * @param {SanitizationOptions} sanitization_options - An object containing the options for sanitization.
+ * @returns {string} - The sanitized string.
+ */
 function sanitize(
-  input: string = "",
-  options: {
-    data_types?: boolean;
-    statements?: boolean;
-    clauses?: boolean;
-    functions?: boolean;
-    operators?: boolean;
-    constraints?: boolean;
-  } = {}
+  text: string = "",
+  sanitization_options: SanitizationOptions = {}
 ): string {
   const {
     statements = true,
@@ -25,21 +26,21 @@ function sanitize(
     data_types = false,
     functions = false,
     constraints = false,
-  } = options;
+  }: SanitizationOptions = sanitization_options;
 
   if (data_types) {
     const regex: RegExp = new RegExp(
       `(${sql_keywords.data_types.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
   if (statements) {
     const regex: RegExp = new RegExp(
       `(${sql_keywords.statements.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
 
   if (clauses) {
@@ -47,7 +48,7 @@ function sanitize(
       `(${sql_keywords.clauses.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
 
   if (functions) {
@@ -55,7 +56,7 @@ function sanitize(
       `(${sql_keywords.functions.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
 
   if (operators) {
@@ -63,7 +64,7 @@ function sanitize(
       `(${sql_keywords.operators.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
 
   if (constraints) {
@@ -71,10 +72,10 @@ function sanitize(
       `(${sql_keywords.constraints.join("|")})`,
       "gi"
     );
-    input = input.replace(regex, "");
+    text = text.replace(regex, "");
   }
 
-  return input.trim();
+  return text.trim();
 }
 
 export { sanitize };

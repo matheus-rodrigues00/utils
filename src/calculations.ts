@@ -1,7 +1,7 @@
 /**
- * This method should calculate the discount amount based on the original price and discount percentage
- * @param price
- * @param discount_percentage
+ * Calculates the discount amount based on the original price and discount percentage
+ * @param {number} price - The original price
+ * @param {number} discount_percentage - The discount percentage
  * @returns number
  */
 function getDiscountedValue(
@@ -17,9 +17,9 @@ function getDiscountedValue(
 }
 
 /**
- * This method should calculate the discounted price based on the original price and discount percentage
- * @param price
- * @param discount_percentage
+ * Calculates the discounted price based on the original price and discount percentage
+ * @param {number} price - The original price
+ * @param {number} discount_percentage - The discount percentage
  * @returns number
  */
 function applyDiscount(price: number, discount_percentage: number): number {

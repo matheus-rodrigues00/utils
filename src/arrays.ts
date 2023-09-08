@@ -1,7 +1,7 @@
 /**
  * Returns an array with unique elements.
- * @param array
- * @returns {Array}
+ * @param {any[]} array - The input array.
+ * @returns {Array} - The array with unique elements.
  */
 function uniqueElements(array: any[]): any[] {
   if (!Array.isArray(array)) {
@@ -12,8 +12,8 @@ function uniqueElements(array: any[]): any[] {
 
 /**
  * Returns an object with the array grouped by the key.
- * @param array - The input array to be grouped.
- * @param key - The key to group the array by.
+ * @param {T[]} array - The input array to be grouped.
+ * @param {Record<string, T[]>} key - The key to group the array by.
  * @returns {Array} - The grouped array.
  */
 function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {

@@ -23,7 +23,7 @@ function replaceTokens(
 
 /**
  * Validates if the input string is a valid email
- * @param str - The string to validate.
+ * @param {string} str - The string to validate.
  * @returns {boolean} - True if the string is a valid email, false otherwise.
  */
 function isEmail(str: string): boolean {

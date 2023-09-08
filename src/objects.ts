@@ -1,7 +1,7 @@
 /**
  * This method recieves an object and returns a deep clone of it.
- * @param object
- * @returns {object}
+ * @param object - The object to clone.
+ * @returns {object} - The cloned object.
  */
 function deepClone(obj: object) {
   return JSON.parse(JSON.stringify(obj));
@@ -12,7 +12,7 @@ function deepClone(obj: object) {
  * @param T - The type of the source object
  * @param source - The source object
  * @param keys - An array of keys to pick from the source object
- * @returns {object}
+ * @returns {object} - The new object with only the keys specified
  */
 function pick<T extends object, K extends keyof T>(
   source: T,
@@ -28,9 +28,10 @@ function pick<T extends object, K extends keyof T>(
 }
 
 /**
+ * This method receives an object and an array of keys and returns a new object without the keys specified.
  * @param source - The source object
  * @param keys - An array of keys to omit from the source object
- * @returns {object}
+ * @returns {object} - The new object without the keys specified
  */
 function omit<T extends object, K extends keyof T>(
   source: T,
