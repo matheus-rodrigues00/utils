@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sleep = void 0;
 /**
- * This method recieves a time in milliseconds and returns a promise that resolves after that time.
+ * This method receives a time in milliseconds and returns a promise that resolves after that time.
  * @param time
  * @returns {Promise}
  * @default time 1000
