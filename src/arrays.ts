@@ -1,3 +1,5 @@
+const { random } = require("@/numbers");
+
 /**
  * Returns an array with unique elements.
  * @param array
@@ -35,7 +37,7 @@ function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
  */
 function randomizeArray(array: any[]): any[] {
   const new_arr = [...array];
-  return new_arr.sort(() => Math.random() - 0.5);
+  return new_arr.sort(() => random() - 50);
 }
 
 export { uniqueElements, groupBy, randomizeArray };
