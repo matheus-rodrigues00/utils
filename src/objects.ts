@@ -48,4 +48,17 @@ function omit<T extends object, K extends keyof T>(
   return result as Omit<T, K>;
 }
 
-export { deepClone, pick, omit };
+/**
+ * This method receives a value and checks if it is a javascript object literal.
+ * @param value - The value to check
+ * @returns {boolean} - True if the value is an object literal, false otherwise
+ */
+function isObject(value: any): boolean {
+  return Boolean(
+    value &&
+      typeof value === "object" &&
+      Object.prototype.toString.call(value) === "[object Object]"
+  );
+}
+
+export { deepClone, pick, omit, isObject };
