@@ -1,5 +1,29 @@
 const fileType = require("file-type");
 
+const IMAGE_TYPES: string[] = ["png", "jpg", "jpeg", "webp", "svg", "gif"];
+const VIDEO_TYPES: string[] = [
+  "mp4",
+  "webm",
+  "ogg",
+  "mov",
+  "avi",
+  "wmv",
+  "quicktime",
+  "video/ogg",
+];
+const AUDIO_TYPES: string[] = [
+  "mp3",
+  "wav",
+  "wma",
+  "aac",
+  "flac",
+  "audio/wav",
+  "audio/mpeg",
+  "mpeg",
+  "opus",
+  "audio/ogg",
+];
+
 interface FileTypeObject {
   ext: string;
   mime: string;
@@ -45,4 +69,39 @@ function checkMediaTypesFromFileObject(
   );
 }
 
-export { checkMediaTypes, checkMediaTypesFromFileObject };
+/**
+ * This method receives a file type object and returns true if the file is of one of the image types.
+ * @param {FileTypeObject} file_type_object - The file type object to check.
+ * @returns {boolean} - Returns a boolean.
+ */
+function isImageFileObject(file_type_object: FileTypeObject): boolean {
+  return checkMediaTypesFromFileObject(IMAGE_TYPES, file_type_object);
+}
+
+// isVideoFileObject
+/**
+ * This method receives a file type object and returns true if the file is of one of the video types.
+ * @param {FileTypeObject} file_type_object - The file type object to check.
+ * @returns {boolean} - Returns a boolean.
+ */
+function isVideoFileObject(file_type_object: FileTypeObject): boolean {
+  return checkMediaTypesFromFileObject(VIDEO_TYPES, file_type_object);
+}
+
+// isAudioFileObject
+/**
+ * This method receives a file type object and returns true if the file is of one of the audio types.
+ * @param {FileTypeObject} file_type_object - The file type object to check.
+ * @returns {boolean} - Returns a boolean.
+ */
+function isAudioFileObject(file_type_object: FileTypeObject): boolean {
+  return checkMediaTypesFromFileObject(AUDIO_TYPES, file_type_object);
+}
+
+export {
+  checkMediaTypes,
+  checkMediaTypesFromFileObject,
+  isImageFileObject,
+  isVideoFileObject,
+  isAudioFileObject,
+};
