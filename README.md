@@ -62,7 +62,7 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |deepClone|recieves an object and returns a deep clone of it|(object to clone)|cloned object|[here]()|
 |pick|receives an object and an array of keys and returns a new object with only the keys specified|(source object and array of keys to pick from the source object)|new object with only the keys specified|[here]()|
 |omit|receives an object and an array of keys and returns a new object without the keys specified|(source object and array of keys to omit from the source object)|new object without the keys specified|[here]()|
+|isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|[here]()|
 ## Contribute
 Feel free to contribute. Check if we have open issues or request your utility method. Your code here is very welcome 🤝🤝
-
 

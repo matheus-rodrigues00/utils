@@ -1,4 +1,4 @@
-const { deepClone, pick, omit } = require("@/objects");
+const { deepClone, pick, omit, isObject } = require("@/objects");
 
 describe("deepClone", () => {
   interface MockObject {
@@ -89,5 +89,22 @@ describe("omit", () => {
     const obj: MockObject = { a: 1, b: 2, c: 3 };
     const obj_omit_2: MockObject = omit(obj, ["a", "b", "c", "d"]);
     expect(obj_omit_2).toEqual({});
+  });
+});
+
+describe("isObject", () => {
+  test("should return true if the value is an object literal", () => {
+    expect(isObject({})).toBe(true);
+    expect(isObject({ a: 1, b: 2 })).toBe(true);
+  });
+
+  test("should return false if the value is not an object literal", () => {
+    expect(isObject(1)).toBe(false);
+    expect(isObject("")).toBe(false);
+    expect(isObject([])).toBe(false);
+    expect(isObject(null)).toBe(false);
+    expect(isObject(undefined)).toBe(false);
+    expect(isObject(() => {})).toBe(false);
+    expect(isObject(new Date())).toBe(false);
   });
 });
