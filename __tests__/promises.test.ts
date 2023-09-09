@@ -31,6 +31,16 @@ describe("sleep", () => {
   });
 });
 
+function mockResolvedPromise(value: any, time: number) {
+  return new Promise(resolve => setTimeout(() => resolve(value), time));
+}
+
+function mockRejectedPromise(error: any, time: number) {
+  return new Promise((_, reject) =>
+    setTimeout(() => reject(new Error(error)), time)
+  );
+}
+
 describe("timeout", () => {
   const data = "resolved data";
 
@@ -57,13 +67,3 @@ describe("timeout", () => {
     ).rejects.toThrow(new Error(TIMEOUT_ERROR_MESSAGE));
   });
 });
-
-function mockResolvedPromise(value: any, time: number) {
-  return new Promise(resolve => setTimeout(() => resolve(value), time));
-}
-
-function mockRejectedPromise(error: any, time: number) {
-  return new Promise((_, reject) =>
-    setTimeout(() => reject(new Error(error)), time)
-  );
-}
