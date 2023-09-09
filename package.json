@@ -1,6 +1,6 @@
 {
     "name": "@teteu/utils",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "Library to commonly used cross-projects utilities methods",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
