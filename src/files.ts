@@ -104,4 +104,7 @@ export {
   isImageFileObject,
   isVideoFileObject,
   isAudioFileObject,
+  IMAGE_TYPES,
+  VIDEO_TYPES,
+  AUDIO_TYPES,
 };

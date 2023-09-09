@@ -4,6 +4,9 @@ const {
   isImageFileObject,
   isVideoFileObject,
   isAudioFileObject,
+  IMAGE_TYPES,
+  VIDEO_TYPES,
+  AUDIO_TYPES,
 } = require("@/");
 const fs = require("fs");
 
@@ -11,31 +14,6 @@ interface FileTypeObject {
   ext: string;
   mime: string;
 }
-
-// ToDo: move to a constants file
-const IMAGE_TYPES: string[] = ["png", "jpg", "jpeg", "webp", "svg", "gif"];
-const VIDEO_TYPES: string[] = [
-  "mp4",
-  "webm",
-  "ogg",
-  "mov",
-  "avi",
-  "wmv",
-  "quicktime",
-  "video/ogg",
-];
-const AUDIO_TYPES: string[] = [
-  "mp3",
-  "wav",
-  "wma",
-  "aac",
-  "flac",
-  "audio/wav",
-  "audio/mpeg",
-  "mpeg",
-  "opus",
-  "audio/ogg",
-];
 
 describe("checkMediaTypes", () => {
   test("throws error if no file is passed", async () => {
