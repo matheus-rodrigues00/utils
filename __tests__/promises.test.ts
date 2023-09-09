@@ -34,27 +34,27 @@ describe("sleep", () => {
 describe("timeout", () => {
   const data = "resolved data";
 
-  test("In case of not timeout and resolve", async () => {
+  test("In case of only resolve", async () => {
     const success = await timeout(mockResolvedPromise(data, 100), 300);
     expect(success).toBe(data);
   });
 
-  test("In case of not timeout but rejected", async () => {
-    await expect(async () => {
-      await timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 100), 300);
-    }).rejects.toThrowError(new Error(RESPONSE_ERROR_MESSAGE));
+  test("In case of only rejected", async () => {
+    await expect(() =>
+      timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 100), 300)
+    ).rejects.toThrow(new Error(RESPONSE_ERROR_MESSAGE));
   });
 
   test("In case of timeout and resolve", async () => {
-    await expect(async () => {
-      await timeout(mockResolvedPromise(data, 300), 100);
-    }).rejects.toThrowError(new Error(TIMEOUT_ERROR_MESSAGE));
+    await expect(() =>
+      timeout(mockResolvedPromise(data, 300), 100)
+    ).rejects.toThrow(new Error(TIMEOUT_ERROR_MESSAGE));
   });
 
-  test("In case of timeout but rejected", async () => {
-    await expect(async () => {
-      await timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 300), 100);
-    }).rejects.toThrowError(new Error(TIMEOUT_ERROR_MESSAGE));
+  test("In case of timeout and rejected", async () => {
+    await expect(() =>
+      timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 300), 100)
+    ).rejects.toThrow(new Error(TIMEOUT_ERROR_MESSAGE));
   });
 });
 
