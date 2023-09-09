@@ -1,9 +1,4 @@
-const {
-  sleep,
-  timeout,
-  TIMEOUT_ERROR_MESSAGE,
-  RESPONSE_ERROR_MESSAGE,
-} = require("@/promises");
+const { sleep, timeout, TimeoutErrors } = require("@/promises");
 
 describe("sleep", () => {
   test("sleeps for half a second passing 500", async () => {
@@ -51,19 +46,25 @@ describe("timeout", () => {
 
   test("In case of only rejected", async () => {
     await expect(() =>
-      timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 100), 300)
-    ).rejects.toThrow(new Error(RESPONSE_ERROR_MESSAGE));
+      timeout(
+        mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 100),
+        300
+      )
+    ).rejects.toThrow(new Error(TimeoutErrors.RESPONSE_ERROR_MESSAGE));
   });
 
   test("In case of timeout and resolve", async () => {
     await expect(() =>
       timeout(mockResolvedPromise(data, 300), 100)
-    ).rejects.toThrow(new Error(TIMEOUT_ERROR_MESSAGE));
+    ).rejects.toThrow(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE));
   });
 
   test("In case of timeout and rejected", async () => {
     await expect(() =>
-      timeout(mockRejectedPromise(RESPONSE_ERROR_MESSAGE, 300), 100)
-    ).rejects.toThrow(new Error(TIMEOUT_ERROR_MESSAGE));
+      timeout(
+        mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 300),
+        100
+      )
+    ).rejects.toThrow(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE));
   });
 });

@@ -1,5 +1,11 @@
-const TIMEOUT_ERROR_MESSAGE = "Timeout Error";
-const RESPONSE_ERROR_MESSAGE = "Response Error";
+interface TimeoutErrorConstants {
+  [erorr: string]: string;
+}
+
+const TimeoutErrors: TimeoutErrorConstants = {
+  TIMEOUT_ERROR_MESSAGE: "Timeout Error",
+  RESPONSE_ERROR_MESSAGE: "Response Error",
+};
 
 /**
  * This method receives a time in milliseconds and returns a promise that resolves after that time.
@@ -17,24 +23,25 @@ function sleep(time: number = 1000) {
  * @param {number} [time=8000]
  * @returns {Promise<T>}
  * @throws {TimeoutError} Throws a TimeoutError if the timeout is exceeded.
+ * author: {ahn0min - YeongMin Ahn}
  */
-function timeout<T>(promise: Promise<T>, time = 8000) {
+function timeout<T>(promise: Promise<T>, time: number = 8000) {
   return new Promise((resolve, reject) => {
-    const timeoutId = setTimeout(
-      () => reject(new Error(TIMEOUT_ERROR_MESSAGE)),
+    const timeout_id = setTimeout(
+      () => reject(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE)),
       time
     );
 
     promise
       .then(response => {
-        clearTimeout(timeoutId);
+        clearTimeout(timeout_id);
         resolve(response);
       })
       .catch(err => {
-        clearTimeout(timeoutId);
+        clearTimeout(timeout_id);
         reject(err);
       });
   });
 }
 
-export { sleep, timeout, TIMEOUT_ERROR_MESSAGE, RESPONSE_ERROR_MESSAGE };
+export { sleep, timeout, TimeoutErrors };
