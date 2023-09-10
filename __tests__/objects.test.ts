@@ -1,4 +1,4 @@
-const { deepClone, pick, omit, isObject } = require("@/objects");
+const { deepClone, pick, omit, isObject, deepPick } = require("@/objects");
 
 describe("deepClone", () => {
   interface MockObject {
@@ -106,5 +106,62 @@ describe("isObject", () => {
     expect(isObject(undefined)).toBe(false);
     expect(isObject(() => {})).toBe(false);
     expect(isObject(new Date())).toBe(false);
+  });
+});
+
+describe("deepPick", () => {
+  interface MockObject {
+    [key: string]: any;
+  }
+
+  const mock_object: MockObject = {
+    a: 1,
+    b: 2,
+    c: {
+      d: 3,
+      e: 4,
+      f: {
+        g: 5,
+        h: 6,
+      },
+    },
+  };
+
+  test("should return another object with the nested 'picked' properties", () => {
+    const obj_pick: MockObject = deepPick(mock_object, ["a", "c.d", "c.f.g"]);
+    expect(obj_pick).toEqual({ a: 1, c: { d: 3, f: { g: 5 } } });
+  });
+
+  test("should return same object in case the properties are the same", () => {
+    const obj_pick: MockObject = deepPick(mock_object, [
+      "a",
+      "b",
+      "c.d",
+      "c.e",
+      "c.f.g",
+      "c.f.h",
+    ]);
+    expect(obj_pick).toEqual(mock_object);
+  });
+
+  test("should return empty if picks array is empty", () => {
+    const obj_pick: MockObject = deepPick(mock_object, []);
+    expect(obj_pick).toEqual({});
+  });
+
+  test("should return empty object in case a missing property is given", () => {
+    const obj_pick: MockObject = deepPick(mock_object, ["d"]);
+    expect(obj_pick).toEqual({});
+  });
+
+  test("should ignore missing properties and only consider valid properties", () => {
+    const obj_pick_2: MockObject = deepPick(mock_object, [
+      "a",
+      "b",
+      "c.d",
+      "c.e.f", // invalid property
+      "c.f.g",
+    ]);
+    expect(obj_pick_2).toEqual({ a: 1, b: 2, c: { d: 3, f: { g: 5 } } });
   });
 });

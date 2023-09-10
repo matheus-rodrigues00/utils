@@ -1,3 +1,9 @@
+type DeepKeys<T> = T extends object
+  ? T extends infer O
+    ? { [K in keyof O]: K | `${K & string}.${DeepKeys<O[K]>}` }[keyof O]
+    : never
+  : never;
+
 // strings.ts
 declare function replaceTokens(
   string: string,
@@ -28,6 +34,11 @@ declare function omit<T extends object, K extends keyof T>(
   keys: K[]
 ): Omit<T, K>;
 declare function isObject(value: any): boolean
+declare function deepPick<T extends object, K extends DeepKeys<T>>(
+  source: T,
+  keys: K[]
+): Pick<T, K>;
+
 
 // numbers.ts
 declare function random(min: number, max: number): number;
@@ -85,4 +96,4 @@ declare function uniqueElements(array: any[]): any[];
 declare function groupBy<T>(array: T[], key: keyof T): Record<string, T[]>;
 declare function randomizeArray(array: any[]): any[];
 
-export { random, replaceTokens, isEmail, TimeoutErrors, sleep, timeout, validBrazilianPhoneNumber, deepClone, pick, omit, isObject, IMAGE_TYPES, VIDEO_TYPES, AUDIO_TYPES, checkMediaTypes, checkMediaTypesFromFileObject, isImageFileObject, isVideoFileObject, isAudioFileObject, getGreeting, getCurrentDate, getCurrentTime, getDaysBetweenDates, formatDateToBrazilianDate, sanitize, getDiscountedValue, applyDiscount, uniqueElements, groupBy, randomizeArray };
+export { random, replaceTokens, isEmail, TimeoutErrors, sleep, timeout, validBrazilianPhoneNumber, deepClone, pick, omit, isObject, deepPick, IMAGE_TYPES, VIDEO_TYPES, AUDIO_TYPES, checkMediaTypes, checkMediaTypesFromFileObject, isImageFileObject, isVideoFileObject, isAudioFileObject, getGreeting, getCurrentDate, getCurrentTime, getDaysBetweenDates, formatDateToBrazilianDate, sanitize, getDiscountedValue, applyDiscount, uniqueElements, groupBy, randomizeArray };
