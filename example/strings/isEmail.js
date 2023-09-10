@@ -1,4 +1,4 @@
-var utils = require("@teteu/utils");
+var isEmail = require("@teteu/utils").isEmail;
 var email = "abc.def@mail-archive.com";
-var result = utils.isEmail(email);
+var result = isEmail(email);
 console.log(result); // true
