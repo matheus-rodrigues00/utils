@@ -8,6 +8,7 @@ type DeepKeys<T> = T extends object
  * This method recieves an object and returns a deep clone of it.
  * @param object - The object to clone.
  * @returns {object} - The cloned object.
+ * author: MarcosViniciusCL - Marcos Vinicius
  */
 function deepClone(obj: object) {
   return JSON.parse(JSON.stringify(obj));
@@ -19,6 +20,7 @@ function deepClone(obj: object) {
  * @param source - The source object
  * @param keys - An array of keys to pick from the source object
  * @returns {object} - The new object with only the keys specified
+ * author: GustavoHBO - Gustavo Henrique
  */
 function pick<T extends object, K extends keyof T>(
   source: T,
@@ -38,6 +40,7 @@ function pick<T extends object, K extends keyof T>(
  * @param source - The source object
  * @param keys - An array of keys to omit from the source object
  * @returns {object} - The new object without the keys specified
+ * author: NullSploit01 - Harshal Dharmik
  */
 function omit<T extends object, K extends keyof T>(
   source: T,
@@ -58,6 +61,7 @@ function omit<T extends object, K extends keyof T>(
  * This method receives a value and checks if it is a javascript object literal.
  * @param value - The value to check
  * @returns {boolean} - True if the value is an object literal, false otherwise
+ * author: NullSploit01 - Harshal Dharmik
  */
 function isObject(value: any): boolean {
   return Boolean(
@@ -72,6 +76,7 @@ function isObject(value: any): boolean {
  * @param object - The object to pick from
  * @param keys - An array of keys to pick from the source object
  * @returns {object} - The new object with only the keys specified
+ * author: NullSploit01 - Harshal Dharmik
  */
 function deepPick<T extends object, K extends DeepKeys<T>>(
   source: T,

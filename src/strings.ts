@@ -4,6 +4,7 @@
  * @param {object} tokens - An object containing the tokens for replacement.
  * @param {RegExp} regex - The regular expression for identifying tokens.
  * @returns {string} - The string with tokens replaced.
+ * author: giri-madhan - Giri Madhan
  */
 function replaceTokens(
   string: string,
@@ -25,6 +26,7 @@ function replaceTokens(
  * Validates if the input string is a valid email
  * @param {string} str - The string to validate.
  * @returns {boolean} - True if the string is a valid email, false otherwise.
+ * author: NullSploit01 - Harshal Dharmik
  */
 function isEmail(str: string): boolean {
   const email_validation_regex =

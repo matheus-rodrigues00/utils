@@ -1,6 +1,7 @@
 /**
  * Returns a greeting based on the current hour of the day.
  * @returns {string} - The greeting.
+ * author: giri-madhan - Giri Madhan
  */
 function getGreeting(): string {
   const currentHour = new Date().getHours();
@@ -17,6 +18,7 @@ function getGreeting(): string {
 /**
  * Returns the current date in the format "YYYY-MM-DD".
  * @returns {string} - The current date.
+ * author: giri-madhan - Giri Madhan
  */
 function getCurrentDate(): string {
   const now = new Date();
@@ -35,6 +37,7 @@ function getCurrentDate(): string {
 /**
  * Returns the current time in the format "HH:MM:SS".
  * @returns {string} - The current time.
+ * author: giri-madhan - Giri Madhan
  */
 function getCurrentTime(): string {
   const now = new Date();
@@ -58,6 +61,7 @@ function getCurrentTime(): string {
  * @param {Date} date1 - The first date.
  * @param {Date} date2 - The second date.
  * @returns {number} - The number of days between the two dates.
+ * author: giri-madhan - Giri Madhan
  */
 function getDaysBetweenDates(date1: Date, date2: Date): number {
   const millisecondsPerDay = 24 * 60 * 60 * 1000;

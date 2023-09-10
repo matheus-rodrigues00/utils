@@ -3,6 +3,7 @@
  * @param {number} price - The original price
  * @param {number} discount_percentage - The discount percentage
  * @returns number
+ * author: nalmeida94 - Nathan Almeida
  */
 function getDiscountedValue(
   price: number,
@@ -21,6 +22,7 @@ function getDiscountedValue(
  * @param {number} price - The original price
  * @param {number} discount_percentage - The discount percentage
  * @returns number
+ * author: nalmeida94 - Nathan Almeida
  */
 function applyDiscount(price: number, discount_percentage: number): number {
   if (discount_percentage > 100 || discount_percentage < 0) {

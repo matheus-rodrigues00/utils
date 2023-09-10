@@ -23,7 +23,7 @@ function sleep(time: number = 1000) {
  * @param {number} [time=8000]
  * @returns {Promise<T>}
  * @throws {TimeoutError} Throws a TimeoutError if the timeout is exceeded.
- * author: {ahn0min - YeongMin Ahn}
+ * author: ahn0min - YeongMin Ahn
  */
 function timeout<T>(promise: Promise<T>, time: number = 8000) {
   return new Promise((resolve, reject) => {
