@@ -1,4 +1,4 @@
-const utils = require("@teteu/utils");
+const { groupBy } = require("@teteu/utils");
 
 interface MockObject {
   id: number;
@@ -14,7 +14,7 @@ const arr: MockObject[] = [
   { id: 3, name: "John" },
   { id: 4, name: "Jane" },
 ];
-const grouped_by: GroupedByObject = utils.groupBy(arr, "name");
+const grouped_by: GroupedByObject = groupBy(arr, "name");
 
 console.log(grouped_by);
 /*
