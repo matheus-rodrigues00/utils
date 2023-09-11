@@ -1,4 +1,4 @@
-const { random } = require("@/numbers");
+const { random, max } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -20,5 +20,29 @@ describe("random", () => {
     const result: number = random(100, 200);
     expect(result).toBeGreaterThanOrEqual(100);
     expect(result).toBeLessThanOrEqual(200);
+  });
+});
+
+describe("max", () => {
+  test("receives a numeric array and returns the max number", () => {
+    let arr = [1, 2, 3, 4, 5];
+
+    const result: number = max(arr);
+    expect(result).toBe(5);
+  });
+
+  test("receives a numeric array and returns the max number", () => {
+    let arr = [1, 2, 3, 4];
+
+    const result: number = max(arr);
+    expect(result).not.toBe(3);
+    expect(result).toBe(4);
+  });
+
+  test("receives a numeric array and returns the max number", () => {
+    let arr: number[] = [];
+
+    const result: number = max(arr);
+    expect(result).toBeUndefined()
   });
 });
