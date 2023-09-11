@@ -38,6 +38,7 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |Method|What It Does|Parameters|Return|Example|
 |-|-|-|-|-|
 |random|receives a min and max number and returns a random number between them|(min, max)|random number between min-max|[here]()|
+|max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|[here]()|
 ### Date And Time
 |Method|What It Does|Parameters|Return|Example|
 |-|-|-|-|-|

@@ -9,16 +9,17 @@ function random(min: number = 0, max: number = 100): number {
 }
 
 /**
- * This method receives an array and returns the max number.
+ * This method receives an array of numbers and returns the biggest number.
  * @param {number[]} arr - The array with numbers.
  * @returns {number} - The biggest number.
+ * author: teixeirista - Matheus Teixeira
  */
 function max(arr: number[] | undefined): number | undefined {
   if (typeof arr == "undefined" || arr.length === 0) {
-    return undefined
+    return undefined;
   }
 
-  let max = -Infinity;
+  let max: number = -Infinity;
 
   for (const val of arr) {
     if (val > max) {
