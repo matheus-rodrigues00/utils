@@ -8,4 +8,25 @@ function random(min: number = 0, max: number = 100): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export { random };
+/**
+ * This method receives an array and returns the max number.
+ * @param {number[]} arr - The array with numbers.
+ * @returns {number} - The biggest number.
+ */
+function max(arr: number[] | undefined): number | undefined {
+  if (typeof arr == "undefined" || arr.length === 0) {
+    return undefined
+  }
+
+  let max = -Infinity;
+
+  for (const val of arr) {
+    if (val > max) {
+      max = val;
+    }
+  }
+
+  return max;
+}
+
+export { random, max };
