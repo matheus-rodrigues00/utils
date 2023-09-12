@@ -1,4 +1,4 @@
-const { random, max } = require("@/numbers");
+const { random, max, divideFixed } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -43,6 +43,39 @@ describe("max", () => {
     let arr: number[] = [];
 
     const result: number = max(arr);
-    expect(result).toBeUndefined()
+    expect(result).toBeUndefined();
+  });
+});
+
+describe("divideFixed", () => {
+  test("receives a dividend, a divisor and a precision and returns the result of the division with provided precision", () => {
+    expect.assertions(1);
+    const result: string = divideFixed(10, 3, 2);
+    expect(result).toBe("3.33");
+  });
+
+  test("receives a dividend, a divisor and a precision and returns the result of the division with provided precision", () => {
+    expect.assertions(1);
+    const result: string = divideFixed(10, 3, 0);
+    expect(result).toBe("3");
+  });
+
+  test("receives a dividend, a divisor and a precision and returns the result of the division with provided precision", () => {
+    expect.assertions(1);
+    const result: string = divideFixed(10, 3, 5);
+    expect(result).toBe("3.33333");
+  });
+
+  test("receives a dividend, a divisor and a precision and returns the result of the division with provided precision", () => {
+    expect.assertions(1);
+    const result: string = divideFixed(10, 4, 3);
+    expect(result).toBe("2.500");
+  });
+
+  test("throws an error if divisor is 0", () => {
+    expect.assertions(1);
+    expect(() => divideFixed(10, 0, 3)).toThrow(
+      "Divisor is not a number or is equal to 0."
+    );
   });
 });
