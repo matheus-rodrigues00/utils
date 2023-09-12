@@ -30,4 +30,27 @@ function max(arr: number[] | undefined): number | undefined {
   return max;
 }
 
-export { random, max };
+/**
+ * This method receives a dividend and a divisor and returns the result of the division with provided precision.
+ * @param {number} dividend - The dividend.
+ * @param {number} divisor - The divisor.
+ * @param {number} precision - The precision.
+ * @returns {string} - The result of the division.
+ */
+function divideFixed(
+  dividend: number,
+  divisor: number,
+  precision: number
+): string {
+  if (divisor === 0 || isNaN(divisor)) {
+    throw new Error("Divisor is not a number or is equal to 0.");
+  }
+
+  if (precision < 0 || precision > 100) {
+    throw new Error("Precision must be between 0 and 100.");
+  }
+
+  return (dividend / divisor).toFixed(precision);
+}
+
+export { random, max, divideFixed };
