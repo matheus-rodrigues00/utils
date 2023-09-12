@@ -39,6 +39,7 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |-|-|-|-|-|
 |random|receives a min and max number and returns a random number between them|(min, max)|random number between min-max|[here]()|
 |max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|[here]()|
+|divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|[here]()|
 ### Date And Time
 |Method|What It Does|Parameters|Return|Example|
 |-|-|-|-|-|
