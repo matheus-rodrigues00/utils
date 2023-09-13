@@ -31,6 +31,31 @@ function max(arr: number[] | undefined): number | undefined {
 }
 
 /**
+ * This method receives an array and finds the maximum element in an array based on a provided callback function
+ * @param array - The array to find the maximum element in
+ * @param callback - The callback function to use to find the maximum element
+ * @returns {T | undefined} - The element with maximum value in array based on callback function
+ */
+function maxBy<T>(array: T[], callback: (item: T) => number): T | undefined {
+  if (typeof array === "undefined" || array.length === 0) {
+    return undefined;
+  }
+
+  let max_element: T = array[0];
+  let max_value: number = callback(array[0]);
+
+  array.forEach(element => {
+    const current_max_value: number = callback(element);
+    if (current_max_value > max_value) {
+      max_element = element;
+      max_value = current_max_value;
+    }
+  });
+
+  return max_element;
+}
+
+/**
  * This method receives a dividend and a divisor and returns the result of the division with provided precision.
  * @param {number} dividend - The dividend.
  * @param {number} divisor - The divisor.
@@ -53,4 +78,4 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { random, max, divideFixed };
+export { random, max, maxBy, divideFixed };

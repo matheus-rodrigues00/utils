@@ -43,6 +43,7 @@ declare function deepPick<T extends object, K extends DeepKeys<T>>(
 // numbers.ts
 declare function random(min: number, max: number): number;
 declare function max(arr: number[] | undefined): number | undefined;
+declare function maxBy<T>(array: T[], callback: (item: T) => number): T | undefined
 declare function divideFixed(
   dividend: number,
   divisor: number,
@@ -102,4 +103,4 @@ declare function uniqueElements(array: any[]): any[];
 declare function groupBy<T>(array: T[], key: keyof T): Record<string, T[]>;
 declare function randomizeArray(array: any[]): any[];
 
-export { random, replaceTokens, isEmail, TimeoutErrors, sleep, timeout, validBrazilianPhoneNumber, deepClone, pick, omit, isObject, deepPick, IMAGE_TYPES, VIDEO_TYPES, AUDIO_TYPES, checkMediaTypes, checkMediaTypesFromFileObject, isImageFileObject, isVideoFileObject, isAudioFileObject, getGreeting, getCurrentDate, getCurrentTime, getDaysBetweenDates, formatDateToBrazilianDate, sanitize, getDiscountedValue, applyDiscount, uniqueElements, groupBy, randomizeArray, max, divideFixed };
+export { random, replaceTokens, isEmail, TimeoutErrors, sleep, timeout, validBrazilianPhoneNumber, deepClone, pick, omit, isObject, deepPick, IMAGE_TYPES, VIDEO_TYPES, AUDIO_TYPES, checkMediaTypes, checkMediaTypesFromFileObject, isImageFileObject, isVideoFileObject, isAudioFileObject, getGreeting, getCurrentDate, getCurrentTime, getDaysBetweenDates, formatDateToBrazilianDate, sanitize, getDiscountedValue, applyDiscount, uniqueElements, groupBy, randomizeArray, max, maxBy, divideFixed };
