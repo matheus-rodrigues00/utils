@@ -1,4 +1,4 @@
-const { random, max, divideFixed } = require("@/numbers");
+const { random, max, maxBy, divideFixed } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -44,6 +44,38 @@ describe("max", () => {
 
     const result: number = max(arr);
     expect(result).toBeUndefined();
+  });
+});
+
+describe("maxBy", () => {
+  test("receives an array of numbers and a callback and returns the max element", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result: number | undefined = maxBy(arr, (item: number) => item);
+    expect(result).toBe(5);
+  });
+
+  test("receives an array of object and a callback and returns the max element", () => {
+    const arr = [
+      { name: "Alice", age: 30 },
+      { name: "Bob", age: 25 },
+      { name: "Charlie", age: 35 },
+    ];
+
+    const result: number | undefined = maxBy(arr, (item: any) => item.age);
+    expect(result).toStrictEqual({ name: "Charlie", age: 35 });
+  });
+
+  test("receives an array with nested object and a callback and returns the max element", () => {
+    const arr = [
+      { name: "Product A", info: { price: 10.25 } },
+      { name: "Product B", info: { price: 50.75 } },
+      { name: "Product C", info: { price: 15.25 } },
+    ];
+    const result: number | undefined = maxBy(
+      arr,
+      (item: any) => item.info.price
+    );
+    expect(result).toStrictEqual({ name: "Product B", info: { price: 50.75 } });
   });
 });
 
