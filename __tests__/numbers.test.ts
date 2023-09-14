@@ -1,4 +1,4 @@
-const { random, max, maxBy, divideFixed, mean } = require("@/numbers");
+const { random, max, maxBy, meanBy, mean, divideFixed } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -131,5 +131,43 @@ describe("divideFixed", () => {
     expect(() => divideFixed(10, 0, 3)).toThrow(
       "Divisor is not a number or is equal to 0."
     );
+  });
+});
+
+describe("meanBy", () => {
+  test("receives an array of numbers and a callback and returns the mean of the values in the array", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result: number | undefined = meanBy(arr, (item: number) => item);
+    expect(result).toBe(3);
+  });
+
+  test("receives an array of object and a callback and returns the mean of the values in the array", () => {
+    const arr = [
+      { name: "Alice", age: 30 },
+      { name: "Bob", age: 25 },
+      { name: "Charlie", age: 35 },
+    ];
+
+    const result: number | undefined = meanBy(arr, (item: any) => item.age);
+    expect(result).toBe(30);
+  });
+
+  test("receives an array with nested object and a callback and returns the mean of the values in the array", () => {
+    const arr = [
+      { name: "Product A", info: { price: 10.25 } },
+      { name: "Product B", info: { price: 50.75 } },
+      { name: "Product C", info: { price: 15.25 } },
+    ];
+    const result: number | undefined = meanBy(
+      arr,
+      (item: any) => item.info.price
+    );
+    expect(result).toBe(25.416666666666668);
+  });
+
+  test("receives an empty array and returns undefined", () => {
+    const arr: number[] = [];
+    const result: number | undefined = meanBy(arr, (item: number) => item);
+    expect(result).toBeUndefined();
   });
 });

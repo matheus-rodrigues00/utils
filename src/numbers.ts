@@ -70,6 +70,28 @@ function maxBy<T>(array: T[], callback: (item: T) => number): T | undefined {
 }
 
 /**
+ * This method receives an array and returns the mean of value given by callback function
+ * @param array - The array to find the mean of
+ * @param callback - The callback function to use to find the mean
+ * @returns {number | undefined} - The mean of the values in the array
+ */
+function meanBy<T>(
+  array: T[],
+  callback: (item: T) => number
+): number | undefined {
+  if (typeof array === "undefined" || array.length === 0) {
+    return undefined;
+  }
+
+  let sum: number = 0;
+  array.forEach(element => {
+    sum += callback(element);
+  });
+
+  return sum / array.length;
+}
+
+/**
  * This method receives a dividend and a divisor and returns the result of the division with provided precision.
  * @param {number} dividend - The dividend.
  * @param {number} divisor - The divisor.
@@ -92,4 +114,4 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { random, max, maxBy, divideFixed, mean };
+export { random, max, maxBy, mean, meanBy, divideFixed };

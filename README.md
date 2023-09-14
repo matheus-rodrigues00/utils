@@ -42,6 +42,7 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|[here]()|
 |maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|[here]()|
 |divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|[here]()|
+|meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|[here]()|
 ### Date And Time
 |Method|What It Does|Parameters|Return|Example|
 |-|-|-|-|-|
