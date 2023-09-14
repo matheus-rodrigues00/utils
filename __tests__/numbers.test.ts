@@ -1,4 +1,4 @@
-const { random, max, maxBy, meanBy, divideFixed } = require("@/numbers");
+const { random, max, maxBy, meanBy, mean, divideFixed } = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -7,6 +7,8 @@ describe("random", () => {
     expect(result).toBeGreaterThanOrEqual(0);
     expect(result).toBeLessThanOrEqual(100);
   });
+
+  
 
   test("generates a random number between 1 and 10", () => {
     expect.assertions(2);
@@ -76,6 +78,26 @@ describe("maxBy", () => {
       (item: any) => item.info.price
     );
     expect(result).toStrictEqual({ name: "Product B", info: { price: 50.75 } });
+  });
+});
+
+describe("mean", () => {
+  test("should receive a numeric array and return its avarage", () => {
+    const arr = [1, 2, 3, 4];
+
+    const result = mean(arr);
+
+    expect(result).toEqual(2.5);
+  });
+
+  test("should receive a numeric array and dont return greater or less than value", () => {
+    const arr = [1, 2, 3, 4];
+
+    const result = mean(arr);
+
+    expect(result).not.toBeGreaterThan(2.5);
+    expect(result).not.toBeLessThan(2.5);
+
   });
 });
 
