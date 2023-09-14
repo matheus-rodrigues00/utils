@@ -9,6 +9,20 @@ function random(min: number = 0, max: number = 100): number {
 }
 
 /**
+ * This method receives a numeric array and returns its average
+ * @param {number[]} - The numeric array
+ * @returns {number} - The number.
+ */
+function mean(arr: number[]): number {
+  let sum: number = 0;
+  arr.map(n => {
+    sum = sum + n;
+  })
+
+  return sum / arr.length;
+}
+
+/**
  * This method receives an array of numbers and returns the biggest number.
  * @param {number[]} arr - The array with numbers.
  * @returns {number} - The biggest number.
@@ -78,4 +92,4 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { random, max, maxBy, divideFixed };
+export { random, max, maxBy, divideFixed, mean };
