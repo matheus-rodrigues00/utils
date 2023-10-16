@@ -44,4 +44,15 @@ function timeout<T>(promise: Promise<T>, time: number = 8000) {
   });
 }
 
-export { sleep, timeout, TimeoutErrors };
+/**
+ * This method should race promises against each other.
+ * @template T
+ * @param {Promise<T>[]} array_of_promises - The array of promises.
+ * @returns {Promise} - The first promise that is resolved.
+ */
+async function race<T>(array_of_promises: Promise<T>[]) {
+  const result = await Promise.race(array_of_promises);
+  return result;
+}
+
+export { sleep, timeout, race, TimeoutErrors };
