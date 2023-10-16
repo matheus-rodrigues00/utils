@@ -1,4 +1,4 @@
-const { sleep, timeout, TimeoutErrors } = require("@/promises");
+const { sleep, timeout, race, TimeoutErrors } = require("@/promises");
 
 describe("sleep", () => {
   test("sleeps for half a second passing 500", async () => {
@@ -67,4 +67,56 @@ describe("timeout", () => {
       )
     ).rejects.toThrow(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE));
   });
+});
+
+describe("race", () => {
+  const sleepForNTime = (time: number) =>
+    new Promise(async resolve => {
+      await sleep(time);
+      return resolve(time);
+    });
+
+  test("should return the first promise as faster", async () => {
+    const first = sleepForNTime(500);
+    const second = sleepForNTime(1000);
+    const third = sleepForNTime(2000);
+
+    const race_winner = await race([
+      first,
+      second,
+      third,
+    ]);
+
+    expect(race_winner).toBe(500);
+  });
+
+  test("should return the second promise as faster", async () => {
+    const first = sleepForNTime(1000);
+    const second = sleepForNTime(500);
+    const third = sleepForNTime(2000);
+
+    const race_winner = await race([
+      first,
+      second,
+      third,
+    ]);
+
+    expect(race_winner).toBe(500);
+  });
+
+  test("should return the third promise as faster", async () => {
+    const first = sleepForNTime(2000);
+    const second = sleepForNTime(1000);
+    const third = sleepForNTime(500);
+
+    const race_winner = await race([
+      first,
+      second,
+      third,
+    ]);
+
+    expect(race_winner).toBe(500);
+  });
+
+
 });
