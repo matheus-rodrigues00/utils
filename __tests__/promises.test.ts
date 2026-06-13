@@ -141,7 +141,6 @@ describe("race", () => {
 
 describe("sequence", () => {
   test("executes functions in order and returns results array", async () => {
-    const data = "resolved data";
     const results = await sequence([
       () => mockResolvedPromise("first", 100),
       () => mockResolvedPromise("second", 50),

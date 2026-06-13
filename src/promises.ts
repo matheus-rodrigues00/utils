@@ -89,7 +89,7 @@ async function race<T>(array_of_promises: Promise<T>[]) {
  * @template T
  * @param {(() => Promise<T>)[]} promiseFunctions - The array of functions that return a promise.
  * @returns {Promise<T[]>} - A promise that resolves with an array of all results in order.
- * author micheltechEr - Ângelo Miguel
+ * author: micheltechEr - Ângelo Miguel
  */
 async function sequence<T>(
   promiseFunctions: (() => Promise<T>)[]
