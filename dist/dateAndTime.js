@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatDateToBrazilianDate = exports.getCurrentTime = exports.getGreeting = exports.getCurrentDate = exports.getDaysBetweenDates = void 0;
 /**
  * Returns a greeting based on the current hour of the day.
- * @returns {string}
+ * @returns {string} - The greeting.
+ * author: giri-madhan - Giri Madhan
  */
 function getGreeting() {
     const currentHour = new Date().getHours();
@@ -20,7 +21,8 @@ function getGreeting() {
 exports.getGreeting = getGreeting;
 /**
  * Returns the current date in the format "YYYY-MM-DD".
- * @returns {string}
+ * @returns {string} - The current date.
+ * author: giri-madhan - Giri Madhan
  */
 function getCurrentDate() {
     const now = new Date();
@@ -36,7 +38,8 @@ function getCurrentDate() {
 exports.getCurrentDate = getCurrentDate;
 /**
  * Returns the current time in the format "HH:MM:SS".
- * @returns {string}
+ * @returns {string} - The current time.
+ * author: giri-madhan - Giri Madhan
  */
 function getCurrentTime() {
     const now = new Date();
@@ -54,9 +57,10 @@ function getCurrentTime() {
 exports.getCurrentTime = getCurrentTime;
 /**
  * Calculates the number of days between two given dates.
- * @param date1 - The first date.
- * @param date2 - The second date.
+ * @param {Date} date1 - The first date.
+ * @param {Date} date2 - The second date.
  * @returns {number} - The number of days between the two dates.
+ * author: giri-madhan - Giri Madhan
  */
 function getDaysBetweenDates(date1, date2) {
     const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -66,7 +70,7 @@ function getDaysBetweenDates(date1, date2) {
 exports.getDaysBetweenDates = getDaysBetweenDates;
 /**
  * Formats a given date to the Brazilian date format "DD/MM/YYYY".
- * @param date - The date to be formatted.
+ * @param {Date} date - The date to be formatted.
  * @returns {string} - The formatted date.
  */
 function formatDateToBrazilianDate(date) {
