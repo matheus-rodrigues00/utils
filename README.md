@@ -9,6 +9,8 @@
 ## Run
 ```bash
 npm install @teteu/utils --save
+# or
+bun add @teteu/utils
 ```
 
 ## Usage
@@ -72,6 +74,19 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |omit|receives an object and an array of keys and returns a new object without the keys specified|(source object and array of keys to omit from the source object)|new object without the keys specified|[here]()|
 |isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|[here]()|
 |deepPick| receives an object with nested properties and an array of keys and returns a new object with only the keys specified.|(source object and array of keys)|new object with only the keys specified|[here]()|
+## Development
+This project uses [Bun](https://bun.sh) as its primary runtime, [Biome](https://biomejs.dev) for linting/formatting, and TypeScript (the package is still published as CommonJS for npm consumers).
+
+```bash
+bun install          # install dependencies
+bun test             # run the test suite
+bun run test:watch   # run tests in watch mode
+bun run lint         # lint + format (writes fixes)
+bun run check        # lint + format check (no writes, used in CI)
+bun run typecheck    # tsc --noEmit
+bun run compile-files # build to dist/
+```
+
 ## Contribute
 Feel free to contribute. Check if we have open issues or request your utility method. Your code here is very welcome 🤝🤝
 
