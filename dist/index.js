@@ -8,4 +8,5 @@ const promises = require("./promises");
 const objects = require("./objects");
 const phoneNumbers = require("./phoneNumbers");
 const discountOnPrice = require("./calculations");
-module.exports = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, arrays), numbers), dateAndTime), strings), databases), promises), objects), phoneNumbers), discountOnPrice);
+const files = require("./files");
+module.exports = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, arrays), numbers), dateAndTime), strings), databases), promises), objects), phoneNumbers), discountOnPrice), files);

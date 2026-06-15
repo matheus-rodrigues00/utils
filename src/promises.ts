@@ -1,4 +1,3 @@
-import Asyncrify from "asyncrify";
 interface TimeoutErrorConstants {
   [erorr: string]: string;
 }
@@ -29,19 +28,19 @@ function sleep(time: number = 1000) {
  */
 async function throttle<T>(
   promises: (() => Promise<T>)[],
-  maxConcurrency: number
+  maxConcurrency: number = Infinity
 ): Promise<T[]> {
-  const returnArray = new Array<Promise<T>>(promises.length);
-  const queue = new Asyncrify(maxConcurrency);
-  for (let i = 0; i < promises.length; i++) {
-    returnArray[i] = new Promise((resolve, reject) => {
-      queue.add(promises[i], (res, err) => {
-        if (err) reject(err);
-        resolve(res);
-      });
-    });
+  const results = new Array<T>(promises.length);
+  let next = 0;
+  async function worker() {
+    while (next < promises.length) {
+      const i = next++;
+      results[i] = await promises[i]();
+    }
   }
-  return Promise.all(returnArray);
+  const workers = Math.min(maxConcurrency, promises.length) || 0;
+  await Promise.all(Array.from({ length: workers }, () => worker()));
+  return results;
 }
 
 /**
