@@ -6,9 +6,8 @@ const {
   isAudioFileObject,
   IMAGE_TYPES,
   VIDEO_TYPES,
-  AUDIO_TYPES,
 } = require("@/");
-const fs = require("fs");
+const fs = require("node:fs");
 
 interface FileTypeObject {
   ext: string;
@@ -23,14 +22,14 @@ describe("checkMediaTypes", () => {
   });
 
   test("returns true if literal image file buffer is passed with png type with IMAGE_TYPES array", async () => {
-    const file_path: string = process.cwd() + "/__tests__/assets/cat.png";
+    const file_path: string = `${process.cwd()}/__tests__/assets/cat.png`;
     const file_buffer: Buffer = fs.readFileSync(file_path);
     const result = await checkMediaTypes(IMAGE_TYPES, file_buffer);
     expect(result).toBe(true);
   });
 
   test("throws error if text file is passed, since file-type library doesn't support text based medias", async () => {
-    const file_path: string = process.cwd() + "/__tests__/assets/hello.txt";
+    const file_path: string = `${process.cwd()}/__tests__/assets/hello.txt`;
     const file_buffer: Buffer = fs.readFileSync(file_path);
     await expect(checkMediaTypes(IMAGE_TYPES, file_buffer)).rejects.toThrow(
       "Media type not supported"

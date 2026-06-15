@@ -122,4 +122,4 @@ function deepPick<T extends object, K extends DeepKeys<T>>(
   return result as Pick<T, K>;
 }
 
-export { deepClone, pick, omit, isObject, deepPick };
+export { deepClone, deepPick, isObject, omit, pick };

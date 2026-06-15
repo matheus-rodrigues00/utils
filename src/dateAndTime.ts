@@ -25,11 +25,11 @@ function getCurrentDate(): string {
   const year = now.getFullYear();
   const month =
     String(now.getMonth() + 1).length === 1
-      ? "0" + (now.getMonth() + 1)
+      ? `0${now.getMonth() + 1}`
       : String(now.getMonth() + 1);
   const day =
     String(now.getDate()).length === 1
-      ? "0" + now.getDate()
+      ? `0${now.getDate()}`
       : String(now.getDate());
   return `${year}-${month}-${day}`;
 }
@@ -43,15 +43,15 @@ function getCurrentTime(): string {
   const now = new Date();
   const hours =
     String(now.getHours()).length === 1
-      ? "0" + now.getHours()
+      ? `0${now.getHours()}`
       : String(now.getHours());
   const minutes =
     String(now.getMinutes()).length === 1
-      ? "0" + now.getMinutes()
+      ? `0${now.getMinutes()}`
       : String(now.getMinutes());
   const seconds =
     String(now.getSeconds()).length === 1
-      ? "0" + now.getSeconds()
+      ? `0${now.getSeconds()}`
       : String(now.getSeconds());
   return `${hours}:${minutes}:${seconds}`;
 }
@@ -77,20 +77,20 @@ function getDaysBetweenDates(date1: Date, date2: Date): number {
 function formatDateToBrazilianDate(date: Date): string {
   const day =
     String(date.getDate()).length === 1
-      ? "0" + date.getDate()
+      ? `0${date.getDate()}`
       : String(date.getDate());
   const month =
     String(date.getMonth() + 1).length === 1
-      ? "0" + (date.getMonth() + 1)
+      ? `0${date.getMonth() + 1}`
       : String(date.getMonth() + 1);
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 }
 
 export {
-  getDaysBetweenDates,
-  getCurrentDate,
-  getGreeting,
-  getCurrentTime,
   formatDateToBrazilianDate,
+  getCurrentDate,
+  getCurrentTime,
+  getDaysBetweenDates,
+  getGreeting,
 };

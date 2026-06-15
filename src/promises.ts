@@ -82,4 +82,4 @@ async function race<T>(array_of_promises: Promise<T>[]) {
   return result;
 }
 
-export { sleep, timeout, race, TimeoutErrors, throttle };
+export { race, sleep, TimeoutErrors, throttle, timeout };

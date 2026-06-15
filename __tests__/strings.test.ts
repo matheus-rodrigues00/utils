@@ -60,25 +60,25 @@ describe("replaceTokens", () => {
 describe("isEmail", () => {
   test("Receives a string with valid email prefix format and returns true", () => {
     expect.assertions(1);
-    const result: string = isEmail("abc.def@mail-archive.com");
+    const result: boolean = isEmail("abc.def@mail-archive.com");
     expect(result).toBe(true);
   });
 
   test("Receives a string with invalid email prefix format and returns false", () => {
     expect.assertions(1);
-    const result: string = isEmail("abc#def@mail.com");
+    const result: boolean = isEmail("abc#def@mail.com");
     expect(result).toBe(false);
   });
 
   test("Receives a string with valid email domain formats and returns true", () => {
     expect.assertions(1);
-    const result: string = isEmail("abc.def@mail.cc");
+    const result: boolean = isEmail("abc.def@mail.cc");
     expect(result).toBe(true);
   });
 
   test("Receives a string with invalid email domain formats and returns false", () => {
     expect.assertions(1);
-    const result: string = isEmail("abc.def@mail#archive.com");
+    const result: boolean = isEmail("abc.def@mail#archive.com");
     expect(result).toBe(false);
   });
 });

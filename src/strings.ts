@@ -35,4 +35,4 @@ function isEmail(str: string): boolean {
   return email_validation_regex.test(str);
 }
 
-export { replaceTokens, isEmail };
+export { isEmail, replaceTokens };

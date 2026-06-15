@@ -33,4 +33,4 @@ function applyDiscount(price: number, discount_percentage: number): number {
   return price - discounted_value;
 }
 
-export { getDiscountedValue, applyDiscount };
+export { applyDiscount, getDiscountedValue };

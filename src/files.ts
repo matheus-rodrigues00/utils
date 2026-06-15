@@ -39,8 +39,7 @@ function fromBuffer(file: Buffer): FileTypeObject | undefined {
     return { ext: "jpg", mime: "image/jpeg" };
   if (matchBytes(file, [0x47, 0x49, 0x46, 0x38]))
     return { ext: "gif", mime: "image/gif" };
-  if (matchBytes(file, [0x42, 0x4d]))
-    return { ext: "bmp", mime: "image/bmp" };
+  if (matchBytes(file, [0x42, 0x4d])) return { ext: "bmp", mime: "image/bmp" };
 
   // RIFF containers: WEBP (image), WAV (audio), AVI (video)
   if (matchBytes(file, [0x52, 0x49, 0x46, 0x46])) {
@@ -55,8 +54,7 @@ function fromBuffer(file: Buffer): FileTypeObject | undefined {
   // ISO Base Media (MP4 / MOV): "ftyp" box at offset 4, brand at offset 8
   if (matchBytes(file, [0x66, 0x74, 0x79, 0x70], 4)) {
     const brand = file.toString("ascii", 8, 12);
-    if (brand.startsWith("qt"))
-      return { ext: "mov", mime: "video/quicktime" };
+    if (brand.startsWith("qt")) return { ext: "mov", mime: "video/quicktime" };
     return { ext: "mp4", mime: "video/mp4" };
   }
 
@@ -179,12 +177,12 @@ function isAudioFileObject(file_type_object: FileTypeObject): boolean {
 }
 
 export {
+  AUDIO_TYPES,
   checkMediaTypes,
   checkMediaTypesFromFileObject,
+  IMAGE_TYPES,
+  isAudioFileObject,
   isImageFileObject,
   isVideoFileObject,
-  isAudioFileObject,
-  IMAGE_TYPES,
   VIDEO_TYPES,
-  AUDIO_TYPES,
 };

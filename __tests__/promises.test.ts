@@ -48,7 +48,7 @@ describe("Throttle", () => {
   });
   test("In case of one rejected", async () => {
     const data = "resolved data";
-    await expect(() =>
+    await expect(
       throttle([
         () => mockResolvedPromise(data, 100),
         () => mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 200),
@@ -57,8 +57,7 @@ describe("Throttle", () => {
     ).rejects.toThrow(TimeoutErrors.RESPONSE_ERROR_MESSAGE);
   });
   test("In case of all rejected", async () => {
-    const data = "resolved data";
-    await expect(() =>
+    await expect(
       throttle([
         () => mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 200),
         () => mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 200),
@@ -77,7 +76,7 @@ describe("timeout", () => {
   });
 
   test("In case of only rejected", async () => {
-    await expect(() =>
+    await expect(
       timeout(
         mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 100),
         300
@@ -86,13 +85,13 @@ describe("timeout", () => {
   });
 
   test("In case of timeout and resolve", async () => {
-    await expect(() =>
-      timeout(mockResolvedPromise(data, 300), 100)
-    ).rejects.toThrow(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE));
+    await expect(timeout(mockResolvedPromise(data, 300), 100)).rejects.toThrow(
+      new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE)
+    );
   });
 
   test("In case of timeout and rejected", async () => {
-    await expect(() =>
+    await expect(
       timeout(
         mockRejectedPromise(TimeoutErrors.RESPONSE_ERROR_MESSAGE, 300),
         100
@@ -102,11 +101,7 @@ describe("timeout", () => {
 });
 
 describe("race", () => {
-  const sleepForNTime = (time: number) =>
-    new Promise(async resolve => {
-      await sleep(time);
-      return resolve(time);
-    });
+  const sleepForNTime = (time: number) => sleep(time).then(() => time);
 
   test("should return the first promise as faster", async () => {
     const first = sleepForNTime(500);
