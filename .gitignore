@@ -13,3 +13,8 @@ coverage.*
 **/.vscode
 **/.idea
 **/todo.txt
+
+
+*.mdc
+*.md
+!README.md
