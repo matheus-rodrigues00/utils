@@ -19,61 +19,7 @@ const utils = require('@teteu/utils');
 
 utils.random(10, 20); // should return a random number between 10 and 20
 ```
-## Methods Docs
-### Arrays
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|uniqueElements|returns an array with unique elements|(array)|array with unique elements|[here]()|
-|groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|[here]()|
-|randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|[here]()|
-### Promises
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|sleep|pretty much sleeps until the specified time passes|(time in milliseconds)|Promise|[here]()|
-### Strings
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|replaceTokens|replace tokens in a string based on a custom regular expression|(string, tokens and regex)|new string with tokens replaced|[here]()|
-|isEmail|validates if the input string is a valid email|(string)|True if the string is a valid email, false otherwise.|[here]()|
-### Phone Numbers
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|validBrazilianPhoneNumber|Checks if a string phone number has valid brazilian phone number format|(string phone number)|True if the string is a valid brazilian phone number, false otherwise|[here]()|
-### Numbers
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|random|receives a min and max number and returns a random number between them|(min, max)|random number between min-max|[here]()|
-|mean|receives a numeric array and returns its average|(arr)|the average|[here]()|
-|max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|[here]()|
-|maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|[here]()|
-|divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|[here]()|
-|meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|[here]()|
-### Date And Time
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|getGreeting|Returns a greeting based on the current hour of the day|void|greeting string|[here]()|
-|getCurrentDate| Returns the current date in the format "YYYY-MM-DD"|void|current date|[here]()|
-|getCurrentTime|Returns the current time in the format "HH:MM:SS"|void|current time|[here]()|
-|getDaysBetweenDates|Calculates the number of days between two given dates|(date1, date2)|number of days between the two dates|[here]()|
-|formatDateToBrazilianDate|Formats a given date to the Brazilian date format "DD/MM/YYYY"|(date)|formatted date string|[here]()|
-### Databases
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|sanitize|This method recieves an string input and sanitizes removing all SQL injection|(string to sanitize and optionally an object containing the options for sanitization, check Example for better understanding)|sanitized string|[here]()|
-### Calculations
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|getDiscountedValue|Calculate the discount amount based on the original price and discount percentage|(price, discount percentage [0 - 100])|discounted value|[here]()|
-|applyDiscount|Calculates the discounted price based on the original price and discount percentage|(price, discount percentage)|result of price after discount|[here]()|
 
-### Objects
-|Method|What It Does|Parameters|Return|Example|
-|-|-|-|-|-|
-|deepClone|recieves an object and returns a deep clone of it|(object to clone)|cloned object|[here]()|
-|pick|receives an object and an array of keys and returns a new object with only the keys specified|(source object and array of keys to pick from the source object)|new object with only the keys specified|[here]()|
-|omit|receives an object and an array of keys and returns a new object without the keys specified|(source object and array of keys to omit from the source object)|new object without the keys specified|[here]()|
-|isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|[here]()|
-|deepPick| receives an object with nested properties and an array of keys and returns a new object with only the keys specified.|(source object and array of keys)|new object with only the keys specified|[here]()|
 ## Development
 This project uses [Bun](https://bun.sh) as its primary runtime, [Biome](https://biomejs.dev) for linting/formatting, and TypeScript (the package is still published as CommonJS for npm consumers).
 
@@ -89,4 +35,63 @@ bun run compile-files # build to dist/
 
 ## Contribute
 Feel free to contribute. Check if we have open issues or request your utility method. Your code here is very welcome 🤝🤝
+
+## Methods Docs
+### Arrays
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|uniqueElements|returns an array with unique elements|(array)|array with unique elements|
+|groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
+|randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|
+### Promises
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|sleep|pretty much sleeps until the specified time passes|(time in milliseconds)|Promise|
+|throttle|runs an array of promise-returning functions, capping how many run at once|(array of functions returning promises, max concurrency = Infinity)|Promise of the array of results|
+|timeout|rejects with a Timeout Error if the promise does not settle within the given time|(promise, time in milliseconds = 8000)|the resolved value, or rejects with a Timeout Error|
+|race|races the given promises against each other|(array of promises)|the first promise to settle|
+### Strings
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|replaceTokens|replace tokens in a string based on a custom regular expression|(string, tokens and regex)|new string with tokens replaced|
+|isEmail|validates if the input string is a valid email|(string)|True if the string is a valid email, false otherwise.|
+### Phone Numbers
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|validBrazilianPhoneNumber|Checks if a string phone number has valid brazilian phone number format|(string phone number)|True if the string is a valid brazilian phone number, false otherwise|
+### Numbers
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|random|receives a min and max number and returns a random number between them|(min, max)|random number between min-max|
+|mean|receives a numeric array and returns its average|(arr)|the average|
+|max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|
+|maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|
+|divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|
+|meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|
+### Date And Time
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|getGreeting|Returns a greeting based on the current hour of the day|void|greeting string|
+|getCurrentDate| Returns the current date in the format "YYYY-MM-DD"|void|current date|
+|getCurrentTime|Returns the current time in the format "HH:MM:SS"|void|current time|
+|getDaysBetweenDates|Calculates the number of days between two given dates|(date1, date2)|number of days between the two dates|
+|formatDateToBrazilianDate|Formats a given date to the Brazilian date format "DD/MM/YYYY"|(date)|formatted date string|
+### Databases
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|sanitize|This method recieves an string input and sanitizes removing all SQL injection|(string to sanitize and optionally an object containing the options for sanitization)|sanitized string|
+### Calculations
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|getDiscountedValue|Calculate the discount amount based on the original price and discount percentage|(price, discount percentage [0 - 100])|discounted value|
+|applyDiscount|Calculates the discounted price based on the original price and discount percentage|(price, discount percentage)|result of price after discount|
+
+### Objects
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|deepClone|recieves an object and returns a deep clone of it|(object to clone)|cloned object|
+|pick|receives an object and an array of keys and returns a new object with only the keys specified|(source object and array of keys to pick from the source object)|new object with only the keys specified|
+|omit|receives an object and an array of keys and returns a new object without the keys specified|(source object and array of keys to omit from the source object)|new object without the keys specified|
+|isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|
+|deepPick| receives an object with nested properties and an array of keys and returns a new object with only the keys specified.|(source object and array of keys)|new object with only the keys specified|
 
