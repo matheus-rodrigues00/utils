@@ -22,6 +22,14 @@
     "utils",
     "utilities"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheus-rodrigues00/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matheus-rodrigues00/utils/issues"
+  },
+  "homepage": "https://github.com/matheus-rodrigues00/utils#readme",
   "files": [
     "dist",
     "helpers",
