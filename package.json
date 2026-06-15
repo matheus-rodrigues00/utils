@@ -1,29 +1,36 @@
 {
-    "name": "@teteu/utils",
-    "version": "0.7.0",
-    "description": "Library to commonly used cross-projects utilities methods",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "start": "node .",
-        "test": "jest --watchAll",
-        "production-test": "jest",
-        "compile-files": "tsc"
-    },
-    "keywords": [
-        "utils",
-        "utilities",
-        "wellon"
-    ],
-    "dependencies": {
-        "asyncrify": "^0.2.9",
-        "file-type": "^16.0.1"
-    },
-    "devDependencies": {
-        "@teteu/utils": "^0.7.0",
-        "@types/jest": "^29.5.1",
-        "jest": "^29.5.0",
-        "ts-jest": "^29.1.0",
-        "typescript": "^5.0.4"
-    }
+  "name": "@teteu/utils",
+  "version": "0.7.1",
+  "description": "Library to commonly used cross-projects utilities methods",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "node .",
+    "test": "jest --watchAll",
+    "production-test": "jest",
+    "compile-files": "tsc",
+    "prepare": "npm run compile-files",
+    "prepublishOnly": "npm run production-test && npm run compile-files"
+  },
+  "keywords": [
+    "utils",
+    "utilities"
+  ],
+  "files": [
+    "dist",
+    "helpers",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "asyncrify": "^0.2.9",
+    "file-type": "^16.0.1"
+  },
+  "devDependencies": {
+    "@teteu/utils": "^0.7.0",
+    "@types/jest": "^29.5.1",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  }
 }
