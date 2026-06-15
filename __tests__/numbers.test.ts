@@ -61,7 +61,7 @@ describe("maxBy", () => {
       { name: "Charlie", age: 35 },
     ];
 
-    const result: number | undefined = maxBy(arr, (item: any) => item.age);
+    const result = maxBy(arr, (item: any) => item.age);
     expect(result).toStrictEqual({ name: "Charlie", age: 35 });
   });
 
@@ -71,10 +71,7 @@ describe("maxBy", () => {
       { name: "Product B", info: { price: 50.75 } },
       { name: "Product C", info: { price: 15.25 } },
     ];
-    const result: number | undefined = maxBy(
-      arr,
-      (item: any) => item.info.price
-    );
+    const result = maxBy(arr, (item: any) => item.info.price);
     expect(result).toStrictEqual({ name: "Product B", info: { price: 50.75 } });
   });
 });
