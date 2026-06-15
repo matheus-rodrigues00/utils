@@ -1,4 +1,4 @@
-const { random } = require("@/numbers");
+const { random } = require("./numbers");
 
 /**
  * Returns an array with unique elements.

@@ -8,12 +8,19 @@
         "start": "node .",
         "test": "jest --watchAll",
         "production-test": "jest",
-        "compile-files": "tsc"
+        "compile-files": "tsc",
+        "prepare": "npm run compile-files",
+        "prepublishOnly": "npm run production-test && npm run compile-files"
     },
     "keywords": [
         "utils",
-        "utilities",
-        "wellon"
+        "utilities"
+    ],
+    "files": [
+        "dist",
+        "helpers",
+        "README.md",
+        "LICENSE"
     ],
     "devDependencies": {
         "@teteu/utils": "^0.7.0",
