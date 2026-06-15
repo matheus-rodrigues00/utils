@@ -30,6 +30,9 @@ utils.random(10, 20); // should return a random number between 10 and 20
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
 |sleep|pretty much sleeps until the specified time passes|(time in milliseconds)|Promise|
+|throttle|runs an array of promise-returning functions, capping how many run at once|(array of functions returning promises, max concurrency = Infinity)|Promise of the array of results|
+|timeout|rejects with a Timeout Error if the promise does not settle within the given time|(promise, time in milliseconds = 8000)|the resolved value, or rejects with a Timeout Error|
+|race|races the given promises against each other|(array of promises)|the first promise to settle|
 ### Strings
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
