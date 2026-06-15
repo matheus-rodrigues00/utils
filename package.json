@@ -1,7 +1,7 @@
 {
     "name": "@teteu/utils",
-    "version": "0.7.0",
-    "description": "Library to commonly used cross-projects utilities methods",
+    "version": "0.8.0",
+    "description": "Zero-dependency library of commonly used cross-project utility methods",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -15,10 +15,6 @@
         "utilities",
         "wellon"
     ],
-    "dependencies": {
-        "asyncrify": "^0.2.9",
-        "file-type": "^16.0.1"
-    },
     "devDependencies": {
         "@teteu/utils": "^0.7.0",
         "@types/jest": "^29.5.1",

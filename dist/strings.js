@@ -7,6 +7,7 @@ exports.isEmail = exports.replaceTokens = void 0;
  * @param {object} tokens - An object containing the tokens for replacement.
  * @param {RegExp} regex - The regular expression for identifying tokens.
  * @returns {string} - The string with tokens replaced.
+ * author: giri-madhan - Giri Madhan
  */
 function replaceTokens(string, tokens, regex) {
     const new_string = string.replace(regex, (match) => {
@@ -20,8 +21,9 @@ function replaceTokens(string, tokens, regex) {
 exports.replaceTokens = replaceTokens;
 /**
  * Validates if the input string is a valid email
- * @param str - The string to validate.
+ * @param {string} str - The string to validate.
  * @returns {boolean} - True if the string is a valid email, false otherwise.
+ * author: NullSploit01 - Harshal Dharmik
  */
 function isEmail(str) {
     const email_validation_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

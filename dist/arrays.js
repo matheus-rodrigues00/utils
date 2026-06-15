@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.groupBy = exports.uniqueElements = void 0;
+exports.randomizeArray = exports.groupBy = exports.uniqueElements = void 0;
+const { random } = require("@/numbers");
 /**
  * Returns an array with unique elements.
- * @param array
- * @returns {Array}
+ * @param {any[]} array - The input array.
+ * @returns {Array} - The array with unique elements.
  */
 function uniqueElements(array) {
     if (!Array.isArray(array)) {
@@ -15,8 +16,8 @@ function uniqueElements(array) {
 exports.uniqueElements = uniqueElements;
 /**
  * Returns an object with the array grouped by the key.
- * @param array - The input array to be grouped.
- * @param key - The key to group the array by.
+ * @param {T[]} array - The input array to be grouped.
+ * @param {Record<string, T[]>} key - The key to group the array by.
  * @returns {Array} - The grouped array.
  */
 function groupBy(array, key) {
@@ -28,3 +29,13 @@ function groupBy(array, key) {
     }, {});
 }
 exports.groupBy = groupBy;
+/**
+ * This method recieves an array and returns a randomized version of it.
+ * @param {any[]} array - The array to be randomized.
+ * @returns {Array} - The randomized array.
+ */
+function randomizeArray(array) {
+    const new_arr = [...array];
+    return new_arr.sort(() => random() - 50);
+}
+exports.randomizeArray = randomizeArray;

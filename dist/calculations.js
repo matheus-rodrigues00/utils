@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyDiscount = exports.getDiscountedValue = void 0;
 /**
- * This method should calculate the discount amount based on the original price and discount percentage
- * @param price
- * @param discount_percentage
+ * Calculates the discount amount based on the original price and discount percentage
+ * @param {number} price - The original price
+ * @param {number} discount_percentage - The discount percentage
  * @returns number
+ * author: nalmeida94 - Nathan Almeida
  */
 function getDiscountedValue(price, discount_percentage) {
     if (discount_percentage > 100 || discount_percentage < 0) {
@@ -16,10 +17,11 @@ function getDiscountedValue(price, discount_percentage) {
 }
 exports.getDiscountedValue = getDiscountedValue;
 /**
- * This method should calculate the discounted price based on the original price and discount percentage
- * @param price
- * @param discount_percentage
+ * Calculates the discounted price based on the original price and discount percentage
+ * @param {number} price - The original price
+ * @param {number} discount_percentage - The discount percentage
  * @returns number
+ * author: nalmeida94 - Nathan Almeida
  */
 function applyDiscount(price, discount_percentage) {
     if (discount_percentage > 100 || discount_percentage < 0) {

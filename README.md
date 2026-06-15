@@ -1,7 +1,10 @@
 # @teteu/utils
 [![npm (scoped)](https://img.shields.io/npm/v/@teteu/utils?label=%40teteu%2Futils&style=for-the-badge)](https://www.npmjs.com/package/@teteu/utils)
+[![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?style=for-the-badge)](https://www.npmjs.com/package/@teteu/utils)
 
-✨ Library to commonly used cross-projects utilities methods ✨
+✨ Zero-dependency library of commonly used cross-project utility methods ✨
+
+🪶 **Zero runtime dependencies** — nothing but the standard library.
 
 ## Run
 ```bash
