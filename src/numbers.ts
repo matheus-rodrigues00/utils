@@ -15,9 +15,9 @@ function random(min: number = 0, max: number = 100): number {
  */
 function mean(arr: number[]): number {
   let sum: number = 0;
-  arr.map(n => {
+  arr.forEach(n => {
     sum = sum + n;
-  })
+  });
 
   return sum / arr.length;
 }
@@ -29,7 +29,7 @@ function mean(arr: number[]): number {
  * author: teixeirista - Matheus Teixeira
  */
 function max(arr: number[] | undefined): number | undefined {
-  if (typeof arr == "undefined" || arr.length === 0) {
+  if (typeof arr === "undefined" || arr.length === 0) {
     return undefined;
   }
 
@@ -103,7 +103,7 @@ function divideFixed(
   divisor: number,
   precision: number
 ): string {
-  if (divisor === 0 || isNaN(divisor)) {
+  if (divisor === 0 || Number.isNaN(divisor)) {
     throw new Error("Divisor is not a number or is equal to 0.");
   }
 
@@ -114,4 +114,4 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { random, max, maxBy, mean, meanBy, divideFixed };
+export { divideFixed, max, maxBy, mean, meanBy, random };

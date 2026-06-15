@@ -40,4 +40,4 @@ function randomizeArray(array: any[]): any[] {
   return new_arr.sort(() => random() - 50);
 }
 
-export { uniqueElements, groupBy, randomizeArray };
+export { groupBy, randomizeArray, uniqueElements };

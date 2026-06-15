@@ -8,8 +8,6 @@ describe("random", () => {
     expect(result).toBeLessThanOrEqual(100);
   });
 
-  
-
   test("generates a random number between 1 and 10", () => {
     expect.assertions(2);
     const result: number = random(1, 10);
@@ -27,14 +25,14 @@ describe("random", () => {
 
 describe("max", () => {
   test("receives a numeric array and returns the max number", () => {
-    let arr = [1, 2, 3, 4, 5];
+    const arr = [1, 2, 3, 4, 5];
 
     const result: number = max(arr);
     expect(result).toBe(5);
   });
 
   test("receives a numeric array and returns the max number", () => {
-    let arr = [1, 2, 3, 4];
+    const arr = [1, 2, 3, 4];
 
     const result: number = max(arr);
     expect(result).not.toBe(3);
@@ -42,7 +40,7 @@ describe("max", () => {
   });
 
   test("receives a numeric array and returns the max number", () => {
-    let arr: number[] = [];
+    const arr: number[] = [];
 
     const result: number = max(arr);
     expect(result).toBeUndefined();
@@ -97,7 +95,6 @@ describe("mean", () => {
 
     expect(result).not.toBeGreaterThan(2.5);
     expect(result).not.toBeLessThan(2.5);
-
   });
 });
 
