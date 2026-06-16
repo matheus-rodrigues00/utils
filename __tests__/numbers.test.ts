@@ -93,6 +93,14 @@ describe("mean", () => {
     expect(result).not.toBeGreaterThan(2.5);
     expect(result).not.toBeLessThan(2.5);
   });
+
+  test("should return undefined for an empty array", () => {
+    const arr: number[] = [];
+
+    const result = mean(arr);
+
+    expect(result).toBeUndefined();
+  });
 });
 
 describe("divideFixed", () => {
