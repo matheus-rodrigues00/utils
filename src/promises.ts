@@ -52,8 +52,8 @@ async function throttle<T>(
  * @throws {TimeoutError} Throws a TimeoutError if the timeout is exceeded.
  * author: ahn0min - YeongMin Ahn
  */
-function timeout<T>(promise: Promise<T>, time: number = 8000) {
-  return new Promise((resolve, reject) => {
+function timeout<T>(promise: Promise<T>, time: number = 8000): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
     const timeout_id = setTimeout(
       () => reject(new Error(TimeoutErrors.TIMEOUT_ERROR_MESSAGE)),
       time
