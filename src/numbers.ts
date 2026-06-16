@@ -10,16 +10,15 @@ function random(min: number = 0, max: number = 100): number {
 
 /**
  * This method receives a numeric array and returns its average
- * @param {number[]} - The numeric array
- * @returns {number} - The number.
+ * @param {number[]} arr - The numeric array
+ * @returns {number | undefined} - The average, or undefined for an empty array.
  */
-function mean(arr: number[]): number {
-  let sum: number = 0;
-  arr.forEach(n => {
-    sum = sum + n;
-  });
+function mean(arr: number[]): number | undefined {
+  if (arr.length === 0) {
+    return undefined;
+  }
 
-  return sum / arr.length;
+  return arr.reduce((sum, n) => sum + n, 0) / arr.length;
 }
 
 /**
