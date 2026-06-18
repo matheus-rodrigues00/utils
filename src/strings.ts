@@ -35,4 +35,20 @@ function isEmail(str: string): boolean {
   return email_validation_regex.test(str);
 }
 
-export { isEmail, replaceTokens };
+/**
+ * Shortens a string to a maximum length and appends an omission indicator when it gets cut.
+ * The total length (including the omission) never exceeds `length`.
+ * @param {string} str - The string to truncate.
+ * @param {number} length - The maximum length of the returned string.
+ * @param {string} omission - The indicator appended when the string is cut. Defaults to "…".
+ * @returns {string} - The original string when it fits, otherwise the truncated string with the omission appended.
+ */
+function truncate(str: string, length: number, omission = "…"): string {
+  if (str.length <= length) {
+    return str;
+  }
+
+  return str.slice(0, length - omission.length) + omission;
+}
+
+export { isEmail, replaceTokens, truncate };

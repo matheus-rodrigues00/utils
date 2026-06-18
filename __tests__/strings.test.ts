@@ -1,4 +1,4 @@
-const { replaceTokens, isEmail } = require("@/strings");
+const { replaceTokens, isEmail, truncate } = require("@/strings");
 
 describe("replaceTokens", () => {
   test("replaces tokens with values, using basic regex /(w+)/g", () => {
@@ -80,5 +80,25 @@ describe("isEmail", () => {
     expect.assertions(1);
     const result: boolean = isEmail("abc.def@mail#archive.com");
     expect(result).toBe(false);
+  });
+});
+
+describe("truncate", () => {
+  test("returns the string unchanged when it already fits", () => {
+    expect.assertions(1);
+    const result: string = truncate("hi", 8);
+    expect(result).toBe("hi");
+  });
+
+  test("truncates and appends the default omission when the string is too long", () => {
+    expect.assertions(1);
+    const result: string = truncate("hello world", 8);
+    expect(result).toBe("hello w…");
+  });
+
+  test("truncates using a custom omission", () => {
+    expect.assertions(1);
+    const result: string = truncate("hello world", 8, "...");
+    expect(result).toBe("hello...");
   });
 });
