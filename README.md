@@ -55,6 +55,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |-|-|-|-|
 |replaceTokens|replace tokens in a string based on a custom regular expression|(string, tokens and regex)|new string with tokens replaced|
 |isEmail|validates if the input string is a valid email|(string)|True if the string is a valid email, false otherwise.|
+|truncate|shortens a string to a maximum length and appends an omission indicator when it gets cut|(string, length, omission = "…")|the original string when it fits, otherwise the truncated string with the omission appended|
 ### Phone Numbers
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
