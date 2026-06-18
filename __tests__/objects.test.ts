@@ -1,4 +1,11 @@
-const { deepClone, pick, omit, isObject, isEmpty, deepPick } = require("@/objects");
+const {
+  deepClone,
+  pick,
+  omit,
+  isObject,
+  isEmpty,
+  deepPick,
+} = require("@/objects");
 
 describe("deepClone", () => {
   interface MockObject {
