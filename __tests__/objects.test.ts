@@ -1,4 +1,11 @@
-const { deepClone, pick, omit, isObject, deepPick } = require("@/objects");
+const {
+  deepClone,
+  pick,
+  omit,
+  isObject,
+  isEmpty,
+  deepPick,
+} = require("@/objects");
 
 describe("deepClone", () => {
   interface MockObject {
@@ -106,6 +113,44 @@ describe("isObject", () => {
     expect(isObject(undefined)).toBe(false);
     expect(isObject(() => {})).toBe(false);
     expect(isObject(new Date())).toBe(false);
+  });
+});
+
+describe("isEmpty", () => {
+  test("should return true for null and undefined", () => {
+    expect(isEmpty(null)).toBe(true);
+    expect(isEmpty(undefined)).toBe(true);
+  });
+
+  test("should return true for an empty string", () => {
+    expect(isEmpty("")).toBe(true);
+  });
+
+  test("should return true for an empty array", () => {
+    expect(isEmpty([])).toBe(true);
+  });
+
+  test("should return true for an empty plain object", () => {
+    expect(isEmpty({})).toBe(true);
+  });
+
+  test("should return true for non-collection values (mirroring lodash)", () => {
+    expect(isEmpty(0)).toBe(true);
+    expect(isEmpty(42)).toBe(true);
+    expect(isEmpty(true)).toBe(true);
+    expect(isEmpty(false)).toBe(true);
+  });
+
+  test("should return false for a non-empty string", () => {
+    expect(isEmpty("hello")).toBe(false);
+  });
+
+  test("should return false for a non-empty array", () => {
+    expect(isEmpty([1, 2])).toBe(false);
+  });
+
+  test("should return false for a non-empty plain object", () => {
+    expect(isEmpty({ a: 1 })).toBe(false);
   });
 });
 

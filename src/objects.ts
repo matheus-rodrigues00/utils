@@ -72,6 +72,30 @@ function isObject(value: any): boolean {
 }
 
 /**
+ * This method receives a value and checks if it is "empty": null, undefined, an
+ * empty string, an empty array, or a plain object with no own enumerable keys.
+ * Non-collection values (numbers, booleans, functions, etc.) are treated as
+ * empty, mirroring lodash's isEmpty.
+ * @param value - The value to check
+ * @returns {boolean} - True if the value is empty, false otherwise
+ */
+function isEmpty(value: unknown): boolean {
+  if (value === null || value === undefined) {
+    return true;
+  }
+
+  if (typeof value === "string" || Array.isArray(value)) {
+    return value.length === 0;
+  }
+
+  if (isObject(value)) {
+    return Object.keys(value as object).length === 0;
+  }
+
+  return true;
+}
+
+/**
  * This method receives an object with nested properties and an array of keys and returns a new object with only the keys specified.
  * @param object - The object to pick from
  * @param keys - An array of keys to pick from the source object
@@ -122,4 +146,4 @@ function deepPick<T extends object, K extends DeepKeys<T>>(
   return result as Pick<T, K>;
 }
 
-export { deepClone, deepPick, isObject, omit, pick };
+export { deepClone, deepPick, isEmpty, isObject, omit, pick };

@@ -93,5 +93,6 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |pick|receives an object and an array of keys and returns a new object with only the keys specified|(source object and array of keys to pick from the source object)|new object with only the keys specified|
 |omit|receives an object and an array of keys and returns a new object without the keys specified|(source object and array of keys to omit from the source object)|new object without the keys specified|
 |isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|
+|isEmpty|receives a value and checks if it is empty (null, undefined, empty string/array, or plain object with no keys); non-collection values are treated as empty|(value to check)|boolean|
 |deepPick| receives an object with nested properties and an array of keys and returns a new object with only the keys specified.|(source object and array of keys)|new object with only the keys specified|
 
