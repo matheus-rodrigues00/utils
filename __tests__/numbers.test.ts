@@ -6,6 +6,8 @@ const {
   mean,
   divideFixed,
   clamp,
+  sum,
+  sumBy,
 } = require("@/numbers");
 
 describe("random", () => {
@@ -141,6 +143,40 @@ describe("divideFixed", () => {
     expect(() => divideFixed(10, 0, 3)).toThrow(
       "Divisor is not a number or is equal to 0."
     );
+  });
+});
+
+describe("sum", () => {
+  test("receives a numeric array and returns the total of its values", () => {
+    const arr = [1, 2, 3];
+    const result: number = sum(arr);
+    expect(result).toBe(6);
+  });
+
+  test("returns 0 for an empty array", () => {
+    const arr: number[] = [];
+    const result: number = sum(arr);
+    expect(result).toBe(0);
+  });
+
+  test("handles negative numbers", () => {
+    const arr = [10, -4, -1];
+    const result: number = sum(arr);
+    expect(result).toBe(5);
+  });
+});
+
+describe("sumBy", () => {
+  test("receives an array and a callback and returns the total of the callback values", () => {
+    const arr = [{ price: 10 }, { price: 5 }];
+    const result: number = sumBy(arr, (item: any) => item.price);
+    expect(result).toBe(15);
+  });
+
+  test("returns 0 for an empty array", () => {
+    const arr: { price: number }[] = [];
+    const result: number = sumBy(arr, (item: any) => item.price);
+    expect(result).toBe(0);
   });
 });
 
