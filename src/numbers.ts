@@ -132,4 +132,19 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { divideFixed, max, maxBy, mean, meanBy, random, sum, sumBy };
+/**
+ * This method constrains a number to be within an inclusive [lower, upper] range.
+ * If lower is greater than upper, the bounds are swapped so the method stays forgiving.
+ * @param {number} number - The number to clamp.
+ * @param {number} lower - The lower bound of the range.
+ * @param {number} upper - The upper bound of the range.
+ * @returns {number} - The number constrained to the [lower, upper] range.
+ */
+function clamp(number: number, lower: number, upper: number): number {
+  const lowerBound = Math.min(lower, upper);
+  const upperBound = Math.max(lower, upper);
+
+  return Math.min(upperBound, Math.max(lowerBound, number));
+}
+
+export { clamp, divideFixed, max, maxBy, mean, meanBy, random, sum, sumBy };

@@ -51,4 +51,13 @@ function truncate(str: string, length: number, omission = "…"): string {
   return str.slice(0, length - omission.length) + omission;
 }
 
-export { isEmail, replaceTokens, truncate };
+/**
+ * Uppercases the first character of a string and lowercases the rest.
+ * @param {string} str - The string to capitalize.
+ * @returns {string} - The capitalized string, or an empty string when the input is empty.
+ */
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+export { capitalize, isEmail, replaceTokens, truncate };

@@ -56,6 +56,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |replaceTokens|replace tokens in a string based on a custom regular expression|(string, tokens and regex)|new string with tokens replaced|
 |isEmail|validates if the input string is a valid email|(string)|True if the string is a valid email, false otherwise.|
 |truncate|shortens a string to a maximum length and appends an omission indicator when it gets cut|(string, length, omission = "…")|the original string when it fits, otherwise the truncated string with the omission appended|
+|capitalize|uppercases the first character of a string and lowercases the rest|(string)|new string with the first character uppercased and the rest lowercased|
 ### Phone Numbers
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
@@ -69,6 +70,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|
 |divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|
 |meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|
+|clamp|constrains a number to be within an inclusive [lower, upper] range, swapping the bounds if lower > upper|(number, lower, upper)|the number constrained to the [lower, upper] range|
 |sum|receives a numeric array and returns the sum of its values|(arr)|the sum of the values, or 0 for an empty array|
 |sumBy|receives an array and a callback and returns the sum of the values given by the callback function|(array, callback)|the sum of the callback values, or 0 for an empty array|
 ### Date And Time

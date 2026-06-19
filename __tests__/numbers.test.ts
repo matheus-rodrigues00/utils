@@ -1,5 +1,14 @@
-const { random, max, maxBy, meanBy, mean, divideFixed, sum, sumBy } =
-  require("@/numbers");
+const {
+  random,
+  max,
+  maxBy,
+  meanBy,
+  mean,
+  divideFixed,
+  clamp,
+  sum,
+  sumBy,
+} = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -206,5 +215,30 @@ describe("meanBy", () => {
     const arr: number[] = [];
     const result: number | undefined = meanBy(arr, (item: number) => item);
     expect(result).toBeUndefined();
+  });
+});
+
+describe("clamp", () => {
+  test("returns the upper bound when the number is above the range", () => {
+    expect(clamp(10, 0, 5)).toBe(5);
+  });
+
+  test("returns the lower bound when the number is below the range", () => {
+    expect(clamp(-2, 0, 5)).toBe(0);
+  });
+
+  test("returns the number itself when it is inside the range", () => {
+    expect(clamp(3, 0, 5)).toBe(3);
+  });
+
+  test("returns the boundary value when the number equals a bound", () => {
+    expect(clamp(0, 0, 5)).toBe(0);
+    expect(clamp(5, 0, 5)).toBe(5);
+  });
+
+  test("normalizes the bounds when lower is greater than upper", () => {
+    expect(clamp(10, 5, 0)).toBe(5);
+    expect(clamp(-2, 5, 0)).toBe(0);
+    expect(clamp(3, 5, 0)).toBe(3);
   });
 });
