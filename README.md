@@ -50,6 +50,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |throttle|runs an array of promise-returning functions, capping how many run at once|(array of functions returning promises, max concurrency = Infinity)|Promise of the array of results|
 |timeout|rejects with a Timeout Error if the promise does not settle within the given time|(promise, time in milliseconds = 8000)|the resolved value, or rejects with a Timeout Error|
 |race|races the given promises against each other|(array of promises)|the first promise to settle|
+|sequence|runs an array of promise-returning functions one after another, in order|(array of functions returning promises)|Promise of the array of results in order|
 ### Strings
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
