@@ -41,6 +41,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
 |uniqueElements|returns an array with unique elements|(array)|array with unique elements|
+|uniqueBy|removes duplicate elements based on the value returned by a callback, keeping the first occurrence|(array, callback)|new array without duplicates by callback key|
 |groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
 |randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|
 ### Promises
