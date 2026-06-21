@@ -1,4 +1,9 @@
-const { uniqueElements, groupBy, randomizeArray } = require("@/arrays");
+const {
+  uniqueElements,
+  groupBy,
+  randomizeArray,
+  compact,
+} = require("@/arrays");
 
 describe("uniqueElements", () => {
   type CallbackFunction = () => void;
@@ -55,5 +60,32 @@ describe("randomizeArray", () => {
     const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
     const result: number[] = randomizeArray(arr);
     expect(result).not.toEqual(arr);
+  });
+});
+
+describe("compact", () => {
+  test("removes all falsy values from the array", () => {
+    const arr = [0, 1, false, 2, "", 3, null, undefined, NaN];
+    const result = compact(arr);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  test("removes each falsy value on its own", () => {
+    expect(compact([false])).toEqual([]);
+    expect(compact([0])).toEqual([]);
+    expect(compact([""])).toEqual([]);
+    expect(compact([null])).toEqual([]);
+    expect(compact([undefined])).toEqual([]);
+    expect(compact([NaN])).toEqual([]);
+  });
+
+  test("returns an equivalent array when it is already clean", () => {
+    const arr = [1, 2, 3, "a", true];
+    const result = compact(arr);
+    expect(result).toEqual([1, 2, 3, "a", true]);
+  });
+
+  test("returns an empty array for an empty array", () => {
+    expect(compact([])).toEqual([]);
   });
 });

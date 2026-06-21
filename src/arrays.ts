@@ -40,4 +40,13 @@ function randomizeArray(array: any[]): any[] {
   return new_arr.sort(() => random() - 50);
 }
 
-export { groupBy, randomizeArray, uniqueElements };
+/**
+ * Returns a new array with all falsy values (false, 0, "", null, undefined, and NaN) removed.
+ * @param {T[]} array - The input array to compact.
+ * @returns {T[]} - A new array with the falsy values removed.
+ */
+function compact<T>(array: T[]): T[] {
+  return array.filter(Boolean);
+}
+
+export { compact, groupBy, randomizeArray, uniqueElements };
