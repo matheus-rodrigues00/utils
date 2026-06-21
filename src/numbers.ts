@@ -69,6 +69,52 @@ function maxBy<T>(array: T[], callback: (item: T) => number): T | undefined {
 }
 
 /**
+ * This method receives an array of numbers and returns the smallest number.
+ * @param {number[]} arr - The array with numbers.
+ * @returns {number} - The smallest number.
+ */
+function min(arr: number[] | undefined): number | undefined {
+  if (typeof arr === "undefined" || arr.length === 0) {
+    return undefined;
+  }
+
+  let min: number = Infinity;
+
+  for (const val of arr) {
+    if (val < min) {
+      min = val;
+    }
+  }
+
+  return min;
+}
+
+/**
+ * This method receives an array and finds the minimum element in an array based on a provided callback function
+ * @param array - The array to find the minimum element in
+ * @param callback - The callback function to use to find the minimum element
+ * @returns {T | undefined} - The element with minimum value in array based on callback function
+ */
+function minBy<T>(array: T[], callback: (item: T) => number): T | undefined {
+  if (typeof array === "undefined" || array.length === 0) {
+    return undefined;
+  }
+
+  let min_element: T = array[0];
+  let min_value: number = callback(array[0]);
+
+  array.forEach(element => {
+    const current_min_value: number = callback(element);
+    if (current_min_value < min_value) {
+      min_element = element;
+      min_value = current_min_value;
+    }
+  });
+
+  return min_element;
+}
+
+/**
  * This method receives an array and returns the mean of value given by callback function
  * @param array - The array to find the mean of
  * @param callback - The callback function to use to find the mean
@@ -113,4 +159,4 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { divideFixed, max, maxBy, mean, meanBy, random };
+export { divideFixed, max, maxBy, mean, meanBy, min, minBy, random };

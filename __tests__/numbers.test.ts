@@ -1,4 +1,5 @@
-const { random, max, maxBy, meanBy, mean, divideFixed } = require("@/numbers");
+const { random, max, maxBy, min, minBy, meanBy, mean, divideFixed } =
+  require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -73,6 +74,59 @@ describe("maxBy", () => {
     ];
     const result = maxBy(arr, (item: any) => item.info.price);
     expect(result).toStrictEqual({ name: "Product B", info: { price: 50.75 } });
+  });
+});
+
+describe("min", () => {
+  test("receives a numeric array and returns the min number", () => {
+    const arr = [1, 2, 3, 4, 5];
+
+    const result: number = min(arr);
+    expect(result).toBe(1);
+  });
+
+  test("receives a numeric array and returns the min number", () => {
+    const arr = [4, 2, 3, 1];
+
+    const result: number = min(arr);
+    expect(result).not.toBe(2);
+    expect(result).toBe(1);
+  });
+
+  test("receives a numeric array and returns the min number", () => {
+    const arr: number[] = [];
+
+    const result: number = min(arr);
+    expect(result).toBeUndefined();
+  });
+});
+
+describe("minBy", () => {
+  test("receives an array of numbers and a callback and returns the min element", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result: number | undefined = minBy(arr, (item: number) => item);
+    expect(result).toBe(1);
+  });
+
+  test("receives an array of object and a callback and returns the min element", () => {
+    const arr = [
+      { name: "Alice", age: 30 },
+      { name: "Bob", age: 25 },
+      { name: "Charlie", age: 35 },
+    ];
+
+    const result = minBy(arr, (item: any) => item.age);
+    expect(result).toStrictEqual({ name: "Bob", age: 25 });
+  });
+
+  test("receives an array with nested object and a callback and returns the min element", () => {
+    const arr = [
+      { name: "Product A", info: { price: 10.25 } },
+      { name: "Product B", info: { price: 50.75 } },
+      { name: "Product C", info: { price: 15.25 } },
+    ];
+    const result = minBy(arr, (item: any) => item.info.price);
+    expect(result).toStrictEqual({ name: "Product A", info: { price: 10.25 } });
   });
 });
 

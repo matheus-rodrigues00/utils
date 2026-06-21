@@ -67,6 +67,8 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |mean|receives a numeric array and returns its average|(arr)|the average|
 |max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|
 |maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|
+|min|receives an array of numbers and returns the smallest number|(arr of numbers)|the smallest number or undefined|
+|minBy|receives an array and finds the minimum element in an array based on a provided callback function|(array, callback)|element with minimum value in array based on callback function|
 |divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|
 |meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|
 ### Date And Time
