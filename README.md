@@ -43,6 +43,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |uniqueElements|returns an array with unique elements|(array)|array with unique elements|
 |groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
 |randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|
+|range|generates an array of numbers from start up to (but not including) end, stepping by step|(start, end?, step = 1)|array of numbers in the range|
 ### Promises
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
