@@ -41,8 +41,8 @@ function randomizeArray(array: any[]): any[] {
 }
 
 /**
- * Splits an array into groups of a given size.THe final holds the remaining elements if the array can't be split evenly.
- * @param {T[]} array - The input aray to be chunked.
+ * Splits an array into groups of a given size. The final chunk holds the remaining elements if the array can't be split evenly.
+ * @param {T[]} array - The input array to be chunked.
  * @param {number} size - The size of each chunk.
  * @returns {T[][]} - An array containing the chunks. Returns an empty array if size <= 0.
  */
@@ -57,4 +57,4 @@ function chunk<T>(array: T[], size: number): T[][] {
   return result;
 }
 
-export { groupBy, randomizeArray, uniqueElements,chunk };
+export { chunk, groupBy, randomizeArray, uniqueElements };

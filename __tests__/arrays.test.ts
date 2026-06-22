@@ -1,4 +1,4 @@
-const { uniqueElements, groupBy, randomizeArray,chunk } = require("@/arrays");
+const { uniqueElements, groupBy, randomizeArray, chunk } = require("@/arrays");
 
 describe("uniqueElements", () => {
   type CallbackFunction = () => void;
@@ -62,7 +62,10 @@ describe("chunk", () => {
   test("splits an array into even chunks", () => {
     const arr: number[] = [1, 2, 3, 4];
     const result: number[][] = chunk(arr, 2);
-    expect(result).toEqual([[1, 2], [3, 4]]);
+    expect(result).toEqual([
+      [1, 2],
+      [3, 4],
+    ]);
   });
 
   test("handles uneven splits, putting remainders in the last chunk", () => {
