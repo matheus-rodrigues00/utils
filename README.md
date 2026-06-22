@@ -43,6 +43,8 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |uniqueElements|returns an array with unique elements|(array)|array with unique elements|
 |groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
 |randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|
+|chunk|splits an array into groups of given size|(array,size)|arrays of the specific size|
+
 ### Promises
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|

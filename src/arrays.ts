@@ -40,4 +40,21 @@ function randomizeArray(array: any[]): any[] {
   return new_arr.sort(() => random() - 50);
 }
 
-export { groupBy, randomizeArray, uniqueElements };
+/**
+ * Splits an array into groups of a given size.THe final holds the remaining elements if the array can't be split evenly.
+ * @param {T[]} array - The input aray to be chunked.
+ * @param {number} size - The size of each chunk.
+ * @returns {T[][]} - An array containing the chunks. Returns an empty array if size <= 0.
+ */
+function chunk<T>(array: T[], size: number): T[][] {
+  if (size <= 0) {
+    return [];
+  }
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+}
+
+export { groupBy, randomizeArray, uniqueElements,chunk };
