@@ -107,4 +107,21 @@ function range(start: number, end?: number, step: number = 1): number[] {
   return result;
 }
 
-export { chunk, groupBy, randomizeArray, range, uniqueBy, uniqueElements };
+/**
+ * Returns a new array with all falsy values (false, 0, "", null, undefined, and NaN) removed.
+ * @param {T[]} array - The input array to compact.
+ * @returns {T[]} - A new array with the falsy values removed.
+ */
+function compact<T>(array: T[]): T[] {
+  return array.filter(Boolean);
+}
+
+export {
+  chunk,
+  compact,
+  groupBy,
+  randomizeArray,
+  range,
+  uniqueBy,
+  uniqueElements,
+};

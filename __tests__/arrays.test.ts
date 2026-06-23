@@ -5,6 +5,7 @@ const {
   randomizeArray,
   chunk,
   range,
+  compact,
 } = require("@/arrays");
 
 describe("uniqueElements", () => {
@@ -142,5 +143,32 @@ describe("range", () => {
   test("returns an empty array when step is 0 to avoid an infinite loop", () => {
     const result: number[] = range(0, 5, 0);
     expect(result).toEqual([]);
+  });
+});
+
+describe("compact", () => {
+  test("removes all falsy values from the array", () => {
+    const arr = [0, 1, false, 2, "", 3, null, undefined, NaN];
+    const result = compact(arr);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  test("removes each falsy value on its own", () => {
+    expect(compact([false])).toEqual([]);
+    expect(compact([0])).toEqual([]);
+    expect(compact([""])).toEqual([]);
+    expect(compact([null])).toEqual([]);
+    expect(compact([undefined])).toEqual([]);
+    expect(compact([NaN])).toEqual([]);
+  });
+
+  test("returns an equivalent array when it is already clean", () => {
+    const arr = [1, 2, 3, "a", true];
+    const result = compact(arr);
+    expect(result).toEqual([1, 2, 3, "a", true]);
+  });
+
+  test("returns an empty array for an empty array", () => {
+    expect(compact([])).toEqual([]);
   });
 });
