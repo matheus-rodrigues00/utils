@@ -44,6 +44,8 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |uniqueBy|removes duplicate elements based on the value returned by a callback, keeping the first occurrence|(array, callback)|new array without duplicates by callback key|
 |groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
 |randomizeArray|recieves an array and returns a randomized version of it|(array to randomize)|randomized array|
+|chunk|splits an array into groups of given size|(array,size)|arrays of the specific size|
+|range|generates an array of numbers from start up to (but not including) end, stepping by step|(start, end?, step = 1)|array of numbers in the range|
 ### Promises
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
@@ -51,6 +53,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |throttle|runs an array of promise-returning functions, capping how many run at once|(array of functions returning promises, max concurrency = Infinity)|Promise of the array of results|
 |timeout|rejects with a Timeout Error if the promise does not settle within the given time|(promise, time in milliseconds = 8000)|the resolved value, or rejects with a Timeout Error|
 |race|races the given promises against each other|(array of promises)|the first promise to settle|
+|sequence|runs an array of promise-returning functions one after another, in order|(array of functions returning promises)|Promise of the array of results in order|
 ### Strings
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
@@ -69,6 +72,8 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |mean|receives a numeric array and returns its average|(arr)|the average|
 |max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|
 |maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|
+|min|receives an array of numbers and returns the smallest number|(arr of numbers)|the smallest number or undefined|
+|minBy|receives an array and finds the minimum element in an array based on a provided callback function|(array, callback)|element with minimum value in array based on callback function|
 |divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|
 |meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|
 |clamp|constrains a number to be within an inclusive [lower, upper] range, swapping the bounds if lower > upper|(number, lower, upper)|the number constrained to the [lower, upper] range|
