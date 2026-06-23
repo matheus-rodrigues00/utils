@@ -82,4 +82,23 @@ async function race<T>(array_of_promises: Promise<T>[]) {
   return result;
 }
 
-export { race, sleep, TimeoutErrors, throttle, timeout };
+/**
+ * This method executes an array of promise-returning functions sequentially,
+ * waiting for each one to complete before starting the next.
+ * @template T
+ * @param {(() => Promise<T>)[]} promiseFunctions - The array of functions that return a promise.
+ * @returns {Promise<T[]>} - A promise that resolves with an array of all results in order.
+ * author micheltechEr - Ângelo Miguel
+ */
+async function sequence<T>(
+  promiseFunctions: (() => Promise<T>)[]
+): Promise<T[]> {
+  const results: T[] = [];
+  for (const fn of promiseFunctions) {
+    const result = await fn();
+    results.push(result);
+  }
+  return results;
+}
+
+export { race, sequence, sleep, TimeoutErrors, throttle, timeout };
