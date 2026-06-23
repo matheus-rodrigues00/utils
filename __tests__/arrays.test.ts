@@ -1,5 +1,6 @@
 const {
   uniqueElements,
+  uniqueBy,
   groupBy,
   randomizeArray,
   chunk,
@@ -17,6 +18,30 @@ describe("uniqueElements", () => {
   test("throws error when the argument is not an array", () => {
     const callback: CallbackFunction = () => uniqueElements("hello");
     expect(callback).toThrow();
+  });
+});
+
+describe("uniqueBy", () => {
+  interface MockObject {
+    id: number;
+  }
+
+  test("removes duplicate objects by a keyed property, keeping the first occurrence", () => {
+    const arr: MockObject[] = [{ id: 1 }, { id: 2 }, { id: 1 }];
+    const result: MockObject[] = uniqueBy(arr, (item: MockObject) => item.id);
+    expect(result).toEqual([{ id: 1 }, { id: 2 }]);
+  });
+
+  test("removes duplicate primitives", () => {
+    const arr: number[] = [1, 2, 2, 3, 1];
+    const result: number[] = uniqueBy(arr, (item: number) => item);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  test("returns an empty array when given an empty array", () => {
+    const arr: number[] = [];
+    const result: number[] = uniqueBy(arr, (item: number) => item);
+    expect(result).toEqual([]);
   });
 });
 
