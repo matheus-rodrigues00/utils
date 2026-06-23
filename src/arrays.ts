@@ -41,6 +41,23 @@ function randomizeArray(array: any[]): any[] {
 }
 
 /**
+ * Splits an array into groups of a given size. The final chunk holds the remaining elements if the array can't be split evenly.
+ * @param {T[]} array - The input array to be chunked.
+ * @param {number} size - The size of each chunk.
+ * @returns {T[][]} - An array containing the chunks. Returns an empty array if size <= 0.
+ */
+function chunk<T>(array: T[], size: number): T[][] {
+  if (size <= 0) {
+    return [];
+  }
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+}
+
+/**
  * Generates an array of numbers from start up to (but not including) end, stepping by step.
  * When called with a single argument it is treated as end, with start defaulting to 0.
  * @param {number} start - The start of the range, or the end when called with a single argument.
@@ -69,4 +86,4 @@ function range(start: number, end?: number, step: number = 1): number[] {
   return result;
 }
 
-export { groupBy, randomizeArray, range, uniqueElements };
+export { chunk, groupBy, randomizeArray, range, uniqueElements };

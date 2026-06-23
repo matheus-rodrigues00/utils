@@ -1,4 +1,10 @@
-const { uniqueElements, groupBy, randomizeArray, range } = require("@/arrays");
+const {
+  uniqueElements,
+  groupBy,
+  randomizeArray,
+  chunk,
+  range,
+} = require("@/arrays");
 
 describe("uniqueElements", () => {
   type CallbackFunction = () => void;
@@ -55,6 +61,35 @@ describe("randomizeArray", () => {
     const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
     const result: number[] = randomizeArray(arr);
     expect(result).not.toEqual(arr);
+  });
+});
+
+describe("chunk", () => {
+  test("splits an array into even chunks", () => {
+    const arr: number[] = [1, 2, 3, 4];
+    const result: number[][] = chunk(arr, 2);
+    expect(result).toEqual([
+      [1, 2],
+      [3, 4],
+    ]);
+  });
+
+  test("handles uneven splits, putting remainders in the last chunk", () => {
+    const arr: number[] = [1, 2, 3, 4, 5];
+    const result: number[][] = chunk(arr, 2);
+    expect(result).toEqual([[1, 2], [3, 4], [5]]);
+  });
+
+  test("returns an empty array if the input array is empty", () => {
+    const arr: any[] = [];
+    const result: any[][] = chunk(arr, 2);
+    expect(result).toEqual([]);
+  });
+
+  test("returns an empty array if size is less than or equal to 0", () => {
+    const arr: number[] = [1, 2, 3];
+    expect(chunk(arr, 0)).toEqual([]);
+    expect(chunk(arr, -1)).toEqual([]);
   });
 });
 
