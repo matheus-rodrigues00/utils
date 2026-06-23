@@ -1,5 +1,16 @@
-const { random, max, maxBy, min, minBy, meanBy, mean, divideFixed } =
-  require("@/numbers");
+const {
+  random,
+  max,
+  maxBy,
+  min,
+  minBy,
+  meanBy,
+  mean,
+  divideFixed,
+  clamp,
+  sum,
+  sumBy,
+} = require("@/numbers");
 
 describe("random", () => {
   test("generates a random number between 0 and 100 with empty parameters", () => {
@@ -190,6 +201,40 @@ describe("divideFixed", () => {
   });
 });
 
+describe("sum", () => {
+  test("receives a numeric array and returns the total of its values", () => {
+    const arr = [1, 2, 3];
+    const result: number = sum(arr);
+    expect(result).toBe(6);
+  });
+
+  test("returns 0 for an empty array", () => {
+    const arr: number[] = [];
+    const result: number = sum(arr);
+    expect(result).toBe(0);
+  });
+
+  test("handles negative numbers", () => {
+    const arr = [10, -4, -1];
+    const result: number = sum(arr);
+    expect(result).toBe(5);
+  });
+});
+
+describe("sumBy", () => {
+  test("receives an array and a callback and returns the total of the callback values", () => {
+    const arr = [{ price: 10 }, { price: 5 }];
+    const result: number = sumBy(arr, (item: any) => item.price);
+    expect(result).toBe(15);
+  });
+
+  test("returns 0 for an empty array", () => {
+    const arr: { price: number }[] = [];
+    const result: number = sumBy(arr, (item: any) => item.price);
+    expect(result).toBe(0);
+  });
+});
+
 describe("meanBy", () => {
   test("receives an array of numbers and a callback and returns the mean of the values in the array", () => {
     const arr = [1, 2, 3, 4, 5];
@@ -225,5 +270,30 @@ describe("meanBy", () => {
     const arr: number[] = [];
     const result: number | undefined = meanBy(arr, (item: number) => item);
     expect(result).toBeUndefined();
+  });
+});
+
+describe("clamp", () => {
+  test("returns the upper bound when the number is above the range", () => {
+    expect(clamp(10, 0, 5)).toBe(5);
+  });
+
+  test("returns the lower bound when the number is below the range", () => {
+    expect(clamp(-2, 0, 5)).toBe(0);
+  });
+
+  test("returns the number itself when it is inside the range", () => {
+    expect(clamp(3, 0, 5)).toBe(3);
+  });
+
+  test("returns the boundary value when the number equals a bound", () => {
+    expect(clamp(0, 0, 5)).toBe(0);
+    expect(clamp(5, 0, 5)).toBe(5);
+  });
+
+  test("normalizes the bounds when lower is greater than upper", () => {
+    expect(clamp(10, 5, 0)).toBe(5);
+    expect(clamp(-2, 5, 0)).toBe(0);
+    expect(clamp(3, 5, 0)).toBe(3);
   });
 });

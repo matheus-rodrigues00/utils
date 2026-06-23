@@ -1,6 +1,6 @@
 {
   "name": "@teteu/utils",
-  "version": "0.9.0",
+  "version": "0.11.0",
   "description": "Zero-dependency library of commonly used cross-project utility methods",
   "license": "MIT",
   "main": "dist/index.js",

@@ -137,6 +137,25 @@ function meanBy<T>(
 }
 
 /**
+ * This method receives a numeric array and returns the sum of its values.
+ * @param {number[]} arr - The numeric array.
+ * @returns {number} - The sum of the values, or 0 for an empty array.
+ */
+function sum(arr: number[]): number {
+  return arr.reduce((total, n) => total + n, 0);
+}
+
+/**
+ * This method receives an array and returns the sum of the values given by the callback function.
+ * @param array - The array to sum.
+ * @param callback - The callback function to use to find each value to sum.
+ * @returns {number} - The sum of the callback values, or 0 for an empty array.
+ */
+function sumBy<T>(array: T[], callback: (item: T) => number): number {
+  return array.reduce((total, item) => total + callback(item), 0);
+}
+
+/**
  * This method receives a dividend and a divisor and returns the result of the division with provided precision.
  * @param {number} dividend - The dividend.
  * @param {number} divisor - The divisor.
@@ -159,4 +178,31 @@ function divideFixed(
   return (dividend / divisor).toFixed(precision);
 }
 
-export { divideFixed, max, maxBy, mean, meanBy, min, minBy, random };
+/**
+ * This method constrains a number to be within an inclusive [lower, upper] range.
+ * If lower is greater than upper, the bounds are swapped so the method stays forgiving.
+ * @param {number} number - The number to clamp.
+ * @param {number} lower - The lower bound of the range.
+ * @param {number} upper - The upper bound of the range.
+ * @returns {number} - The number constrained to the [lower, upper] range.
+ */
+function clamp(number: number, lower: number, upper: number): number {
+  const lowerBound = Math.min(lower, upper);
+  const upperBound = Math.max(lower, upper);
+
+  return Math.min(upperBound, Math.max(lowerBound, number));
+}
+
+export {
+  clamp,
+  divideFixed,
+  max,
+  maxBy,
+  mean,
+  meanBy,
+  min,
+  minBy,
+  random,
+  sum,
+  sumBy,
+};
