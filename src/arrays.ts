@@ -57,4 +57,33 @@ function chunk<T>(array: T[], size: number): T[][] {
   return result;
 }
 
-export { chunk, groupBy, randomizeArray, uniqueElements };
+/**
+ * Generates an array of numbers from start up to (but not including) end, stepping by step.
+ * When called with a single argument it is treated as end, with start defaulting to 0.
+ * @param {number} start - The start of the range, or the end when called with a single argument.
+ * @param {number} [end] - The end of the range (exclusive).
+ * @param {number} [step] - The amount to step by. Defaults to 1; a step of 0 returns an empty array to avoid an infinite loop.
+ * @returns {number[]} - The array of numbers in the range.
+ */
+function range(start: number, end?: number, step: number = 1): number[] {
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  if (step === 0) {
+    return [];
+  }
+  const result: number[] = [];
+  if (step > 0) {
+    for (let i = start; i < end; i += step) {
+      result.push(i);
+    }
+  } else {
+    for (let i = start; i > end; i += step) {
+      result.push(i);
+    }
+  }
+  return result;
+}
+
+export { chunk, groupBy, randomizeArray, range, uniqueElements };
