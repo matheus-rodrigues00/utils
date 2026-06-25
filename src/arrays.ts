@@ -1,5 +1,3 @@
-const { random } = require("./numbers");
-
 /**
  * Returns an array with unique elements.
  * @param {any[]} array - The input array.
@@ -52,13 +50,27 @@ function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
 }
 
 /**
- * This method recieves an array and returns a randomized version of it.
- * @param {any[]} array - The array to be randomized.
- * @returns {Array} - The randomized array.
+ * This method receives an array and returns a randomized version of it.
+ * @param {T[]} array - The array to be randomized.
+ * @returns {T[]} - The randomized array.
  */
-function randomizeArray(array: any[]): any[] {
+function randomizeArray<T>(array: T[]): T[] {
   const new_arr = [...array];
-  return new_arr.sort(() => random() - 50);
+
+  for (
+    let current_index = new_arr.length - 1;
+    current_index > 0;
+    current_index--
+  ) {
+    const random_index = Math.floor(Math.random() * (current_index + 1));
+    const current_value = new_arr[current_index] as T;
+    const random_value = new_arr[random_index] as T;
+
+    new_arr[current_index] = random_value;
+    new_arr[random_index] = current_value;
+  }
+
+  return new_arr;
 }
 
 /**

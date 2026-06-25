@@ -83,10 +83,23 @@ describe("randomizeArray", () => {
     const result: number[] = randomizeArray(arr);
     expect(result).toEqual(expect.arrayContaining(arr));
   });
-  test("randomizes an array", () => {
-    const arr: number[] = Array.from({ length: 1000 }, (_, i) => i + 1);
-    const result: number[] = randomizeArray(arr);
-    expect(result).not.toEqual(arr);
+
+  test("uses Fisher-Yates swaps without mutating the input array", () => {
+    const original_random = Math.random;
+    const random_values = [0, 0.5, 0.25];
+    let random_call_count = 0;
+
+    Math.random = () => random_values[random_call_count++] ?? 0;
+
+    try {
+      const arr: number[] = [1, 2, 3, 4];
+      const result: number[] = randomizeArray(arr);
+
+      expect(result).toEqual([3, 4, 2, 1]);
+      expect(arr).toEqual([1, 2, 3, 4]);
+    } finally {
+      Math.random = original_random;
+    }
   });
 });
 
