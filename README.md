@@ -91,7 +91,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 ### Databases
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
-|sanitize|This method recieves an string input and sanitizes removing all SQL injection|(string to sanitize and optionally an object containing the options for sanitization)|sanitized string|
+|sanitize|**Warning: This is NOT a reliable SQL injection defense. Always use parameterized queries.** This method receives a string input and removes SQL keywords on word boundaries to clean basic text input.|(string to sanitize and optionally an object containing the options for sanitization)|sanitized string|
 ### Calculations
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|

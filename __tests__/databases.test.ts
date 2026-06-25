@@ -50,4 +50,14 @@ describe("sanitize", () => {
     const user_input_query: string = sanitize("DROP TABLE users;");
     expect(user_input_query).toBe("TABLE users;");
   });
+
+  test("does not corrupt legitimate words containing SQL keywords (corruption case)", () => {
+    const result = sanitize("coORdinator selecTION");
+    expect(result).toBe("coORdinator selecTION");
+  });
+
+  test("does not allow trivial SQL keyword bypasses by reconstruction (bypass case)", () => {
+    const result = sanitize("SELSELECTECT");
+    expect(result).toBe("SELSELECTECT");
+  });
 });
