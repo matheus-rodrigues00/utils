@@ -8,6 +8,7 @@ const {
   mean,
   divideFixed,
   clamp,
+  inRange,
   sum,
   sumBy,
 } = require("@/numbers");
@@ -295,5 +296,29 @@ describe("clamp", () => {
     expect(clamp(10, 5, 0)).toBe(5);
     expect(clamp(-2, 5, 0)).toBe(0);
     expect(clamp(3, 5, 0)).toBe(3);
+  });
+});
+
+describe("inRange", () => {
+  test("returns true when the number is inside the range", () => {
+    expect(inRange(3, 0, 5)).toBe(true);
+  });
+
+  test("returns false when the number equals the exclusive upper bound", () => {
+    expect(inRange(5, 0, 5)).toBe(false);
+  });
+
+  test("returns false when the number is below the range", () => {
+    expect(inRange(-1, 0, 5)).toBe(false);
+  });
+
+  test("defaults start to 0 when only one bound is passed", () => {
+    expect(inRange(2, 4)).toBe(true);
+    expect(inRange(4, 4)).toBe(false);
+  });
+
+  test("normalizes the bounds when start is greater than end", () => {
+    expect(inRange(1, 5, 0)).toBe(true);
+    expect(inRange(5, 5, 0)).toBe(false);
   });
 });

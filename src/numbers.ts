@@ -193,9 +193,30 @@ function clamp(number: number, lower: number, upper: number): number {
   return Math.min(upperBound, Math.max(lowerBound, number));
 }
 
+/**
+ * This method checks whether a number is within a half-open [start, end) range.
+ * When called with a single bound it uses 0 as start, and it swaps bounds when start is greater than end.
+ * @param {number} number - The number to check.
+ * @param {number} start - The inclusive start of the range, or the exclusive end when end is omitted.
+ * @param {number} [end] - The exclusive end of the range.
+ * @returns {boolean} - True if the number is in range, false otherwise.
+ */
+function inRange(number: number, start: number, end?: number): boolean {
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+
+  const lowerBound = Math.min(start, end);
+  const upperBound = Math.max(start, end);
+
+  return number >= lowerBound && number < upperBound;
+}
+
 export {
   clamp,
   divideFixed,
+  inRange,
   max,
   maxBy,
   mean,
