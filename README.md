@@ -78,6 +78,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |divideFixed|receives a number, divisor and precision and returns the result of the division with provided precision|(dividend, divisor, precision)|result of the division with provided precision|
 |meanBy|receives an array and returns the mean of value given by callback function|(array, callback)|The mean of the values given by callback function from the array|
 |clamp|constrains a number to be within an inclusive [lower, upper] range, swapping the bounds if lower > upper|(number, lower, upper)|the number constrained to the [lower, upper] range|
+|inRange|checks whether a number is within the half-open range [start, end), defaulting start to 0 and swapping the bounds if start > end|(number, start, end?)|true if the number is in range, false otherwise|
 |sum|receives a numeric array and returns the sum of its values|(arr)|the sum of the values, or 0 for an empty array|
 |sumBy|receives an array and a callback and returns the sum of the values given by the callback function|(array, callback)|the sum of the callback values, or 0 for an empty array|
 ### Date And Time
