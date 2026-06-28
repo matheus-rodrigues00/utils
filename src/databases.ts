@@ -9,14 +9,6 @@ interface SanitizationOptions {
   constraints?: boolean;
 }
 
-/**
- * WARNING: This is NOT a secure SQL injection defense. Always use parameterized queries instead.
- * This method removes SQL keywords on word boundaries to clean basic text inputs.
- *
- * @param {string} text - The string to sanitize.
- * @param {SanitizationOptions} sanitization_options - An object containing the options for sanitization.
- * @returns {string} - The sanitized string.
- */
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -32,6 +24,14 @@ function buildKeywordsRegexPattern(keywords: string[]): string {
     .join("|");
 }
 
+/**
+ * WARNING: This is NOT a secure SQL injection defense. Always use parameterized queries instead.
+ * This method removes SQL keywords on word boundaries to clean basic text inputs.
+ *
+ * @param {string} text - The string to sanitize.
+ * @param {SanitizationOptions} sanitization_options - An object containing the options for sanitization.
+ * @returns {string} - The sanitized string.
+ */
 function sanitize(
   text: string = "",
   sanitization_options: SanitizationOptions = {}
