@@ -9,9 +9,26 @@ interface SanitizationOptions {
   constraints?: boolean;
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function buildKeywordsRegexPattern(keywords: string[]): string {
+  return keywords
+    .map(keyword => {
+      const escaped = escapeRegExp(keyword);
+      const startBoundary = /^\w/.test(keyword) ? "\\b" : "";
+      const endBoundary = /\w$/.test(keyword) ? "\\b" : "";
+      return `${startBoundary}${escaped}${endBoundary}`;
+    })
+    .join("|");
+}
+
 /**
- * This method recieves an string text and sanitizes removing all SQL injection.
- * @param {Date} text - The string to sanitize.
+ * WARNING: This is NOT a secure SQL injection defense. Always use parameterized queries instead.
+ * This method removes SQL keywords on word boundaries to clean basic text inputs.
+ *
+ * @param {string} text - The string to sanitize.
  * @param {SanitizationOptions} sanitization_options - An object containing the options for sanitization.
  * @returns {string} - The sanitized string.
  */
@@ -30,14 +47,14 @@ function sanitize(
 
   if (data_types) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.data_types.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.data_types)})`,
       "gi"
     );
     text = text.replace(regex, "");
   }
   if (statements) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.statements.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.statements)})`,
       "gi"
     );
     text = text.replace(regex, "");
@@ -45,7 +62,7 @@ function sanitize(
 
   if (clauses) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.clauses.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.clauses)})`,
       "gi"
     );
     text = text.replace(regex, "");
@@ -53,7 +70,7 @@ function sanitize(
 
   if (functions) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.functions.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.functions)})`,
       "gi"
     );
     text = text.replace(regex, "");
@@ -61,7 +78,7 @@ function sanitize(
 
   if (operators) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.operators.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.operators)})`,
       "gi"
     );
     text = text.replace(regex, "");
@@ -69,7 +86,7 @@ function sanitize(
 
   if (constraints) {
     const regex: RegExp = new RegExp(
-      `(${sql_keywords.constraints.join("|")})`,
+      `(${buildKeywordsRegexPattern(sql_keywords.constraints)})`,
       "gi"
     );
     text = text.replace(regex, "");
