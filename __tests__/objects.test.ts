@@ -31,6 +31,42 @@ describe("deepClone", () => {
     expect(clone.b).not.toBe(obj.b);
     expect(clone).not.toBe(obj);
   });
+
+  test("should preserve Date instances", () => {
+    const date = new Date("2026-01-01T00:00:00.000Z");
+    const obj: MockObject = { date };
+    const clone: MockObject = deepClone(obj);
+    expect(clone.date).toEqual(date);
+    expect(clone.date).toBeInstanceOf(Date);
+    expect(clone.date).not.toBe(date);
+  });
+
+  test("should preserve Map instances", () => {
+    const map = new Map<string, number>([["a", 1]]);
+    const obj: MockObject = { map };
+    const clone: MockObject = deepClone(obj);
+    expect(clone.map).toEqual(map);
+    expect(clone.map).toBeInstanceOf(Map);
+    expect(clone.map).not.toBe(map);
+  });
+
+  test("should preserve Set instances", () => {
+    const set = new Set([1, 2, 3]);
+    const obj: MockObject = { set };
+    const clone: MockObject = deepClone(obj);
+    expect(clone.set).toEqual(set);
+    expect(clone.set).toBeInstanceOf(Set);
+    expect(clone.set).not.toBe(set);
+  });
+
+  test("should clone circular references", () => {
+    const obj: MockObject = { a: 1 };
+    obj.self = obj;
+    const clone: MockObject = deepClone(obj);
+    expect(clone).toEqual(obj);
+    expect(clone).not.toBe(obj);
+    expect(clone.self).toBe(clone);
+  });
 });
 
 describe("pick", () => {
