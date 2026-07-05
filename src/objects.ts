@@ -10,8 +10,8 @@ type DeepKeys<T> = T extends object
  * @returns {object} - The cloned object.
  * author: MarcosViniciusCL - Marcos Vinicius
  */
-function deepClone(obj: object) {
-  return JSON.parse(JSON.stringify(obj));
+function deepClone<T extends object>(obj: T): T {
+  return structuredClone(obj);
 }
 
 /**
