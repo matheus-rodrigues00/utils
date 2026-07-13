@@ -6,6 +6,8 @@ const {
   chunk,
   range,
   compact,
+  difference,
+  intersection,
 } = require("@/arrays");
 
 describe("uniqueElements", () => {
@@ -42,6 +44,82 @@ describe("uniqueBy", () => {
   test("returns an empty array when given an empty array", () => {
     const arr: number[] = [];
     const result: number[] = uniqueBy(arr, (item: number) => item);
+    expect(result).toEqual([]);
+  });
+});
+
+describe("intersection", () => {
+  test("returns the common values from two arrays", () => {
+    const a: number[] = [1, 2, 3, 4];
+    const b: number[] = [2, 4, 6];
+
+    const result: number[] = intersection(a, b);
+
+    expect(result).toEqual([2, 4]);
+  });
+
+  test("removes duplicate values from the result", () => {
+    const a: number[] = [1, 1, 2];
+    const b: number[] = [1];
+
+    const result: number[] = intersection(a, b);
+
+    expect(result).toEqual([1]);
+  });
+
+  test("returns an empty array when there are no common values", () => {
+    const a: number[] = [1, 2];
+    const b: number[] = [3, 4];
+
+    const result: number[] = intersection(a, b);
+
+    expect(result).toEqual([]);
+  });
+
+  test("returns an empty array when the first array is empty", () => {
+    const a: number[] = [];
+    const b: number[] = [1, 2, 3];
+
+    const result: number[] = intersection(a, b);
+
+    expect(result).toEqual([]);
+  });
+});
+
+describe("difference", () => {
+  test("returns the values in the first array that are not in the second array", () => {
+    const a: number[] = [1, 2, 3, 4];
+    const b: number[] = [2, 4, 6];
+
+    const result: number[] = difference(a, b);
+
+    expect(result).toEqual([1, 3]);
+  });
+
+  test("removes duplicate values from the result", () => {
+    const a: number[] = [1, 1, 2];
+    const b: number[] = [2];
+
+    const result: number[] = difference(a, b);
+
+    expect(result).toEqual([1]);
+  });
+
+  test("returns an empty array when all values are present in the second array", () => {
+    const a: number[] = [1, 2];
+    const b: number[] = [1, 2];
+
+    const result: number[] = difference(a, b);
+
+    expect(result).toEqual([]);
+  });
+
+  test("returns an empty array when the first array is empty", () => {
+    const a: number[] = [];
+    const b: number[] = [1, 2];
+
+    const result: number[] = difference(a, b);
+
     expect(result).toEqual([]);
   });
 });
