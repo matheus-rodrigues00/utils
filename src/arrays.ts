@@ -152,6 +152,32 @@ function compact<T>(array: T[]): T[] {
   return array.filter(Boolean);
 }
 
+/**
+ * Returns a new array sorted in ascending order by the value returned by a callback.
+ * The original array is left untouched and equal values keep their original order.
+ * @param {T[]} array - The input array.
+ * @param {(item: T) => number | string} callback - The callback that returns the value to sort by.
+ * @returns {T[]} - A new array sorted in ascending order.
+ */
+function sortBy<T>(array: T[], callback: (item: T) => number | string): T[] {
+  const result = [...array];
+
+  result.sort((a, b) => {
+    const a_value = callback(a);
+    const b_value = callback(b);
+
+    if (a_value < b_value) {
+      return -1;
+    }
+    if (a_value > b_value) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return result;
+}
+
 export {
   chunk,
   compact,
@@ -160,6 +186,7 @@ export {
   intersection,
   randomizeArray,
   range,
+  sortBy,
   uniqueBy,
   uniqueElements,
 };

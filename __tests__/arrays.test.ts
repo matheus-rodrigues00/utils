@@ -8,6 +8,7 @@ const {
   compact,
   difference,
   intersection,
+  sortBy,
 } = require("@/arrays");
 
 describe("uniqueElements", () => {
@@ -261,5 +262,89 @@ describe("compact", () => {
 
   test("returns an empty array for an empty array", () => {
     expect(compact([])).toEqual([]);
+  });
+});
+
+describe("sortBy", () => {
+  interface Person {
+    age: number;
+  }
+
+  test("sorts an array of objects by a numeric value", () => {
+    const arr: Person[] = [{ age: 30 }, { age: 18 }, { age: 25 }];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([{ age: 18 }, { age: 25 }, { age: 30 }]);
+  });
+
+  test("sorts an array of strings alphabetically", () => {
+    const arr: string[] = ["banana", "apple", "cherry"];
+
+    const result: string[] = sortBy(arr, (fruit: string) => fruit);
+
+    expect(result).toEqual(["apple", "banana", "cherry"]);
+  });
+
+  test("returns an already sorted array unchanged", () => {
+    const arr: Person[] = [{ age: 18 }, { age: 25 }, { age: 30 }];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([{ age: 18 }, { age: 25 }, { age: 30 }]);
+  });
+
+  test("does not mutate the input array", () => {
+    const arr: Person[] = [{ age: 30 }, { age: 18 }, { age: 25 }];
+
+    const original: Person[] = [...arr];
+
+    sortBy(arr, (person: Person) => person.age);
+
+    expect(arr).toEqual(original);
+  });
+
+  test("keeps the original order of items with an equal value", () => {
+    interface NamedPerson extends Person {
+      name: string;
+    }
+
+    const arr: NamedPerson[] = [
+      { name: "John", age: 30 },
+      { name: "Jane", age: 18 },
+      { name: "Mary", age: 30 },
+    ];
+
+    const result: NamedPerson[] = sortBy(
+      arr,
+      (person: NamedPerson) => person.age
+    );
+
+    expect(result).toEqual([
+      { name: "Jane", age: 18 },
+      { name: "John", age: 30 },
+      { name: "Mary", age: 30 },
+    ]);
+  });
+
+  test("calls the callback once per item on each comparison", () => {
+    const arr: Person[] = [{ age: 30 }, { age: 18 }, { age: 25 }];
+
+    let call_count = 0;
+    const result: Person[] = sortBy(arr, (person: Person) => {
+      call_count++;
+      return person.age;
+    });
+
+    expect(result).toEqual([{ age: 18 }, { age: 25 }, { age: 30 }]);
+    expect(call_count).toBeLessThanOrEqual(2 * (arr.length - 1) * arr.length);
+  });
+
+  test("returns an empty array when given an empty array", () => {
+    const arr: Person[] = [];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([]);
   });
 });
