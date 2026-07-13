@@ -127,6 +127,21 @@ function range(start: number, end?: number, step: number = 1): number[] {
 function compact<T>(array: T[]): T[] {
   return array.filter(Boolean);
 }
+/**
+ * Returns a new array sorted in ascending order by the value returned by a callback.
+ * @param {T[]} array - The input array.
+ * @param {(item: T) => number | string} callback - The callback that returns the value to sort by.
+ * @returns {T[]} - A new array sorted in ascending order.
+ */
+function sortBy<T>(array: T[], callback: (item: T) => number | string): T[] {
+  const result = [...array];
+
+  result.sort((a, b) =>
+    callback(a) < callback(b) ? -1 : callback(a) > callback(b) ? 1 : 0
+  );
+
+  return result;
+}
 
 export {
   chunk,
@@ -134,6 +149,7 @@ export {
   groupBy,
   randomizeArray,
   range,
+  sortBy,
   uniqueBy,
   uniqueElements,
 };

@@ -6,6 +6,7 @@ const {
   chunk,
   range,
   compact,
+  sortBy
 } = require("@/arrays");
 
 describe("uniqueElements", () => {
@@ -183,5 +184,65 @@ describe("compact", () => {
 
   test("returns an empty array for an empty array", () => {
     expect(compact([])).toEqual([]);
+  });
+});
+
+describe("sortBy", () => {
+  interface Person {
+    age: number;
+  }
+
+  test("sorts an array of objects by a numeric value", () => {
+    const arr: Person[] = [
+      { age: 30 },
+      { age: 18 },
+      { age: 25 },
+    ];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([
+      { age: 18 },
+      { age: 25 },
+      { age: 30 },
+    ]);
+  });
+
+  test("sorts an array of strings alphabetically", () => {
+    const arr: string[] = ["banana", "apple", "cherry"];
+
+    const result: string[] = sortBy(arr, (fruit: string) => fruit);
+
+    expect(result).toEqual(["apple", "banana", "cherry"]);
+  });
+
+  test("returns an already sorted array unchanged", () => {
+    const arr: Person[] = [
+      { age: 18 },
+      { age: 25 },
+      { age: 30 },
+    ];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([
+      { age: 18 },
+      { age: 25 },
+      { age: 30 },
+    ]);
+  });
+
+  test("does not mutate the input array", () => {
+    const arr: Person[] = [
+      { age: 30 },
+      { age: 18 },
+      { age: 25 },
+    ];
+
+    const original: Person[] = [...arr];
+
+    sortBy(arr, (person: Person) => person.age);
+
+    expect(arr).toEqual(original);
   });
 });

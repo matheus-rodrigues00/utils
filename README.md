@@ -47,6 +47,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |chunk|splits an array into groups of given size|(array,size)|arrays of the specific size|
 |range|generates an array of numbers from start up to (but not including) end, stepping by step|(start, end?, step = 1)|array of numbers in the range|
 |compact|returns a new array with all falsy values (false, 0, "", null, undefined, NaN) removed|(array)|new array without falsy values|
+|sortBy|returns a new array sorted in ascending order by the value returned by a callback|(array, callback)|new array sorted ascending by callback value|
 ### Promises
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
