@@ -7,7 +7,7 @@ const {
   range,
   compact,
   difference,
-  intersection
+  intersection,
 } = require("@/arrays");
 
 describe("uniqueElements", () => {

@@ -30,6 +30,7 @@ function uniqueBy<T>(array: T[], callback: (item: T) => unknown): T[] {
 
   return result;
 }
+
 /**
  * Returns the values present in both arrays.
  * @param {T[]} a - The first array.
@@ -38,9 +39,10 @@ function uniqueBy<T>(array: T[], callback: (item: T) => unknown): T[] {
  */
 function intersection<T>(a: T[], b: T[]): T[] {
   const lookup = new Set(b);
-  const result  = a.filter(item => lookup.has(item));
+  const result = a.filter(item => lookup.has(item));
   return uniqueElements(result);
 }
+
 /**
  * Returns the values in the first array that are not in the second array.
  * @param {T[]} a - The first array.
@@ -49,9 +51,10 @@ function intersection<T>(a: T[], b: T[]): T[] {
  */
 function difference<T>(a: T[], b: T[]): T[] {
   const lookup = new Set(b);
-  const result  = a.filter(item => !lookup.has(item));
+  const result = a.filter(item => !lookup.has(item));
   return uniqueElements(result);
 }
+
 /**
  * Returns an object with the array grouped by the key.
  * @param {T[]} array - The input array to be grouped.
@@ -152,11 +155,11 @@ function compact<T>(array: T[]): T[] {
 export {
   chunk,
   compact,
+  difference,
   groupBy,
+  intersection,
   randomizeArray,
   range,
   uniqueBy,
   uniqueElements,
-  intersection,
-  difference
 };
