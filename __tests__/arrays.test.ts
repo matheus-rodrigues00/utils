@@ -303,4 +303,48 @@ describe("sortBy", () => {
 
     expect(arr).toEqual(original);
   });
+
+  test("keeps the original order of items with an equal value", () => {
+    interface NamedPerson extends Person {
+      name: string;
+    }
+
+    const arr: NamedPerson[] = [
+      { name: "John", age: 30 },
+      { name: "Jane", age: 18 },
+      { name: "Mary", age: 30 },
+    ];
+
+    const result: NamedPerson[] = sortBy(
+      arr,
+      (person: NamedPerson) => person.age
+    );
+
+    expect(result).toEqual([
+      { name: "Jane", age: 18 },
+      { name: "John", age: 30 },
+      { name: "Mary", age: 30 },
+    ]);
+  });
+
+  test("calls the callback once per item on each comparison", () => {
+    const arr: Person[] = [{ age: 30 }, { age: 18 }, { age: 25 }];
+
+    let call_count = 0;
+    const result: Person[] = sortBy(arr, (person: Person) => {
+      call_count++;
+      return person.age;
+    });
+
+    expect(result).toEqual([{ age: 18 }, { age: 25 }, { age: 30 }]);
+    expect(call_count).toBeLessThanOrEqual(2 * (arr.length - 1) * arr.length);
+  });
+
+  test("returns an empty array when given an empty array", () => {
+    const arr: Person[] = [];
+
+    const result: Person[] = sortBy(arr, (person: Person) => person.age);
+
+    expect(result).toEqual([]);
+  });
 });
