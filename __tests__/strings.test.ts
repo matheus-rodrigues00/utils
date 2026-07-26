@@ -1,4 +1,10 @@
-const { replaceTokens, isEmail, truncate, capitalize } = require("@/strings");
+const {
+  replaceTokens,
+  isEmail,
+  truncate,
+  capitalize,
+  titleCase,
+} = require("@/strings");
 
 describe("replaceTokens", () => {
   test("replaces tokens with values, using basic regex /(w+)/g", () => {
@@ -120,5 +126,23 @@ describe("capitalize", () => {
     expect.assertions(1);
     const result: string = capitalize("");
     expect(result).toBe("");
+  });
+});
+
+describe("titleCase", () => {
+  test("capitalizes each word in a sentence", () => {
+    expect(titleCase("hello world")).toBe("Hello World");
+  });
+
+  test("lowercases mixed-case words after their first character", () => {
+    expect(titleCase("the QUICK fox")).toBe("The Quick Fox");
+  });
+
+  test("capitalizes a single word", () => {
+    expect(titleCase("hELLO")).toBe("Hello");
+  });
+
+  test("returns an empty string when given an empty string", () => {
+    expect(titleCase("")).toBe("");
   });
 });

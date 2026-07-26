@@ -60,4 +60,14 @@ function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-export { capitalize, isEmail, replaceTokens, truncate };
+/**
+ * Capitalizes the first letter of each space-separated word and lowercases the rest.
+ * Existing spaces are preserved.
+ * @param {string} str - The string to convert to title case.
+ * @returns {string} - The title-cased string, or an empty string when the input is empty.
+ */
+function titleCase(str: string): string {
+  return str.split(" ").map(capitalize).join(" ");
+}
+
+export { capitalize, isEmail, replaceTokens, titleCase, truncate };
