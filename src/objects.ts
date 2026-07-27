@@ -73,6 +73,9 @@ function isObject(value: any): boolean {
 
 /**
  * Safely reads a nested value from an object using a dot-notation path.
+ * Array indexes are valid path segments, so "items.0.id" is supported.
+ * The walk stops and returns the default as soon as a segment is null or
+ * undefined, so a missing branch never throws.
  * @param object - The object to read from
  * @param path - The dot-notation path to the nested value
  * @param defaultValue - The value returned when the path does not exist
@@ -86,7 +89,7 @@ function get<T = unknown>(
   let current_value: unknown = object;
 
   for (const key of path.split(".")) {
-    if (!isObject(current_value)) {
+    if (current_value === null || current_value === undefined) {
       return defaultValue;
     }
 

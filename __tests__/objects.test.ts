@@ -177,6 +177,24 @@ describe("get", () => {
   test("should return the default when the path is missing partway down", () => {
     expect(get({ a: null }, "a.b.c", "fallback")).toBe("fallback");
   });
+
+  test("should walk through array indexes", () => {
+    const with_array = { items: [{ id: 1 }, { id: 2 }] };
+    expect(get(with_array, "items.1.id")).toBe(2);
+    expect(get(with_array, "items.length")).toBe(2);
+    expect(get(with_array, "items.5.id", "fallback")).toBe("fallback");
+  });
+
+  test("should return falsy values instead of the default", () => {
+    expect(get({ a: 0 }, "a", "fallback")).toBe(0);
+    expect(get({ a: false }, "a", "fallback")).toBe(false);
+    expect(get({ a: "" }, "a", "fallback")).toBe("");
+    expect(get({ a: null }, "a", "fallback")).toBeNull();
+  });
+
+  test("should return the default for an explicit undefined value", () => {
+    expect(get({ a: undefined }, "a", "fallback")).toBe("fallback");
+  });
 });
 
 describe("isEmpty", () => {
