@@ -65,6 +65,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |isEmail|validates if the input string is a valid email|(string)|True if the string is a valid email, false otherwise.|
 |truncate|shortens a string to a maximum length and appends an omission indicator when it gets cut|(string, length, omission = "…")|the original string when it fits, otherwise the truncated string with the omission appended|
 |capitalize|uppercases the first character of a string and lowercases the rest|(string)|new string with the first character uppercased and the rest lowercased|
+|titleCase|capitalizes the first letter of each word and lowercases the rest|(string)|the title-cased string|
 ### Phone Numbers
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
@@ -111,4 +112,3 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |isObject|receives a value and checks if it is a javascript object literal|(value to check)|boolean|
 |isEmpty|receives a value and checks if it is empty (null, undefined, empty string/array, or plain object with no keys); non-collection values are treated as empty|(value to check)|boolean|
 |deepPick| receives an object with nested properties and an array of keys and returns a new object with only the keys specified.|(source object and array of keys)|new object with only the keys specified|
-
