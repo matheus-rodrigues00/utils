@@ -67,7 +67,10 @@ function capitalize(str: string): string {
  * @returns {string} - The title-cased string, or an empty string when the input is empty.
  */
 function titleCase(str: string): string {
-  return str.split(" ").map(capitalize).join(" ");
+  return str
+    .split(" ")
+    .map(word => capitalize(word))
+    .join(" ");
 }
 
 export { capitalize, isEmail, replaceTokens, titleCase, truncate };

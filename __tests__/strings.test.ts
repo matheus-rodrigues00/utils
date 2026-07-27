@@ -145,4 +145,14 @@ describe("titleCase", () => {
   test("returns an empty string when given an empty string", () => {
     expect(titleCase("")).toBe("");
   });
+
+  test("preserves repeated, leading and trailing spaces", () => {
+    expect(titleCase("a  b")).toBe("A  B");
+    expect(titleCase(" leading")).toBe(" Leading");
+    expect(titleCase("trailing ")).toBe("Trailing ");
+  });
+
+  test("only treats spaces as word boundaries", () => {
+    expect(titleCase("hello\tworld")).toBe("Hello\tworld");
+  });
 });
