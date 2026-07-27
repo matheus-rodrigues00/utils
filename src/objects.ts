@@ -72,6 +72,34 @@ function isObject(value: any): boolean {
 }
 
 /**
+ * Safely reads a nested value from an object using a dot-notation path.
+ * Array indexes are valid path segments, so "items.0.id" is supported.
+ * The walk stops and returns the default as soon as a segment is null or
+ * undefined, so a missing branch never throws.
+ * @param object - The object to read from
+ * @param path - The dot-notation path to the nested value
+ * @param defaultValue - The value returned when the path does not exist
+ * @returns The value at the path, or the default value when it is missing
+ */
+function get<T = unknown>(
+  object: object,
+  path: string,
+  defaultValue?: T
+): T | undefined {
+  let current_value: unknown = object;
+
+  for (const key of path.split(".")) {
+    if (current_value === null || current_value === undefined) {
+      return defaultValue;
+    }
+
+    current_value = (current_value as Record<string, unknown>)[key];
+  }
+
+  return current_value === undefined ? defaultValue : (current_value as T);
+}
+
+/**
  * This method receives a value and checks if it is "empty": null, undefined, an
  * empty string, an empty array, or a plain object with no own enumerable keys.
  * Non-collection values (numbers, booleans, functions, etc.) are treated as
@@ -146,4 +174,4 @@ function deepPick<T extends object, K extends DeepKeys<T>>(
   return result as Pick<T, K>;
 }
 
-export { deepClone, deepPick, isEmpty, isObject, omit, pick };
+export { deepClone, deepPick, get, isEmpty, isObject, omit, pick };

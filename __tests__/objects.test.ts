@@ -3,6 +3,7 @@ const {
   pick,
   omit,
   isObject,
+  get,
   isEmpty,
   deepPick,
 } = require("@/objects");
@@ -149,6 +150,50 @@ describe("isObject", () => {
     expect(isObject(undefined)).toBe(false);
     expect(isObject(() => {})).toBe(false);
     expect(isObject(new Date())).toBe(false);
+  });
+});
+
+describe("get", () => {
+  const nested_object = {
+    a: {
+      b: {
+        c: 42,
+      },
+    },
+  };
+
+  test("should return the value at a present deep path", () => {
+    expect(get(nested_object, "a.b.c")).toBe(42);
+  });
+
+  test("should return undefined for a missing path without a default", () => {
+    expect(get(nested_object, "a.b.x")).toBeUndefined();
+  });
+
+  test("should return the default value for a missing path", () => {
+    expect(get(nested_object, "a.b.x", "fallback")).toBe("fallback");
+  });
+
+  test("should return the default when the path is missing partway down", () => {
+    expect(get({ a: null }, "a.b.c", "fallback")).toBe("fallback");
+  });
+
+  test("should walk through array indexes", () => {
+    const with_array = { items: [{ id: 1 }, { id: 2 }] };
+    expect(get(with_array, "items.1.id")).toBe(2);
+    expect(get(with_array, "items.length")).toBe(2);
+    expect(get(with_array, "items.5.id", "fallback")).toBe("fallback");
+  });
+
+  test("should return falsy values instead of the default", () => {
+    expect(get({ a: 0 }, "a", "fallback")).toBe(0);
+    expect(get({ a: false }, "a", "fallback")).toBe(false);
+    expect(get({ a: "" }, "a", "fallback")).toBe("");
+    expect(get({ a: null }, "a", "fallback")).toBeNull();
+  });
+
+  test("should return the default for an explicit undefined value", () => {
+    expect(get({ a: undefined }, "a", "fallback")).toBe("fallback");
   });
 });
 
