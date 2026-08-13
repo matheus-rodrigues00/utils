@@ -4,6 +4,8 @@ const {
   truncate,
   capitalize,
   titleCase,
+  kebabCase,
+  snakeCase,
 } = require("@/strings");
 
 describe("replaceTokens", () => {
@@ -154,5 +156,93 @@ describe("titleCase", () => {
 
   test("only treats spaces as word boundaries", () => {
     expect(titleCase("hello\tworld")).toBe("Hello\tworld");
+  });
+});
+
+describe("kebabCase", () => {
+  test("converts a camelCase string to kebab-case", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("fooBar");
+    expect(result).toBe("foo-bar");
+  });
+
+  test("converts a space-separated string to kebab-case", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("foo Bar");
+    expect(result).toBe("foo-bar");
+  });
+
+  test("converts an already-delimited string to kebab-case", () => {
+    expect.assertions(2);
+    expect(kebabCase("foo_bar")).toBe("foo-bar");
+    expect(kebabCase("foo-bar")).toBe("foo-bar");
+  });
+
+  test("splits acronyms from the word that follows them", () => {
+    expect.assertions(2);
+    expect(kebabCase("parseHTMLString")).toBe("parse-html-string");
+    expect(kebabCase("fooBAR")).toBe("foo-bar");
+  });
+
+  test("keeps digits attached to their word", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("utf8Value");
+    expect(result).toBe("utf8-value");
+  });
+
+  test("drops leading, trailing and repeated separators", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("  --foo__bar!!  ");
+    expect(result).toBe("foo-bar");
+  });
+
+  test("returns an empty string when given an empty string", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("");
+    expect(result).toBe("");
+  });
+
+  test("returns an empty string when there is nothing to convert", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("---");
+    expect(result).toBe("");
+  });
+});
+
+describe("snakeCase", () => {
+  test("converts a camelCase string to snake_case", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("fooBar");
+    expect(result).toBe("foo_bar");
+  });
+
+  test("converts a space-separated string to snake_case", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("foo bar");
+    expect(result).toBe("foo_bar");
+  });
+
+  test("converts an already-delimited string to snake_case", () => {
+    expect.assertions(2);
+    expect(snakeCase("foo-bar")).toBe("foo_bar");
+    expect(snakeCase("foo_bar")).toBe("foo_bar");
+  });
+
+  test("splits acronyms from the word that follows them", () => {
+    expect.assertions(2);
+    expect(snakeCase("XMLHttpRequest")).toBe("xml_http_request");
+    expect(snakeCase("IOStream")).toBe("io_stream");
+  });
+
+  test("drops leading, trailing and repeated separators", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("  foo   bar  ");
+    expect(result).toBe("foo_bar");
+  });
+
+  test("returns an empty string when given an empty string", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("");
+    expect(result).toBe("");
   });
 });

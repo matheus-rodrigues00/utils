@@ -66,6 +66,8 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |truncate|shortens a string to a maximum length and appends an omission indicator when it gets cut|(string, length, omission = "…")|the original string when it fits, otherwise the truncated string with the omission appended|
 |capitalize|uppercases the first character of a string and lowercases the rest|(string)|new string with the first character uppercased and the rest lowercased|
 |titleCase|capitalizes the first letter of each word and lowercases the rest|(string)|the title-cased string|
+|kebabCase|converts a string to kebab-case, splitting on camelCase and acronym boundaries and on any non-alphanumeric separators|(string)|the kebab-cased string|
+|snakeCase|converts a string to snake_case, splitting on camelCase and acronym boundaries and on any non-alphanumeric separators|(string)|the snake_cased string|
 ### Phone Numbers
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
