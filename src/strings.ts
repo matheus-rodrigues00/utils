@@ -74,40 +74,51 @@ function titleCase(str: string): string {
 }
 
 /**
- * Splits a string into words, handling camelCase boundaries , spaces, hyphens,underscores , and other non-alphanumeric separators. Empty entries are dropped.
- * @param {string} str - the string to split into words.
- * @returns {string[]} - The array of words.
+ * Splits a string into lowercased words, breaking on camelCase and acronym
+ * boundaries as well as on any run of non-alphanumeric characters (spaces,
+ * hyphens, underscores, punctuation). Empty entries are dropped, so leading,
+ * trailing and repeated separators do not produce empty words. Digits stay
+ * attached to the word they belong to.
+ * @param {string} str - The string to split into words.
+ * @returns {string[]} - The list of lowercased words.
  */
 function splitWords(str: string): string[] {
-  const spaced = str.replace(/([a-z])([A-Z])/g, "$1 $2");
-
-  return spaced
-  .split(/[^a-zA-Z0-9]+/)
-  .filter(word => word.length > 0)
-  .map(word => word.toLowerCase());
+  return str
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(word => word.length > 0)
+    .map(word => word.toLowerCase());
 }
 
 /**
- * converts a string to kebab-case, splitting on camelCase boundaries and any
+ * Converts a string to kebab-case, splitting on camelCase boundaries and any
  * non-alphanumeric separators.
- * @param {string} str - the string to convert .
- * @returns {string} - The kebab-cased string,or an empty string when the input is empty.
+ * @param {string} str - The string to convert.
+ * @returns {string} - The kebab-cased string, or an empty string when the input has no alphanumeric characters.
+ * author: Drishtyaggarwal - Drashti Aggarwal
  */
 function kebabCase(str: string): string {
   return splitWords(str).join("-");
 }
 
 /**
- * converts a string to snake_case, splitting on camelCase boundaries and any
+ * Converts a string to snake_case, splitting on camelCase boundaries and any
  * non-alphanumeric separators.
- * @param {string} str - the string to convert .
- * @returns {string} - The snake_cased string,or an empty string when the input is empty.
+ * @param {string} str - The string to convert.
+ * @returns {string} - The snake_cased string, or an empty string when the input has no alphanumeric characters.
+ * author: Drishtyaggarwal - Drashti Aggarwal
  */
 function snakeCase(str: string): string {
   return splitWords(str).join("_");
 }
 
-
-
-
-export { capitalize, isEmail,kebabCase, replaceTokens,snakeCase,titleCase, truncate };
+export {
+  capitalize,
+  isEmail,
+  kebabCase,
+  replaceTokens,
+  snakeCase,
+  titleCase,
+  truncate,
+};
