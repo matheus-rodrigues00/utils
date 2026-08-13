@@ -73,4 +73,41 @@ function titleCase(str: string): string {
     .join(" ");
 }
 
-export { capitalize, isEmail, replaceTokens, titleCase, truncate };
+/**
+ * Splits a string into words, handling camelCase boundaries , spaces, hyphens,underscores , and other non-alphanumeric separators. Empty entries are dropped.
+ * @param {string} str - the string to split into words.
+ * @returns {string[]} - The array of words.
+ */
+function splitWords(str: string): string[] {
+  const spaced = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+
+  return spaced
+  .split(/[^a-zA-Z0-9]+/)
+  .filter(word => word.length > 0)
+  .map(word => word.toLowerCase());
+}
+
+/**
+ * converts a string to kebab-case, splitting on camelCase boundaries and any
+ * non-alphanumeric separators.
+ * @param {string} str - the string to convert .
+ * @returns {string} - The kebab-cased string,or an empty string when the input is empty.
+ */
+function kebabCase(str: string): string {
+  return splitWords(str).join("-");
+}
+
+/**
+ * converts a string to snake_case, splitting on camelCase boundaries and any
+ * non-alphanumeric separators.
+ * @param {string} str - the string to convert .
+ * @returns {string} - The snake_cased string,or an empty string when the input is empty.
+ */
+function snakeCase(str: string): string {
+  return splitWords(str).join("_");
+}
+
+
+
+
+export { capitalize, isEmail,kebabCase, replaceTokens,snakeCase,titleCase, truncate };

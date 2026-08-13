@@ -4,6 +4,8 @@ const {
   truncate,
   capitalize,
   titleCase,
+  kebabCase,
+  snakeCase,
 } = require("@/strings");
 
 describe("replaceTokens", () => {
@@ -154,5 +156,53 @@ describe("titleCase", () => {
 
   test("only treats spaces as word boundaries", () => {
     expect(titleCase("hello\tworld")).toBe("Hello\tworld");
+  });
+});
+
+describe("kebabCase", () => {
+  test("converts a camelCase string to kebab-case", () =>{
+    expect.assertions(1);
+    const result: string = kebabCase("fooBar");
+    expect(result).toBe("foo-bar");
+  });
+  test("converts a space-separated string to kebab-case", () =>{
+    expect.assertions(1);
+    const result: string = kebabCase("foo Bar");
+    expect(result).toBe("foo-bar");
+  });
+  test("converts an already-delimited string to kebab-case", () =>{
+    expect.assertions(1);
+    const result: string = kebabCase("foo bar");
+    expect(result).toBe("foo-bar");
+  });
+ test("returns an empty string when given an empty string", () => {
+    expect.assertions(1);
+    const result: string = kebabCase("");
+    expect(result).toBe("");
+  });
+  
+});
+
+describe("snakeCase", () => {
+  test("converts a camelCase string to snake_case", () =>{
+    expect.assertions(1);
+    const result: string = snakeCase("fooBar");
+    expect(result).toBe("foo_bar");
+  });
+  test("converts a space-separated string to snake_case", () =>{
+    expect.assertions(1);
+    const result: string = snakeCase("foo bar");
+    expect(result).toBe("foo_bar");
+  });
+  test("converts an already-delimited string to snake_case", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("foo-bar");
+    expect(result).toBe("foo_bar");
+  });
+
+  test("returns an empty string when given an empty string", () => {
+    expect.assertions(1);
+    const result: string = snakeCase("");
+    expect(result).toBe("");
   });
 });
