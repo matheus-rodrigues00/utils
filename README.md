@@ -77,6 +77,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |-|-|-|-|
 |random|receives a min and max number and returns a random number between them|(min, max)|random number between min-max|
 |mean|receives a numeric array and returns its average|(arr)|the average|
+|median|returns the median (middle value) of a numeric array, averaging the two middle values for an even count|(arr)|the median, or undefined for an empty array|
 |max|receives an array of numbers and returns the biggest number|(arr of numbers)|the biggest number or undefined|
 |maxBy|receives an array and finds the maximum element in an array based on a provided callback function|(array, callback)|element with maximum value in array based on callback function|
 |min|receives an array of numbers and returns the smallest number|(arr of numbers)|the smallest number or undefined|

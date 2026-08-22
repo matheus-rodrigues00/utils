@@ -22,6 +22,26 @@ function mean(arr: number[]): number | undefined {
 }
 
 /**
+ * This method receives a numeric array and returns its median.
+ * @param {number[]} arr - The numeric array.
+ * @returns {number | undefined} - The median, or undefined for an empty array.
+ */
+function median(arr: number[]): number | undefined {
+  if (arr.length === 0) {
+    return undefined;
+  }
+
+  const sorted_arr = [...arr].sort((a, b) => a - b);
+  const middle_index = Math.floor(sorted_arr.length / 2);
+
+  if (sorted_arr.length % 2 === 0) {
+    return (sorted_arr[middle_index - 1] + sorted_arr[middle_index]) / 2;
+  }
+
+  return sorted_arr[middle_index];
+}
+
+/**
  * This method receives an array of numbers and returns the biggest number.
  * @param {number[]} arr - The array with numbers.
  * @returns {number} - The biggest number.
@@ -221,6 +241,7 @@ export {
   maxBy,
   mean,
   meanBy,
+  median,
   min,
   minBy,
   random,
