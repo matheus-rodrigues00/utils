@@ -44,6 +44,27 @@ function intersection<T>(a: T[], b: T[]): T[] {
 }
 
 /**
+ * Splits an array into elements that pass a predicate and elements that fail it.
+ * @param {T[]} array - The input array to partition.
+ * @param {(item: T) => boolean} predicate - The predicate used to separate the elements.
+ * @returns {[T[], T[]]} - A tuple containing the passing and failing elements.
+ */
+function partition<T>(array: T[], predicate: (item: T) => boolean): [T[], T[]] {
+  const pass: T[] = [];
+  const fail: T[] = [];
+
+  for (const item of array) {
+    if (predicate(item)) {
+      pass.push(item);
+    } else {
+      fail.push(item);
+    }
+  }
+
+  return [pass, fail];
+}
+
+/**
  * Returns the values in the first array that are not in the second array.
  * @param {T[]} a - The first array.
  * @param {T[]} b - The second array.
@@ -184,6 +205,7 @@ export {
   difference,
   groupBy,
   intersection,
+  partition,
   randomizeArray,
   range,
   sortBy,
