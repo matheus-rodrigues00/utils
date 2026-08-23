@@ -6,6 +6,7 @@ const {
   minBy,
   meanBy,
   mean,
+  median,
   divideFixed,
   clamp,
   inRange,
@@ -166,6 +167,45 @@ describe("mean", () => {
     const result = mean(arr);
 
     expect(result).toBeUndefined();
+  });
+});
+
+describe("median", () => {
+  test("returns the middle value for an odd number of elements", () => {
+    expect(median([1, 2, 3])).toBe(2);
+  });
+
+  test("returns the average of the middle values for an even number of elements", () => {
+    expect(median([1, 2, 3, 4])).toBe(2.5);
+  });
+
+  test("returns the median of an unsorted array", () => {
+    expect(median([7, 1, 3])).toBe(3);
+  });
+
+  test("sorts values numerically instead of lexicographically", () => {
+    expect(median([10, 9, 8])).toBe(9);
+    expect(median([8, 100, 9, 10])).toBe(9.5);
+  });
+
+  test("handles negative numbers", () => {
+    expect(median([-10, -2, -1])).toBe(-2);
+  });
+
+  test("returns the only value for a single-element array", () => {
+    expect(median([7])).toBe(7);
+  });
+
+  test("returns undefined for an empty array", () => {
+    expect(median([])).toBeUndefined();
+  });
+
+  test("does not mutate the input array", () => {
+    const arr = [7, 1, 3];
+
+    median(arr);
+
+    expect(arr).toEqual([7, 1, 3]);
   });
 });
 
