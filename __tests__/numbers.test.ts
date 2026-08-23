@@ -179,8 +179,17 @@ describe("median", () => {
     expect(median([1, 2, 3, 4])).toBe(2.5);
   });
 
-  test("sorts values numerically before finding the median", () => {
+  test("returns the median of an unsorted array", () => {
     expect(median([7, 1, 3])).toBe(3);
+  });
+
+  test("sorts values numerically instead of lexicographically", () => {
+    expect(median([10, 9, 8])).toBe(9);
+    expect(median([8, 100, 9, 10])).toBe(9.5);
+  });
+
+  test("handles negative numbers", () => {
+    expect(median([-10, -2, -1])).toBe(-2);
   });
 
   test("returns the only value for a single-element array", () => {
