@@ -107,64 +107,6 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |isImageFileObject|Checks whether a file type object represents an image.|(file type object)|boolean|
 |isVideoFileObject|Checks whether a file type object represents a video.|(file type object)|boolean|
 |isAudioFileObject|Checks whether a file type object represents audio.|(file type object)|boolean|
-
-#### `checkMediaTypes`
-```ts
-/**
- * This method receives an array of extension types and a file and returns true if the file is of one of the media types.
- * @param {string[]} extension_types - The array of media types.
- * @param {Buffer} file - The buffered file to check.
- * @returns {Promise<boolean>} - Returns a promise that resolves to a boolean.
- */
-async function checkMediaTypes(
-	extension_types: string[],
-	file: Buffer
-): Promise<boolean>
-```
-
-#### `checkMediaTypesFromFileObject`
-```ts
-/**
- * This method receives an array of extension types and a file type object and returns true if the file is of one of the media types.
- * @param {string[]} extension_types - The array of media types.
- * @param {FileTypeObject} file_type_object - The file type object to check.
- * @returns {boolean} - Returns a boolean.
- */
-function checkMediaTypesFromFileObject(
-	extension_types: string[],
-	file_type_object: FileTypeObject
-): boolean
-```
-
-#### `isImageFileObject`
-```ts
-/**
- * This method receives a file type object and returns true if the file is of one of the image types.
- * @param {FileTypeObject} file_type_object - The file type object to check.
- * @returns {boolean} - Returns a boolean.
- */
-function isImageFileObject(file_type_object: FileTypeObject): boolean
-```
-
-#### `isVideoFileObject`
-```ts
-/**
- * This method receives a file type object and returns true if the file is of one of the video types.
- * @param {FileTypeObject} file_type_object - The file type object to check.
- * @returns {boolean} - Returns a boolean.
- */
-function isVideoFileObject(file_type_object: FileTypeObject): boolean
-```
-
-#### `isAudioFileObject`
-```ts
-/**
- * This method receives a file type object and returns true if the file is of one of the audio types.
- * @param {FileTypeObject} file_type_object - The file type object to check.
- * @returns {boolean} - Returns a boolean.
- */
-function isAudioFileObject(file_type_object: FileTypeObject): boolean
-```
 ### Calculations
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
