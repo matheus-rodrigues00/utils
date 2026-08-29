@@ -178,6 +178,17 @@ describe("countBy", () => {
 
     expect(result).toEqual({});
   });
+
+  test("counts keys that collide with object prototype members", () => {
+    const result = countBy(
+      ["toString", "__proto__", "toString"],
+      (word: string) => word
+    );
+
+    // the "__proto__" key is computed on purpose, a plain one would be read as
+    // the prototype setter and never make it into the expected object
+    expect(result).toEqual({ toString: 2, ["__proto__"]: 1 });
+  });
 });
 
 describe("randomizeArray", () => {
