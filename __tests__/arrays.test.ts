@@ -6,6 +6,7 @@ const {
   chunk,
   range,
   compact,
+  countBy,
   difference,
   intersection,
   sortBy,
@@ -153,6 +154,40 @@ describe("groupBy", () => {
       ],
     };
     expect(result).toEqual(expected_response);
+  });
+});
+
+describe("countBy", () => {
+  test("counts elements by numeric keys", () => {
+    const result = countBy([6.1, 4.2, 6.3], Math.floor);
+
+    expect(result).toEqual({ "4": 1, "6": 2 });
+  });
+
+  test("counts elements by string keys", () => {
+    const result = countBy(
+      ["apple", "apricot", "banana"],
+      (word: string) => word[0] as string
+    );
+
+    expect(result).toEqual({ a: 2, b: 1 });
+  });
+
+  test("returns an empty object when given an empty array", () => {
+    const result = countBy([], (item: string) => item.length);
+
+    expect(result).toEqual({});
+  });
+
+  test("counts keys that collide with object prototype members", () => {
+    const result = countBy(
+      ["toString", "__proto__", "toString"],
+      (word: string) => word
+    );
+
+    // the "__proto__" key is computed on purpose, a plain one would be read as
+    // the prototype setter and never make it into the expected object
+    expect(result).toEqual({ toString: 2, ["__proto__"]: 1 });
   });
 });
 
