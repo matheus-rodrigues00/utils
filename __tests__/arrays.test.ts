@@ -189,6 +189,19 @@ describe("partition", () => {
 
     expect(call_count).toBe(arr.length);
   });
+
+  test("keeps the original references when partitioning objects", () => {
+    const active = { id: 1, active: true };
+    const inactive = { id: 2, active: false };
+
+    const result = partition(
+      [active, inactive],
+      (item: { active: boolean }) => item.active
+    );
+
+    expect(result[0][0]).toBe(active);
+    expect(result[1][0]).toBe(inactive);
+  });
 });
 
 describe("groupBy", () => {
