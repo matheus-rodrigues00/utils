@@ -43,6 +43,7 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |uniqueElements|returns an array with unique elements|(array)|array with unique elements|
 |uniqueBy|removes duplicate elements based on the value returned by a callback, keeping the first occurrence|(array, callback)|new array without duplicates by callback key|
 |intersection|returns the values present in both arrays, de-duplicated and in the order of the first|(a, b)|new array of values present in both|
+|partition|splits an array into two groups: the first with the elements where the predicate returns true, the second with the rest|(array, predicate)|tuple of [passing, failing] arrays|
 |difference|returns the values in the first array that are not in the second|(a, b)|new array of values only in the first|
 |groupBy|receives an array of objects and returns a grouped by object|(array of literal object, key) |object with keys being the values of array[i][key]|
 |randomizeArray|receives an array and returns a randomized version of it|(array to randomize)|randomized array|

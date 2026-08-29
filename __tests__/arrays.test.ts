@@ -9,6 +9,7 @@ const {
   countBy,
   difference,
   intersection,
+  partition,
   sortBy,
 } = require("@/arrays");
 
@@ -123,6 +124,83 @@ describe("difference", () => {
     const result: number[] = difference(a, b);
 
     expect(result).toEqual([]);
+  });
+});
+
+describe("partition", () => {
+  test("splits mixed values while preserving their order", () => {
+    const arr: number[] = [1, 2, 3, 4, 5];
+
+    const result: [number[], number[]] = partition(
+      arr,
+      (item: number) => item % 2 === 0
+    );
+
+    expect(result).toEqual([
+      [2, 4],
+      [1, 3, 5],
+    ]);
+  });
+
+  test("puts every value in the passing group when all values pass", () => {
+    const result: [number[], number[]] = partition(
+      [1, 2, 3],
+      (item: number) => item > 0
+    );
+
+    expect(result).toEqual([[1, 2, 3], []]);
+  });
+
+  test("puts every value in the failing group when all values fail", () => {
+    const result: [number[], number[]] = partition(
+      [1, 2, 3],
+      (item: number) => item < 0
+    );
+
+    expect(result).toEqual([[], [1, 2, 3]]);
+  });
+
+  test("returns two empty groups for an empty array", () => {
+    const result: [number[], number[]] = partition(
+      [],
+      (item: number) => item > 0
+    );
+
+    expect(result).toEqual([[], []]);
+  });
+
+  test("does not mutate the input array", () => {
+    const arr: number[] = [3, 1, 4, 2];
+    const original: number[] = [...arr];
+
+    partition(arr, (item: number) => item % 2 === 0);
+
+    expect(arr).toEqual(original);
+  });
+
+  test("calls the predicate once per element", () => {
+    const arr: number[] = [1, 2, 3, 4];
+    let call_count = 0;
+
+    partition(arr, (item: number) => {
+      call_count++;
+      return item % 2 === 0;
+    });
+
+    expect(call_count).toBe(arr.length);
+  });
+
+  test("keeps the original references when partitioning objects", () => {
+    const active = { id: 1, active: true };
+    const inactive = { id: 2, active: false };
+
+    const result = partition(
+      [active, inactive],
+      (item: { active: boolean }) => item.active
+    );
+
+    expect(result[0][0]).toBe(active);
+    expect(result[1][0]).toBe(inactive);
   });
 });
 
