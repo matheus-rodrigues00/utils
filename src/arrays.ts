@@ -199,9 +199,29 @@ function sortBy<T>(array: T[], callback: (item: T) => number | string): T[] {
   return result;
 }
 
+/**
+ * Counts how many elements fall under each key returned by a callback.
+ * The returned object has no prototype, so keys like "toString" or "__proto__"
+ * are counted just like any other key.
+ * @param {T[]} array - The input array.
+ * @param {(item: T) => string | number} callback - The callback that returns the key to count by.
+ * @returns {Record<string, number>} - An object mapping each key to its count.
+ */
+function countBy<T>(
+  array: T[],
+  callback: (item: T) => string | number
+): Record<string, number> {
+  return array.reduce((result: Record<string, number>, current_value: T) => {
+    const key = String(callback(current_value));
+    result[key] = (result[key] || 0) + 1;
+    return result;
+  }, Object.create(null));
+}
+
 export {
   chunk,
   compact,
+  countBy,
   difference,
   groupBy,
   intersection,
