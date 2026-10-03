@@ -72,6 +72,42 @@ function isObject(value: any): boolean {
 }
 
 /**
+ * Recursively merges plain objects into a new object without mutating the
+ * inputs. Later sources replace earlier non-object values, including arrays
+ * and undefined values.
+ * @param target - The initial object
+ * @param sources - The objects to merge into the target
+ * @returns {object} - A new deeply merged object
+ */
+function merge<T extends object>(target: T, ...sources: object[]): T {
+  const merge_objects = (
+    base: Record<string, any>,
+    source: Record<string, any>
+  ): Record<string, any> => {
+    const result = { ...base };
+
+    for (const [key, value] of Object.entries(source)) {
+      if (isObject(value)) {
+        const current_value = isObject(result[key]) ? result[key] : {};
+        result[key] = merge_objects(current_value, value);
+      } else if (Array.isArray(value)) {
+        result[key] = [...value];
+      } else {
+        result[key] = value;
+      }
+    }
+
+    return result;
+  };
+
+  return sources.reduce(
+    (result, source) =>
+      merge_objects(result, source as Record<string, any>),
+    merge_objects({}, target as Record<string, any>)
+  ) as T;
+}
+
+/**
  * Safely reads a nested value from an object using a dot-notation path.
  * Array indexes are valid path segments, so "items.0.id" is supported.
  * The walk stops and returns the default as soon as a segment is null or
@@ -174,4 +210,4 @@ function deepPick<T extends object, K extends DeepKeys<T>>(
   return result as Pick<T, K>;
 }
 
-export { deepClone, deepPick, get, isEmpty, isObject, omit, pick };
+export { deepClone, deepPick, get, isEmpty, isObject, merge, omit, pick };
