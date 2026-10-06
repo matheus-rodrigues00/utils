@@ -1,5 +1,6 @@
 export * from "./arrays";
 export * from "./calculations";
+export * from "./colors";
 export * from "./databases";
 export * from "./dateAndTime";
 export * from "./files";
