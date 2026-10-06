@@ -1,8 +1,19 @@
 type RGB = [number, number, number];
 
+const NUMBER = "[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:e[+-]?\\d+)?";
+const CHANNEL = `${NUMBER}%?`;
+const COMMA_RGB = new RegExp(
+  `^rgba?\\(\\s*(${CHANNEL})\\s*,\\s*(${CHANNEL})\\s*,\\s*(${CHANNEL})\\s*(?:,\\s*(${CHANNEL})\\s*)?\\)$`,
+  "i"
+);
+const SPACE_RGB = new RegExp(
+  `^rgba?\\(\\s*(${CHANNEL})\\s+(${CHANNEL})\\s+(${CHANNEL})\\s*(?:\\/\\s*(${CHANNEL})\\s*)?\\)$`,
+  "i"
+);
+
 function parseChannel(channel: string): number {
   if (channel.endsWith("%")) {
-    const percentage = Number.parseFloat(channel.slice(0, -1));
+    const percentage = Number(channel.slice(0, -1));
 
     if (!Number.isFinite(percentage) || percentage < 0 || percentage > 100) {
       throw new Error(`Invalid color channel: ${channel}`);
@@ -11,7 +22,7 @@ function parseChannel(channel: string): number {
     return (percentage / 100) * 255;
   }
 
-  const value = Number.parseFloat(channel);
+  const value = Number(channel);
 
   if (!Number.isFinite(value) || value < 0 || value > 255) {
     throw new Error(`Invalid color channel: ${channel}`);
@@ -20,7 +31,21 @@ function parseChannel(channel: string): number {
   return value;
 }
 
+function validateAlpha(alpha: string): void {
+  const value = alpha.endsWith("%")
+    ? Number(alpha.slice(0, -1)) / 100
+    : Number(alpha);
+
+  if (!Number.isFinite(value) || value < 0 || value > 1) {
+    throw new Error(`Invalid color alpha: ${alpha}`);
+  }
+}
+
 function parseColor(color: string): RGB {
+  if (typeof color !== "string") {
+    throw new TypeError("Color must be a string");
+  }
+
   const value = color.trim();
   const hex = value.replace(/^#/, "");
 
@@ -32,7 +57,7 @@ function parseColor(color: string): RGB {
     ];
   }
 
-  if (/^[\da-f]{6,8}$/i.test(hex)) {
+  if (/^(?:[\da-f]{6}|[\da-f]{8})$/i.test(hex)) {
     return [
       Number.parseInt(hex.slice(0, 2), 16),
       Number.parseInt(hex.slice(2, 4), 16),
@@ -40,22 +65,16 @@ function parseColor(color: string): RGB {
     ];
   }
 
-  const rgbMatch = value.match(/^rgba?\((.*)\)$/i);
+  const rgbMatch = value.match(COMMA_RGB) || value.match(SPACE_RGB);
 
   if (rgbMatch) {
-    const channels = rgbMatch[1]
-      .replace(/,/g, " ")
-      .replace(/\//g, " ")
-      .trim()
-      .split(/\s+/);
+    const [, red, green, blue, alpha] = rgbMatch;
 
-    if (channels.length === 3 || channels.length === 4) {
-      return [
-        parseChannel(channels[0]),
-        parseChannel(channels[1]),
-        parseChannel(channels[2]),
-      ];
+    if (alpha !== undefined) {
+      validateAlpha(alpha);
     }
+
+    return [parseChannel(red), parseChannel(green), parseChannel(blue)];
   }
 
   throw new Error(`Invalid color format: ${color}`);
