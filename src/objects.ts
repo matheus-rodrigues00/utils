@@ -74,36 +74,59 @@ function isObject(value: any): boolean {
 /**
  * Recursively merges plain objects into a new object without mutating the
  * inputs. Later sources replace earlier non-object values, including arrays
- * and undefined values.
+ * and undefined values. Null or undefined sources are skipped, and a
+ * "__proto__" key is copied as a plain property instead of changing the
+ * result's prototype.
  * @param target - The initial object
  * @param sources - The objects to merge into the target
  * @returns {object} - A new deeply merged object
  */
 function merge<T extends object>(target: T, ...sources: object[]): T {
+  const set_value = (object: Record<string, any>, key: string, value: any) => {
+    Object.defineProperty(object, key, {
+      value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
+  };
+
   const merge_objects = (
     base: Record<string, any>,
     source: Record<string, any>
   ): Record<string, any> => {
-    const result = { ...base };
+    const result: Record<string, any> = {};
+
+    for (const [key, value] of Object.entries(base)) {
+      set_value(result, key, value);
+    }
 
     for (const [key, value] of Object.entries(source)) {
+      let next_value = value;
+
       if (isObject(value)) {
-        const current_value = isObject(result[key]) ? result[key] : {};
-        result[key] = merge_objects(current_value, value);
+        const current_value = Object.getOwnPropertyDescriptor(
+          result,
+          key
+        )?.value;
+        next_value = merge_objects(
+          isObject(current_value) ? current_value : {},
+          value
+        );
       } else if (Array.isArray(value)) {
-        result[key] = [...value];
-      } else {
-        result[key] = value;
+        next_value = [...value];
       }
+
+      set_value(result, key, next_value);
     }
 
     return result;
   };
 
-  return sources.reduce(
+  return sources.reduce<Record<string, any>>(
     (result, source) =>
-      merge_objects(result, source as Record<string, any>),
-    merge_objects({}, target as Record<string, any>)
+      source == null ? result : merge_objects(result, source),
+    merge_objects({}, target)
   ) as T;
 }
 
