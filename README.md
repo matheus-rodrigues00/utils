@@ -70,6 +70,10 @@ Feel free to contribute. Check if we have open issues or request your utility me
 |titleCase|capitalizes the first letter of each word and lowercases the rest|(string)|the title-cased string|
 |kebabCase|converts a string to kebab-case, splitting on camelCase and acronym boundaries and on any non-alphanumeric separators|(string)|the kebab-cased string|
 |snakeCase|converts a string to snake_case, splitting on camelCase and acronym boundaries and on any non-alphanumeric separators|(string)|the snake_cased string|
+### Colors
+|Method|What It Does|Parameters|Return|
+|-|-|-|-|
+|getBlackOrWhiteContrastColor|returns the most readable black or white text color for a hex, RGB, or RGBA color|(color)|"#000" for light colors or "#fff" for dark colors|
 ### Phone Numbers
 |Method|What It Does|Parameters|Return|
 |-|-|-|-|
