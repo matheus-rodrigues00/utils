@@ -6,6 +6,7 @@ const {
   get,
   isEmpty,
   deepPick,
+  merge,
 } = require("@/objects");
 
 describe("deepClone", () => {
@@ -150,6 +151,92 @@ describe("isObject", () => {
     expect(isObject(undefined)).toBe(false);
     expect(isObject(() => {})).toBe(false);
     expect(isObject(new Date())).toBe(false);
+  });
+});
+
+describe("merge", () => {
+  test("should recursively merge nested plain objects", () => {
+    expect(merge({ a: 1, b: { x: 1 } }, { b: { y: 2 }, c: 3 })).toEqual({
+      a: 1,
+      b: { x: 1, y: 2 },
+      c: 3,
+    });
+  });
+
+  test("should merge multiple sources with later values winning", () => {
+    expect(
+      merge(
+        { settings: { theme: "light", compact: false } },
+        { settings: { compact: true } },
+        { settings: { theme: "dark" } }
+      )
+    ).toEqual({ settings: { theme: "dark", compact: true } });
+  });
+
+  test("should replace arrays instead of concatenating them", () => {
+    expect(merge({ list: [1, 2] }, { list: [3] })).toEqual({ list: [3] });
+  });
+
+  test("should not mutate target or source objects", () => {
+    const target = { nested: { first: 1 }, list: [1, 2] };
+    const source = { nested: { second: 2 }, list: [3] };
+    const result = merge(target, source);
+
+    expect(target).toEqual({ nested: { first: 1 }, list: [1, 2] });
+    expect(source).toEqual({ nested: { second: 2 }, list: [3] });
+    expect(result.nested).not.toBe(target.nested);
+    expect(result.nested).not.toBe(source.nested);
+    expect(result.list).not.toBe(source.list);
+  });
+
+  test("should let an undefined source value replace an earlier value", () => {
+    expect(merge({ value: "set" }, { value: undefined })).toEqual({
+      value: undefined,
+    });
+  });
+  test("should not let a __proto__ key change the result prototype", () => {
+    const payload = JSON.parse('{"__proto__": {"polluted": true}, "a": 1}');
+    const result = merge({}, payload);
+
+    expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+    expect(result.polluted).toBeUndefined();
+    expect(({} as any).polluted).toBeUndefined();
+    expect(Object.keys(result)).toContain("__proto__");
+    expect(result.a).toBe(1);
+  });
+
+  test("should keep a __proto__ key on the target as a plain property", () => {
+    const target = JSON.parse('{"__proto__": {"polluted": true}}');
+    const result = merge(target, { a: 1 });
+
+    expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+    expect(result.polluted).toBeUndefined();
+    expect(Object.keys(result)).toEqual(["__proto__", "a"]);
+  });
+
+  test("should skip null and undefined sources", () => {
+    expect(merge({ a: 1 }, null as any, undefined as any, { b: 2 })).toEqual({
+      a: 1,
+      b: 2,
+    });
+  });
+
+  test("should replace values when merging objects and primitives", () => {
+    expect(merge({ a: 1 }, { a: { b: 2 } })).toEqual({ a: { b: 2 } });
+    expect(merge({ a: { b: 2 } }, { a: 1 })).toEqual({ a: 1 });
+  });
+
+  test("should return a deep copy of nested objects when given no sources", () => {
+    const target = { a: { b: 1 } };
+    const result = merge(target);
+
+    expect(result).toEqual(target);
+    expect(result.a).not.toBe(target.a);
+  });
+
+  test("should keep non-plain objects like dates by reference", () => {
+    const date = new Date(0);
+    expect(merge({}, { date }).date).toBe(date);
   });
 });
 
